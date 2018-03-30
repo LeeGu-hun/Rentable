@@ -2,12 +2,13 @@ nav {
 	width: 100%;
 }
 
-.nav_wrapper {
+#rent_head > .nav_wrapper {
+	position:fixed;
+	margin-left: 12.5%;
+	margin-right: 12.5%;
 	width: 75%;
-	margin: auto;
 	transition: top .5s ease-out;
 	background: #2f3b3f;
-	margin: auto;
 	padding: 0;
 }
 
@@ -125,6 +126,7 @@ main p { 1.2em;
 }
 
 .menu ul {
+	list-style: none;
 	padding: 0px;
 	margin: 0px;
 	display: inline-block;
@@ -345,7 +347,7 @@ footer a {
 		right: 0;
 		display: block;
 		font-size: 1.5em;
-		padding: 0.55em 0.5em;
+		padding: 0.3em 0.5em;
 	}
 	.menu li.has-submenu>a.active:after {
 		content: "-";

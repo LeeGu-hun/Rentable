@@ -41,12 +41,8 @@
 						<li><a href="#Link" title="Link ">Link</a></li>
 						<li><a href="#Link" title="Link">Link</a></li>
 					</ul></li>
-				<li><a href="#Link" title="Link">물품등록</a>
-					<ul>
-						<li><a href="#Link" title="Link">Link</a></li>
-						<li><a href="#Link" title="Link">Link</a></li>
-						<li><a href="#Link" title="Link">Link</a></li>
-					</ul></li>
+				<li><a href="item/iteminsert.jsp" title="Link">물품등록</a>
+				</li>
 				<li><a href="#Link" title="Link">1:1문의</a>
 					<ul>
 						<li><a href="#Link" title="Link">Link</a></li>
@@ -60,6 +56,8 @@
 						<li><a href="#Link" title="Link">Link</a></li>
 						<li><a href="#Link" title="Link">Link</a></li>
 					</ul></li>
+				<li><a href="login/loginForm.jsp" title="Link">로그인</a></li>	
+					
 			</ul>
 		</nav>
 		<form class="search_box" id="search_box" action="/search/">
@@ -73,6 +71,6 @@
 
 
 	<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/category.js?version=1.1"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/category.js?version=1.11"></script>
 </body>
 </html>

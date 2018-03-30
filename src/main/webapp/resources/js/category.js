@@ -28,11 +28,11 @@ $(function() {
 	var t = $('.nav_wrapper').outerHeight();
 	$(window).scroll(function() {
 		var n = $(document).scrollTop();
-//		if ($(document).scrollTop() >= 50) {
-//			$('.nav_wrapper').css('position', 'relative');
-//		} else {
-//			$('.nav_wrapper').css('position', 'relative');
-//		}
+		if ($(document).scrollTop() >= 50) {
+			$('.nav_wrapper').css('position', 'fixed');
+		} else {
+			$('.nav_wrapper').css('position', 'fixed');
+		}
 		if (n > t) {
 			$('.nav_wrapper').addClass('scroll');
 		} else {

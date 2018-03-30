@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+*{
+	padding: 0px;
+	margin: 0;
+	
+}
 html {
 	font-family: sans-serif;
 	color: #4b5f65;
@@ -8,25 +13,40 @@ html {
 
 body {
 	overflow-x: hidden;
-	padding: 0px;
-	margin: 0;
 	width: 100%;
 	height: 100%;
 }
 
-#rent_head {
+#wrap {
 	width: 100%;
 	background: #fafafa;
-	float:left;
+}
+
+#rent_head {
+	width: 100%;
+	position: relative;
+	height: 53px;
+	background: #80ffff;
+	float: left;
 }
 
 #rent_body {
 	width: 100%;
+	float: left;
 }
 
-#rent_body_contents {
+#rent_body > #rent_body_contents {
 	width: 75%;
 	margin: auto;
-	height:5500px;
-	background-color: blue;
+	height: 500px;
+	background:white;
+	border-width: 1px;
+	border-style: solid;
+}
+
+@media all and (max-width: 768px) {
+	#rent_head {
+		width:100%;
+		height: 60px;
+	}
 }

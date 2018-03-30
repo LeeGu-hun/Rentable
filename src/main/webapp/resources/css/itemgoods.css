@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+.itemgoods {
+	width: 100%;
+	heigth: auto;
+}
+
+.itemgoods>.itemwrap {
+	width: 95%;
+	height: auto;
+	margin: auto;
+	border-width: 1px;
+	border-style: solid;
+}
+
+.itemlist_row4 {
+	list-style: none;
+	margin: auto;
+	width: 100%;
+	display: inline-block;
+}
+
+.itemlist_row4 li {
+	width: 22%;
+	margin: 1%;
+	float: left;
+	border-style: solid;
+	height: 300px;
+}
+
+@media all and (max-width: 768px) {
+	.itemlist_row4 li {
+		width: 46%;
+		margin: 1%;
+		height: 300px;
+		display: inline-block;
+		float: left;
+		border-style: solid;
+	}
+}
