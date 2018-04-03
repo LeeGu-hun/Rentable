@@ -1,26 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <body>
+<p>cate</p>
 	<div class="itemgoods">
 		<div class="itemwrap">
-			<ul class="itemlist_row4">
-				<li>
-					<div class="picsize"></div>
-				</li>
-
-				<li>
-					<div class="picsize"></div>
-				</li>
-
-				<li>
-					<div class="picsize"></div>
-				</li>
-
-				<li>
-					<div class="picsize"></div>
-				</li>
+			<ul class="itemlist_row">
+				<c:forEach var="items" items="${mainlist}">
+					<li>${items.RP_itemname}</li>
+				</c:forEach>
 			</ul>
 		</div>
 	</div>

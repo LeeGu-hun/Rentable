@@ -7,5 +7,7 @@
 		http://www.springframework.org/schema/mvc
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<bean class="controller.MainController" />
+	<bean class="controller.MainController">
+	<property name="mainService" ref="mainService"></property>
+	</bean>
 </beans>

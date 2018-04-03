@@ -9,28 +9,27 @@
 	width: 95%;
 	height: auto;
 	margin: auto;
-	border-width: 1px;
-	border-style: solid;
+	background:#e8e8e8;
 }
 
-.itemlist_row4 {
+.itemlist_row {
 	list-style: none;
 	margin: auto;
 	width: 100%;
 	display: inline-block;
 }
 
-.itemlist_row4 li {
-	width: 22%;
-	margin: 1%;
+.itemlist_row li {
+	width: 18%;
+	margin: 0.8%;
 	float: left;
-	border-style: solid;
+	background:white;
 	height: 300px;
 }
 
 @media all and (max-width: 768px) {
 	.itemlist_row4 li {
-		width: 46%;
+		width: 31%;
 		margin: 1%;
 		height: 300px;
 		display: inline-block;

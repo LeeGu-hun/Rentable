@@ -26,7 +26,7 @@ body {
 	width: 100%;
 	position: relative;
 	height: 53px;
-	background: #80ffff;
+	background: #fff;
 	float: left;
 }
 
@@ -39,7 +39,7 @@ body {
 	width: 75%;
 	margin: auto;
 	height: 500px;
-	background:white;
+	background:#e8e8e8;
 	border-width: 1px;
 	border-style: solid;
 }

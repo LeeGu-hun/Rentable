@@ -21,11 +21,11 @@
 		<a href="#search_box" class="btn" id="search">&#9740;</a>
 		<nav id="menu" class="menu">
 			<ul class="dropdown">
-				<li><a href="#Link" title="Link">카테고리</a>
+				<li><a href="#cateitemlist" title="Link">카테고리</a>
 					<ul>
 						<li><a href="#Link" title="Link">Link » </a>
 							<ul>
-								<li><a href="#Link" title="Link">Link</a></li>
+								<li><a href="${pageContext.request.contextPath}/cateitemlist" title="Link">Link</a></li>
 								<li><a href="#Link" title="Link">Link</a></li>
 							</ul></li>
 						<li><a href="#Link" title="Link">About</a></li>
@@ -52,7 +52,7 @@
 					</ul></li>
 				<li><a href="#Link" title="Link">개인정보</a>
 					<ul>
-						<li><a href="#Link" title="Link">Link </a></li>
+						<li><a href="#Link" title="Link">Link</a></li>
 						<li><a href="#Link" title="Link">Link</a></li>
 						<li><a href="#Link" title="Link">Link</a></li>
 					</ul></li>

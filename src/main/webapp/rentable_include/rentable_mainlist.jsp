@@ -1,12 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
-<span>메인이요</span>
+<p>메인</p>
+<div class="itemgoods">
+		<div class="itemwrap">
+			<ul class="itemlist_row">
+				<c:forEach var="items" items="${mainlist}">
+					<li>${items.RP_itemname}</li>
+				</c:forEach>
+			</ul>
+		</div>
+	</div>
 </body>
 </html>

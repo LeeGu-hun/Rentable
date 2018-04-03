@@ -6,4 +6,6 @@
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
 
+	<bean id="mainService" class="service.MainService" />
+	<bean id="bean_rent_products" class="bean.bean_rent_products" />
 </beans>
