@@ -14,12 +14,14 @@ public class bean_rent_users {
 	private int R_cash; // 잔여 금액
 	private String R_stat; // 유저 현황
 	private Date R_regdate; // 가입일
+	private String R_cardnum;// 카드번호
 
 	public bean_rent_users() {
 	}
 
 	public bean_rent_users(int r_idnum, String r_id, String r_password, String r_name, String r_address, String r_phone,
-			String r_card, int r_cash, String r_stat, Date r_regdate) {
+			String r_card, int r_cash, String r_stat, Date r_regdate, String r_cardnum) {
+		super();
 		R_idnum = r_idnum;
 		R_id = r_id;
 		R_password = r_password;
@@ -30,6 +32,7 @@ public class bean_rent_users {
 		R_cash = r_cash;
 		R_stat = r_stat;
 		R_regdate = r_regdate;
+		R_cardnum = r_cardnum;
 	}
 
 	public int getR_idnum() {
@@ -110,6 +113,14 @@ public class bean_rent_users {
 
 	public void setR_regdate(Date r_regdate) {
 		R_regdate = r_regdate;
+	}
+
+	public String getR_cardnum() {
+		return R_cardnum;
+	}
+
+	public void setR_cardnum(String r_cardnum) {
+		R_cardnum = r_cardnum;
 	}
 
 }

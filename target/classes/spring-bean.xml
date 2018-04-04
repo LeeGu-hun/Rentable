@@ -8,4 +8,7 @@
 
 	<bean id="mainService" class="service.MainService" />
 	<bean id="bean_rent_products" class="bean.bean_rent_products" />
+
+	<bean class="service.ItemService" id="itemService" />
+	<bean class="service.JoinService" id="joinService" />
 </beans>

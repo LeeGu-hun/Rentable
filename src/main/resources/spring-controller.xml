@@ -8,6 +8,16 @@
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<bean class="controller.MainController">
-	<property name="mainService" ref="mainService"></property>
+		<property name="mainService" ref="mainService"></property>
 	</bean>
+
+	<bean class="controller.JoinController">
+		<property ref="joinService" name="joinService" />
+	</bean>
+	
+	<bean class="controller.ItemController">
+
+<property ref="itemService" name="itemService"/>
+
+</bean>
 </beans>

@@ -14,22 +14,10 @@
 		RP_startdate, to_date(RP_enddate,'yy/mm/dd') as RP_enddate
 		from
 		rent_products
-		<include refid="category"></include>
 		order by rp_regdate desc
 	</select>
 
-	<sql id="category">
-		<choose>
-			<!-- 카테고리 선택 경우 -->
-			<when test="category == on">
-				where RP_maincate = #{RP_maincate} and RP_subcate =
-				#{RP_subcate}
-			</when>
 
-			<otherwise></otherwise>
-
-		</choose>
-	</sql>
 
 
 
