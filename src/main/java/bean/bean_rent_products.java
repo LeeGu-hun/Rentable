@@ -1,5 +1,6 @@
 package bean;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 //상세 물품보기
@@ -83,6 +84,7 @@ public class bean_rent_products {
 
 	public void setRP_startdate(Date rP_startdate) {
 		RP_startdate = rP_startdate;
+		
 	}
 
 	public Date getRP_enddate() {

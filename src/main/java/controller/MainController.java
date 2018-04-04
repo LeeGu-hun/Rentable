@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,28 +17,29 @@ import service.MainService;
 public class MainController {
 
 	private MainService mainService;
+	private String path = "main";
 
 	public void setMainService(MainService mainService) {
 		this.mainService = mainService;
 	}
-	
-	@RequestMapping("/main")
-	public String index(Model model) {
-		System.out.println("인덱스");
-		System.out.println("getmainlist 실행");
+
+	@RequestMapping("/")
+	public String main1(Model model) {
 		List<bean_rent_products> mainlist = null;
 		mainlist = mainService.getmainlist();
 		model.addAttribute("mainlist", mainlist);
-		return "index";
+		return "main";
 	}
 
 	@RequestMapping("/{path}")
 	public String main(@PathVariable("path") String path, Model model) {
-		if (path.equals("cateitemlist")) {
+		if (path.equals("main")) {
+			System.out.println("하이용");
+		} else if (path.equals("cateitemlist")) {
 			System.out.println("카테고리 이동");
 			model.addAttribute("path", path);
-		} 
-		return "index";
+		}
+		return "main";
 	}
 
 	// @RequestMapping("/cateitemlist")

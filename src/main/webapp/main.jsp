@@ -11,11 +11,11 @@
 <title>Responsive Auto Show/Hide Toggle Menu Demo</title>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/category.css?version=1.1" />
+	href="${pageContext.request.contextPath}/resources/css/category.css?version=1.11" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/main.css?version=1.1" />
+	href="${pageContext.request.contextPath}/resources/css/main.css?version=1.11" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/itemgoods.css?version=1.1" />
+	href="${pageContext.request.contextPath}/resources/css/itemgoods.css?version=1.11" />
 
 </head>
 

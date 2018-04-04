@@ -38,10 +38,8 @@ body {
 #rent_body > #rent_body_contents {
 	width: 75%;
 	margin: auto;
-	height: 500px;
+	height: auto;
 	background:#e8e8e8;
-	border-width: 1px;
-	border-style: solid;
 }
 
 @media all and (max-width: 768px) {

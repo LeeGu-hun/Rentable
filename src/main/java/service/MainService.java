@@ -16,7 +16,6 @@ public class MainService {
 	
 	public List<bean_rent_products> getmainlist() {
 		List<bean_rent_products> result = sqlSession.selectList("mainSQL.getMainItemList");
-		System.out.println(result.toArray().toString());
 		return result;
 	}
 }

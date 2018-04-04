@@ -43,13 +43,6 @@
 					</ul></li>
 				<li><a href="item/iteminsert.jsp" title="Link">물품등록</a>
 				</li>
-				<li><a href="#Link" title="Link">1:1문의</a>
-					<ul>
-						<li><a href="#Link" title="Link">Link</a></li>
-						<li><a href="#Link" title="Link">Link</a></li>
-						<li><a href="#Link" title="Link">Link</a></li>
-						<li><a href="#Link" title=" Link"> Link</a></li>
-					</ul></li>
 				<li><a href="#Link" title="Link">개인정보</a>
 					<ul>
 						<li><a href="#Link" title="Link">Link</a></li>
