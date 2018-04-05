@@ -33,7 +33,6 @@ public class loginController {
 	public String loginAction(Model model, HttpServletRequest request) {
 		String r_id = request.getParameter("R_id");
 		String r_password = request.getParameter("R_password");
-		String str = "";
 		usersInfo = memberService.loginMember(r_id);
 		if (r_password.equals(usersInfo.getR_password())) {
 			System.out.println("로그인성공");
@@ -41,7 +40,7 @@ public class loginController {
 			System.out.println("실패");
 		}
 		model.addAttribute("usersInfo", usersInfo);
-		return "main";
+		return "redirect:/";
 	}
 
 	@RequestMapping("/logout")

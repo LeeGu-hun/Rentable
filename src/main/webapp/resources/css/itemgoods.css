@@ -28,7 +28,7 @@
 	height: 300px;
 }
 
-.itemlist_row li>img {
+.itemlist_row li > a > .thumbnail {
 	width: 100%;
 	height: 65%;
 }

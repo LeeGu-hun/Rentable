@@ -10,6 +10,9 @@ public class joinCommand {
    private String R_phone; // 전화번호
    private String R_card; // 카드명
    private String R_cardnum;//카드번호
+   
+   public joinCommand() {}
+   
    public joinCommand(String r_id, String r_password, String r_name, String r_address, String r_phone, String r_card,
          String r_cardnum) {
       super();
