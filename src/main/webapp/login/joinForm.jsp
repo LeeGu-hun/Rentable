@@ -20,7 +20,7 @@
 		var card2 = document.getElementById("card2");
 		var card3 = document.getElementById("card3");
 		var card4 = document.getElementById("card4");
-		var R_cardnum = card1.value + "-" + card2.value + "-" + card3.value + "-" + card4.value;
+		var R_cardnum = card1.value + card2.value + card3.value + card4.value;
 		
 		if (R_id.value == '' || R_id.value == null) {
 			alert('ID를 입력하세요');
@@ -84,16 +84,14 @@
 			return false;
 		}
 		if (isNaN(card1.value) || isNaN(card2.value) || isNaN(card3.value) || isNaN(card4.value)) {
-			alert("휴대폰번호는 숫자만 들어갈 수 있습니다.");
+			alert("카드번호는 숫자만 들어갈 수 있습니다.");
 			return false;
 		}
 		if(card1.value.length>3 || card2.value.length>3 || card3.value.length>3 || card4.value.length>3){
 			document.getElementById("R_cardnum").value = R_cardnum;
-		} else {		
 			save();
-		}
+		} 
 	}
-
 	function save() {	
 		joinForm.submit();
 		alert("가입이 완료되었습니다.");
@@ -116,7 +114,7 @@
 <body>
 	<div class="joinBox">
 		<h1>회원가입</h1>
-		<form:form name="joinForm" commandName="joinCommand" method="POST" enctype="multipart/form-data">
+		<form action="../joinAction" name="joinForm" method="POST" enctype="multipart/form-data">
 			<input type="text" name="R_id" id="R_id" placeholder="ID" required />
 			<input type="password" name="R_password" id="R_password" placeholder="Password" required />
 			<input type="password" name="passcheck" id="passcheck" placeholder="PasswordCheck" required /><br><br>
@@ -139,12 +137,12 @@
 			<label> Card </label>
 			<br>
 			<div class="R_card">
-				<input type="radio" value="None" id="a" name="card" checked /> 
-				<label for="a" class="radio">A</label> 
-				<input type="radio" value="None" id="b" name="card" /> 
-				<label for="b" class="radio">B</label> 
-				<input type="radio" value="None" id="c" name="card" /> 
-				<label for="c" class="radio">C</label>
+				<input type="radio" value="A" id="A" name="R_card" /> 
+				<label for="A" class="radio">A</label> 
+				<input type="radio" value="B" id="B" name="R_card" /> 
+				<label for="B" class="radio">B</label> 
+				<input type="radio" value="C" id="C" name="R_card" /> 
+				<label for="C" class="radio">C</label>
 			</div>
 		<input type="text" id="card1" name="card1" maxlength="4" style="width: 56px;"> 
         -&nbsp 
@@ -153,14 +151,14 @@
         <input type="text" id="card3" name="card3" maxlength="4" style="width: 56px;">
         -&nbsp 
         <input type="text" id="card4" name="card4" maxlength="4" style="width: 56px;"><br><br>
-        <input type="hidden" id="c" name="R_cardnum">
+        <input type="hidden" id="R_cardnum" name="R_cardnum">
 			<p>
 				By clicking Register, you agree on our 
 				<a href="#">서비스 약관</a>
 			</p><br><br>
 			<a href="javascript:Check()" class="button" >회원가입</a>
 			
-		</form:form>
+		</form>
 	</div>
 </body>
 </html>
