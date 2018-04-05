@@ -9,10 +9,12 @@ import bean.bean_rent_users;
 @Service
 public class JoinService {
 
-	@Autowired
-	private SqlSession sqlSession;
+   @Autowired
+   private SqlSession sqlSession;
 
-	public void JoinUser(bean_rent_users bru) {
-		sqlSession.insert("memberSQL.joinUser", bru);
-	}
+   public int JoinUser(bean_rent_users rentBean) {
+         int result = sqlSession.insert("memberSQL.joinUser", rentBean);
+         return result;
+         }
 }
+   

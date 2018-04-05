@@ -14,10 +14,13 @@
 	<bean class="controller.JoinController">
 		<property ref="joinService" name="joinService" />
 	</bean>
-	
+
 	<bean class="controller.ItemController">
+		<property ref="itemService" name="itemService" />
+	</bean>
+	
+	<bean class="controller.loginController">
+		<property name="memberService" ref="memberService"></property>
+	</bean>
 
-<property ref="itemService" name="itemService"/>
-
-</bean>
 </beans>

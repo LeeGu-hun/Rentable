@@ -1,6 +1,5 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,9 +13,9 @@
 <body>
    <div class="login">
       <h1>Rentable</h1>
-      <form method="post">
-         <input type="text" name="id" placeholder="ID" required="required" />
-         <input type="password" name="pass" placeholder="Pass" required="required" /> 
+      <form method="post" action="../loginAction">
+         <input type="text" id="R_id" name="R_id" placeholder="ID" required="required" />
+         <input type="password" id="R_passowrd" name="R_password" placeholder="Pass" required="required" /> 
          <input type="checkbox" name="toggle" /> 
          <label for="toggle" style="color: white; font-size: 13px;">아이디 저장</label>
          <button type="submit" class="btn btn-primary btn-block btn-large">LogIn</button>
