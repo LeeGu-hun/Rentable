@@ -9,8 +9,8 @@ public class bean_rent_products {
 	private String RP_itemname; // 물품 명
 	private int RP_price; // 물품 일일대여료
 	private Date RP_regdate; // 물품 등록날짜
-	private Date RP_startdate; // 물품 대여가능일
-	private Date RP_enddate; // 물품 반납일
+	private String RP_startdate; // 물품 대여가능일
+	private String RP_enddate; // 물품 반납일
 	private String RP_itemstat; // 물품 상태 대여중 or not 대여중
 	private String RP_img1; // 물품 이미지1 파일명
 	private String RP_img2; // 물품 이미지2 파일명
@@ -25,8 +25,8 @@ public class bean_rent_products {
 
 	}
 
-	public bean_rent_products(int rP_itemnum, String rP_itemname, int rP_price, Date rP_regdate, Date rP_startdate,
-			Date rP_enddate, String rP_itemstat, String rP_img1, String rP_img2, String rP_img3, int rP_usernum,
+	public bean_rent_products(int rP_itemnum, String rP_itemname, int rP_price, Date rP_regdate, String rP_startdate,
+			String rP_enddate, String rP_itemstat, String rP_img1, String rP_img2, String rP_img3, int rP_usernum,
 			String rP_detail, String rP_catemain, String rP_catesub, String rP_guarantee) {
 
 		RP_itemnum = rP_itemnum;
@@ -78,20 +78,19 @@ public class bean_rent_products {
 		RP_regdate = rP_regdate;
 	}
 
-	public Date getRP_startdate() {
+	public String getRP_startdate() {
 		return RP_startdate;
 	}
 
-	public void setRP_startdate(Date rP_startdate) {
+	public void setRP_startdate(String rP_startdate) {
 		RP_startdate = rP_startdate;
-		
 	}
 
-	public Date getRP_enddate() {
+	public String getRP_enddate() {
 		return RP_enddate;
 	}
 
-	public void setRP_enddate(Date rP_enddate) {
+	public void setRP_enddate(String rP_enddate) {
 		RP_enddate = rP_enddate;
 	}
 

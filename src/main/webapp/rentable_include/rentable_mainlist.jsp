@@ -10,15 +10,13 @@
 		<div class="itemwrap">
 			<ul class="itemlist_row">
 				<c:forEach var="items" items="${mainlist}">
-					<li><a href="item/iteminsert2.jsp"> <img alt=""
+					<li><a href="<c:url value="/ProdDetail/${items.RP_itemnum}"/>"><img
+							alt=""
 							src="${pageContext.request.contextPath}/resources/images/Desert.jpg"
-							style="width: 100%; height: 70%;">
-					</a>
+							style="width: 100%; height: 70%;"> </a>
 						<p class="itemsinfo">
-							<em>${items.RP_itemname}</em><br> <em> <fmt:formatDate
-									pattern="yy/MM/dd" value="${items.RP_startdate}"></fmt:formatDate>
-								~ <fmt:formatDate pattern="yy/MM/dd" value="${items.RP_enddate}"></fmt:formatDate>
-							</em> <br> <strong>${items.RP_price}</strong>
+							<em>${items.RP_itemname}</em><br> <em>
+								${items.RP_startdate} ~ ${items.RP_enddate} </em> <br> <strong>${items.RP_price}</strong>
 						</p></li>
 				</c:forEach>
 			</ul>

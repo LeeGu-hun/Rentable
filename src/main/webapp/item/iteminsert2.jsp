@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html lang="ko-KR">
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@ page import="bean.*" %>
+<%
+	bean_rent_products prod = (bean_rent_products)request.getAttribute("prodBean");
+%>
 <title>Rent</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/category.css?version=1.22" />
@@ -53,29 +58,28 @@
 					</div>
 				</div>
 				<div class="goods_info_top_right">
-					<div class="goods_name">상품명</div>
+					<div class="goods_name"><%=prod.getRP_itemname()%></div>
 					<table class="goods-tb">
-						<caption>상품 가격 정보</caption>
 						<tbody>
 							<tr>
 								<th scope="row">일별단위금액</th>
-								<td class="goods_sale_price">0 원</td>
+								<td class="goods_sale_price">${prodBean.RP_enddate}</td>
 							</tr>
 
 						</tbody>
 					</table>
 
 					<table class="goods-tb">
-						<caption>날짜</caption>
 						<tbody>
 
 							<tr>
 								<th scope="row">판매자 등록 기간</th>
-
+								<td class="goods_sale_price"><%=prod.getRP_startdate()%>
+									~<%=prod.getRP_enddate()%></td>
 							</tr>
 
 								<tr>
-									<td style="font-family: 돋음; font-size: 12" height="16">
+									<td style="font-family: 돋음; font-size: 15" height="16">
 										<div align="center">대여기간</div>
 									</td>
 									<td><input name="BOARD_NAME" type="date" style="width:175px;height:20px;"
@@ -119,9 +123,9 @@
 								width='640' style='text-align: middle;'>
 						</center>
 					</div>
-					<p>d</p>
-					<span class="text_bold">상품 요약정보(고시)</span>
-					<p>b</p>
+					<p></p>
+					<span class="text_bold"><%=prod.getRP_detail()%></span>
+					<p></p>
 				</div>
 			</div>
 
@@ -640,11 +644,5 @@
 				}
 			</script>
 		</div>
-
-	<div id="back-top" style="display: block;">
-		<a href="#TOP"><img src='../skin/quick/basic/img/top_btn.png'></a>
-	</div>
-
-
 </body>
 </html>

@@ -9,7 +9,7 @@
 	<bean id="mainService" class="service.MainService" />
 	<bean id="bean_rent_products" class="bean.bean_rent_products" />
 	<bean id="bean_rent_users" class="bean.bean_rent_users" />
-
+	<bean class="service.ProdService" id="prodService"/>
 	<bean class="service.MemberService" id="memberService" />
 	<bean class="service.ItemService" id="itemService" />
 	<bean class="service.JoinService" id="joinService" />

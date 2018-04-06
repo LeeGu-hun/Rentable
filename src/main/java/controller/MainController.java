@@ -41,6 +41,13 @@ public class MainController {
 		}
 		return "main";
 	}
+	
+	@RequestMapping("/ProdDetail/{id}")
+	public String boardDetail(@PathVariable("id") int pId, Model model, bean_rent_products prodBean) {
+		prodBean = mainService.prodView(pId);
+		model.addAttribute("prodBean", prodBean);
+		return "item/iteminsert2";
+	}
 
 	// @RequestMapping("/cateitemlist")
 	// public String category(HttpServletRequest request, Model model) {
