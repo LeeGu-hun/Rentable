@@ -27,7 +27,7 @@
 		</script>
 
 		<div class="goods_category" style="width: 1200px; margin: 0 auto;">
-			CATEGORY : 패션의류 > 남성의류</div>
+			CATEGORY : 패션의류 > 남성의류d</div>
 
 		<!-- 상품상세페이지 시작 -->
 		<div id="goods_detail">
