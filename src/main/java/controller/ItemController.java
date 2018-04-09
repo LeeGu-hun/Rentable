@@ -30,6 +30,7 @@ public class ItemController {
 
 	@RequestMapping(value = "/iteminsert", method = RequestMethod.GET)
 	public String itemInsertGet(bean_rent_products pd) {
+		System.out.println("1");
 		return "redirect:/main";
 	}
 
