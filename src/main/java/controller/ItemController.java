@@ -41,6 +41,7 @@ public class ItemController {
 		String originalFilename = "", newFilename = "";
 		String originalFilename2 = "", newFilename2 = "";
 		String originalFilename3 = "", newFilename3 = "";
+		System.out.println("물품등록시작");
 		if (multi != null) {
 			originalFilename = multi.getOriginalFilename();
 			newFilename = System.currentTimeMillis() + "_" + originalFilename;
