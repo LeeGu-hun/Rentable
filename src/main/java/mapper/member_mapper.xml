@@ -7,7 +7,7 @@
 		insert into RENT_USERS values((select nvl(max(R_idnum),0)+1 from
 		rent_users),
 		#{R_id},#{R_password},#{R_name},#{R_address},#{R_phone},#{R_card},#{R_cardnum}
-		,0,0,sysdate)
+		,0,'normal',sysdate)
 	</insert>
 	<select resultType="bean.bean_rent_users" id="loginCheck">select * from
 		rent_users where R_id = #{R_id} </select>

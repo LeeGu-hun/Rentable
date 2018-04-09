@@ -11,12 +11,20 @@
 	<select id="getMainItemList" resultType="bean.bean_rent_products">
 		select
 		RP_itemnum,RP_itemname,RP_price,to_date(RP_startdate,'yy/mm/dd') as
-		RP_startdate, to_date(RP_enddate,'yy/mm/dd') as RP_enddate
+		RP_startdate, to_date(RP_enddate,'yy/mm/dd') as RP_enddate, RP_img1
 		from
 		rent_products
 		order by rp_regdate desc
 	</select>
 
+	<select id="maincate" resultType="bean.Bean_Category">
+		select * from rent_maincate
+	</select>
+	
+<!-- 	<select id="subcate" resultType="bean.Bean_Category">
+		select subcate_value from rent_subcate where maincate_code = #{maincate_code}
+	</select>
+ -->
 
 </mapper>
 

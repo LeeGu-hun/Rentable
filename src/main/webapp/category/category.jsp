@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
 	<div class="nav_wrapper">
@@ -23,34 +25,26 @@
 			<ul class="dropdown">
 				<li><a href="#cateitemlist" title="Link">카테고리</a>
 					<ul>
-						<li><a href="#Link" title="Link">Link » </a>
-							<ul>
-								<li><a href="${pageContext.request.contextPath}/cateitemlist" title="Link">Link</a></li>
-								<li><a href="#Link" title="Link">Link</a></li>
-							</ul></li>
-						<li><a href="#Link" title="Link">About</a></li>
-						<li><a href="#Link" title="Link">Link » </a>
-							<ul>
-								<li><a href="#Link" title="Link">Link</a></li>
-								<li><a href="#link" title="Link">Link</a></li>
-								<li><a href="#Link" title="Link">Link </a></li>
-							</ul></li>
+						<c:forEach items="${category}" var="cate">
+							<li><a href="../category?maincate=${cate.maincate_code}">${cate.maincate_value}</a>
+						</c:forEach>
+						<li>
 					</ul></li>
 				<li><a href="#Link" title="Link">지역카테</a>
 					<ul>
 						<li><a href="#Link" title="Link ">Link</a></li>
 						<li><a href="#Link" title="Link">Link</a></li>
 					</ul></li>
-				<li><a href="item/iteminsert.jsp" title="Link">물품등록</a>
-				</li>
-				<li><a href="#Link" title="Link">개인정보</a>
-					<ul>
-						<li><a href="#Link" title="Link">Link</a></li>
-						<li><a href="#Link" title="Link">Link</a></li>
-						<li><a href="#Link" title="Link">Link</a></li>
-					</ul></li>
-				<li><a href="login/loginForm.jsp" title="Link">로그인</a></li>	
-					
+				<li><a href="item/iteminsert.jsp" title="Link">물품등록</a></li>
+				<c:set var="stat" value="${sessionScope.userInfo.r_stat}" />
+				<c:choose>
+					<c:when test="${stat eq 'normal'}">
+						<li><a href="login/loginForm.jsp" title="Link">개인정보</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="login/loginForm.jsp" title="Link">로그인</a></li>
+					</c:otherwise>
+				</c:choose>
 			</ul>
 		</nav>
 		<form class="search_box" id="search_box" action="/search/">
@@ -64,6 +58,7 @@
 
 
 	<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/category.js?version=1.11"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/category.js?version=1.11"></script>
 </body>
 </html>

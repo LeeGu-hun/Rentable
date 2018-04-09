@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import bean.Bean_Category;
 import bean.bean_rent_products;
 
 @Service
@@ -22,5 +23,10 @@ public class MainService {
 	public bean_rent_products prodView(int num) {
 		bean_rent_products prod = sqlSession.selectOne("prodSQL.prodView", num);
 		return prod;
+	}
+
+	public List<Bean_Category> getCategory() {
+		List<Bean_Category> cateMain = sqlSession.selectList("mainSQL.maincate");
+		return cateMain;
 	}
 }

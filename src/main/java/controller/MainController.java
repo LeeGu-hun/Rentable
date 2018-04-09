@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import bean.Bean_Category;
 import bean.bean_rent_products;
 import service.MainService;
 
@@ -27,12 +29,15 @@ public class MainController {
 	public String main1(Model model) {
 		List<bean_rent_products> mainlist = null;
 		mainlist = mainService.getmainlist();
+		List<Bean_Category> category = null;
+		category = mainService.getCategory();
+		model.addAttribute("category", category);
 		model.addAttribute("mainlist", mainlist);
 		return "main";
 	}
 
-	@RequestMapping("/{path}")
-	public String main(@PathVariable("path") String path, Model model) {
+	@RequestMapping(value = "/category", method = RequestMethod.POST)
+	public String main(HttpServletRequest request, Model model) {
 		if (path.equals("main")) {
 			System.out.println("하이용");
 		} else if (path.equals("cateitemlist")) {
@@ -41,7 +46,7 @@ public class MainController {
 		}
 		return "main";
 	}
-	
+
 	@RequestMapping("/ProdDetail/{id}")
 	public String boardDetail(@PathVariable("id") int pId, Model model, bean_rent_products prodBean) {
 		prodBean = mainService.prodView(pId);

@@ -30,16 +30,16 @@ public class loginController {
 	}
 
 	@RequestMapping(value = "/loginAction", method = RequestMethod.POST)
-	public String loginAction(Model model, HttpServletRequest request) {
+	public String loginAction(Model model, HttpServletRequest request, HttpSession session) {
 		String r_id = request.getParameter("R_id");
 		String r_password = request.getParameter("R_password");
 		usersInfo = memberService.loginMember(r_id);
+		session.setAttribute("userInfo", usersInfo);
 		if (r_password.equals(usersInfo.getR_password())) {
 			System.out.println("로그인성공");
 		} else {
 			System.out.println("실패");
 		}
-		model.addAttribute("usersInfo", usersInfo);
 		return "redirect:/";
 	}
 
