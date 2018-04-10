@@ -11,13 +11,13 @@
 %>
 <title>Rent</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/category.css?version=1.22" />
+	href="${pageContext.request.contextPath}/resources/css/category.css?version=1.33" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/itemgoods2.css?version=1.11" />
 	<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/main.css?version=1.12" />
 	<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/common.css?version=1.12" />
+	href="${pageContext.request.contextPath}/resources/css/common.css?version=1.11" />
 </head>
 <body>
 <div id="rent_head">
@@ -39,31 +39,35 @@
 			<div class="goods_info_top_box">
 				<div class="goods_info_top_left">
 					<div class="goods_image">
-						<img src='../images/thumb1a5e097242c9d526c0c7c970492d0384.png'
-							id='goods_big_img' style='vertical-align: middle;'>
+						<img src="${pageContext.request.contextPath}/upload_products/${prodBean.RP_img1}"
+							id='goods_big_img' style="width: 100%; max-width: 760px; vertical-align: middle">
+					</div>
 					</div>
 
 					<div class="goods_thumb_img">
 						<ul>
 							<li><a href=''
-								onmouseover="javascript:big_img_show('../images/thumb1a5e097242c9d526c0c7c970492d0384.png');"><img
-									src='../images/11.png'></a></li>
+								onmouseover="javascript:big_img_show('${pageContext.request.contextPath}/upload_products/${prodBean.RP_img1}');">
+								<img src='${pageContext.request.contextPath}/upload_products/${prodBean.RP_img1}'
+									style="width: 10%; max-width: 760px; vertical-align: middle"></a></li>
 							<li><a href=''
-								onmouseover="javascript:big_img_show('../images/thumbbf68d385a23d5967d692ea17f0b51097.jpg');"><img
-									src='../images/33.jpg'></a></li>
+								onmouseover="javascript:big_img_show('${pageContext.request.contextPath}/upload_products/${prodBean.RP_img2}');"><img
+									src='${pageContext.request.contextPath}/upload_products/${prodBean.RP_img2}'
+									style="width: 10%; max-width: 760px; vertical-align: middle"></a></li>
 							<li><a href=''
-								onmouseover="javascript:big_img_show('../data/goods/thumb/goods_item/thumb4fd760706df04746601b7589d846d358.jpg');"><img
-									src='../data/goods/thumb/gallery/thumb4fd760706df04746601b7589d846d358.jpg'></a></li>
+								onmouseover="javascript:big_img_show('${pageContext.request.contextPath}/upload_products/${prodBean.RP_img3}');"><img
+									src='${pageContext.request.contextPath}/upload_products/${prodBean.RP_img3}'
+									style="width: 10%; max-width: 760px; vertical-align: middle"></a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="goods_info_top_right">
-					<div class="goods_name"><%=prod.getRP_itemname()%></div>
+					<div class="goods_name">${prodBean.RP_itemname}</div>
 					<table class="goods-tb">
 						<tbody>
 							<tr>
 								<th scope="row">일별단위금액</th>
-								<td class="goods_sale_price">${prodBean.RP_enddate}</td>
+								<td class="goods_sale_price">${prodBean.RP_price}</td>
 							</tr>
 
 						</tbody>
@@ -74,8 +78,8 @@
 
 							<tr>
 								<th scope="row">판매자 등록 기간</th>
-								<td class="goods_sale_price"><%=prod.getRP_startdate()%>
-									~<%=prod.getRP_enddate()%></td>
+								<td class="goods_sale_price">${prodBean.RP_startdate}
+									~${prodBean.RP_enddate}</td>
 							</tr>
 
 								<tr>

@@ -13,12 +13,14 @@
 					<li><a href="<c:url value="/ProdDetail/${items.RP_itemnum}"/>"><img
 							alt=""
 							src="${pageContext.request.contextPath}/upload_products/${items.RP_img1}"
-							style="width: 100%; height: 70%;"> </a>
+							style="width: 100%; height: 70%;"> 
 
 						<p class="itemsinfo">
 							<em>${items.RP_itemname}</em><br> <em>
 								${items.RP_startdate} ~ ${items.RP_enddate} </em> <br> <strong>${items.RP_price}</strong>
-						</p></li>
+						</p>
+						</a>
+						</li>
 				</c:forEach>
 			</ul>
 		</div>

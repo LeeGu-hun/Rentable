@@ -49,6 +49,7 @@ public class ItemController {
 			String root_path = request.getSession().getServletContext().getRealPath("/");
 			String attach_path = "upload_products/";
 			String path1 = root_path + attach_path + newFilename;
+			System.out.println(path1);
 
 			try {
 				File file = new File(path1);
