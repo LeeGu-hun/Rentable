@@ -29,4 +29,15 @@ public class MainService {
 		List<Bean_Category> cateMain = sqlSession.selectList("mainSQL.maincate");
 		return cateMain;
 	}
+	
+	public List<bean_rent_products> getSubcate(String maincate) {
+		List<bean_rent_products> catesub = sqlSession.selectList("mainSQL.subcate",maincate);
+		return catesub;
+	}
+	
+	public List<bean_rent_products> getMainCateitems(String maincate) {
+		List<bean_rent_products> catesub = sqlSession.selectList("mainSQL.getmaincateitems",maincate);
+		return catesub;
+	}
+
 }

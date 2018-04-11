@@ -5,7 +5,7 @@
 
 <body>
 	<c:choose>
-		<c:when test="${path eq 'cateitemlist'}">
+		<c:when test="${path eq 'category'}">
 			<%@include file="../rentable_include/rentable_catelist.jsp"%>
 		</c:when>
 		<c:otherwise>

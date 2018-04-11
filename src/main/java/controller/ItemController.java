@@ -2,6 +2,9 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -89,6 +92,7 @@ public class ItemController {
 				e.printStackTrace();
 			}
 		}
+		
 		bean_rent_users userInfo = (bean_rent_users) session.getAttribute("userInfo");
 		bean_rent_products pd = new bean_rent_products();
 

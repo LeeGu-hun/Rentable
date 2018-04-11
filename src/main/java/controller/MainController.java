@@ -1,6 +1,8 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import bean.Bean_Category;
 import bean.bean_rent_products;
@@ -35,15 +38,22 @@ public class MainController {
 		model.addAttribute("mainlist", mainlist);
 		return "main";
 	}
-
-	@RequestMapping(value = "/category", method = RequestMethod.POST)
-	public String main(HttpServletRequest request, Model model) {
-		if (path.equals("main")) {
-			System.out.println("하이용");
-		} else if (path.equals("cateitemlist")) {
-			System.out.println("카테고리 이동");
-			model.addAttribute("path", path);
-		}
+	
+	@RequestMapping("/category")
+	public String main(HttpServletRequest request, Model model, @RequestParam("maincate") String maincate) {
+		String realPath = request.getServletPath();
+		String path = realPath.replace("/", "");
+		System.out.println(path);
+		List<bean_rent_products> maincatelist = null;
+		maincatelist = mainService.getMainCateitems(maincate);
+		List<bean_rent_products> subcatelist = null;
+		subcatelist = mainService.getSubcate(maincate);
+		List<Bean_Category> category = null;
+		category = mainService.getCategory();
+		model.addAttribute("category", category);
+		model.addAttribute("maincatelist",maincatelist);
+		model.addAttribute("subcatelist", subcatelist);
+		model.addAttribute("path", path);
 		return "main";
 	}
 

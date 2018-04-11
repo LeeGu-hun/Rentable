@@ -26,7 +26,7 @@
 				<li><a href="#cateitemlist" title="Link">카테고리</a>
 					<ul>
 						<c:forEach items="${category}" var="cate">
-							<li><a href="../category?maincate=${cate.maincate_code}">${cate.maincate_value}</a>
+							<li><a href="${pageContext.request.contextPath}/category?maincate=${cate.maincate_value}">${cate.maincate_value}</a>
 						</c:forEach>
 						<li>
 					</ul></li>
