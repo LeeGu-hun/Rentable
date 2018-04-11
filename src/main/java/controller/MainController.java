@@ -22,46 +22,81 @@ import service.MainService;
 public class MainController {
 
 	private MainService mainService;
-	private String path = "main";
 
 	public void setMainService(MainService mainService) {
 		this.mainService = mainService;
 	}
 
+	public List<Bean_Category> getMainCategory() {
+		return mainService.getCategory();
+	}
+	
+	public String getPath(HttpServletRequest request) {
+		String realPath = request.getServletPath();
+		String path = realPath.split("/")[1];
+		return path;
+	}
+
 	@RequestMapping("/")
-	public String main1(Model model) {
+	public String main1(Model model, @RequestParam(defaultValue = "all") String maincate,
+			@RequestParam(defaultValue = "all") String subcate ) {
+		bean_rent_products catebean = new bean_rent_products();
+		catebean.setRP_catemain(maincate);
+		catebean.setRP_catesub(subcate);
+		// 카테고리 아이템 목록 가져오기
 		List<bean_rent_products> mainlist = null;
-		mainlist = mainService.getmainlist();
-		List<Bean_Category> category = null;
-		category = mainService.getCategory();
-		model.addAttribute("category", category);
+		mainlist = mainService.getMainCateitems(catebean);
+		model.addAttribute("category", getMainCategory());
 		model.addAttribute("mainlist", mainlist);
 		return "main";
 	}
-	
+
 	@RequestMapping("/category")
-	public String main(HttpServletRequest request, Model model, @RequestParam("maincate") String maincate) {
-		String realPath = request.getServletPath();
-		String path = realPath.replace("/", "");
-		System.out.println(path);
+	public String main(HttpServletRequest request, Model model, @RequestParam(defaultValue = "all") String maincate,
+			@RequestParam(defaultValue = "all") String subcate) {
+		bean_rent_products catebean = new bean_rent_products();
+		catebean.setRP_catemain(maincate);
+		catebean.setRP_catesub(subcate);
+		// 카테고리 아이템 목록 가져오기
 		List<bean_rent_products> maincatelist = null;
-		maincatelist = mainService.getMainCateitems(maincate);
+		maincatelist = mainService.getMainCateitems(catebean);
+		// 카테고리 서브 목록 가져오기
 		List<bean_rent_products> subcatelist = null;
 		subcatelist = mainService.getSubcate(maincate);
-		List<Bean_Category> category = null;
-		category = mainService.getCategory();
-		model.addAttribute("category", category);
-		model.addAttribute("maincatelist",maincatelist);
+		model.addAttribute("category", getMainCategory());
+		model.addAttribute("maincate", maincate);
+		model.addAttribute("maincatelist", maincatelist);
 		model.addAttribute("subcatelist", subcatelist);
-		model.addAttribute("path", path);
+		model.addAttribute("path", getPath(request));
 		return "main";
 	}
 
 	@RequestMapping("/ProdDetail/{id}")
-	public String boardDetail(@PathVariable("id") int pId, Model model, bean_rent_products prodBean) {
+	public String boardDetail(@PathVariable("id") int pId, Model model, bean_rent_products prodBean,
+			HttpServletRequest request) {
 		prodBean = mainService.prodView(pId);
+		model.addAttribute("path", getPath(request));
+		model.addAttribute("category", getMainCategory());
 		model.addAttribute("prodBean", prodBean);
-		return "item/iteminsert2";
+		return "main";
+	}
+
+	@RequestMapping("/ProdInsert")
+	public String prodInsert(HttpServletRequest request, Model model) {
+		model.addAttribute("category", getMainCategory());
+		model.addAttribute("path", getPath(request));
+		return "main";
+	}
+	
+	@RequestMapping("/search")
+	public String searchProd(HttpServletRequest request, Model model, @RequestParam(defaultValue="") String keyword) {
+		bean_rent_products catebean = new bean_rent_products();
+		List<bean_rent_products> maincatelist = null;
+		maincatelist = mainService.getSearchitems(keyword);
+		model.addAttribute("maincatelist", maincatelist);
+		model.addAttribute("category", getMainCategory());
+		model.addAttribute("path", getPath(request));
+		return "main";
 	}
 
 	// @RequestMapping("/cateitemlist")

@@ -107,17 +107,12 @@
 
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/resources/css/category.css?version=1.22" />
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/css/main.css?version=1.12" />
+
    
 </head>
 <body>
-   <!-- header -->
-   <div id="rent_head">
-      <%@include file="/category/category.jsp"%>
-   </div>
-   <!-- body -->
-   <div id="rent_body">
+   
+  
       <div id="rent_body_contentss">
          <!-- 게시판 등록 -->
          <form action="../itemInsertAction" name="insertForm"
@@ -263,20 +258,10 @@
                   </td>
                </tr>
             </table>
-            
-
-
          </form>
          <!-- 게시판 등록 -->
       </div>
-   </div>
-   <!-- footer -->
-   <div id="rent_footer">
-      <div id="category_name"></div>
-   </div>
-
-
-
+  
 
 </body>
 

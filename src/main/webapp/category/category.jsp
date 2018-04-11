@@ -35,11 +35,14 @@
 						<li><a href="#Link" title="Link ">Link</a></li>
 						<li><a href="#Link" title="Link">Link</a></li>
 					</ul></li>
-				<li><a href="item/iteminsert.jsp" title="Link">물품등록</a></li>
+				<li><a href="${pageContext.request.contextPath}/ProdInsert" title="Link">물품등록</a></li>
 				<c:set var="stat" value="${sessionScope.userInfo.r_stat}" />
 				<c:choose>
 					<c:when test="${stat eq 'normal'}">
 						<li><a href="login/loginForm.jsp" title="Link">개인정보</a></li>
+					</c:when>
+					<c:when test="${stat eq 'admin'}">
+						<li><a href="login/loginForm.jsp" title="Link">관리자메뉴</a></li>
 					</c:when>
 					<c:otherwise>
 						<li><a href="login/loginForm.jsp" title="Link">로그인</a></li>
@@ -47,8 +50,8 @@
 				</c:choose>
 			</ul>
 		</nav>
-		<form class="search_box" id="search_box" action="/search/">
-			<input name="search_criteria" placeholder="Search here" value=""
+		<form class="search_box" id="search_box" action="${pageContext.request.contextPath}/search">
+			<input name="keyword" id="keyword" placeholder="Search here" value=""
 				type="text"> <input class="search_icon" value="Search"
 				type="submit">
 		</form>

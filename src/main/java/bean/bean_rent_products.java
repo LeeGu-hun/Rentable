@@ -21,6 +21,7 @@ public class bean_rent_products {
 	private String RP_catesub; // 물품 카테 서브
 	private String RP_guarantee; // 물품 안심등록
 	private String RP_subCount; // 서브카테고리 별 물품등록 갯수
+	private String keyword; // 검색 키워드
 
 	public bean_rent_products() {
 
@@ -153,5 +154,15 @@ public class bean_rent_products {
 	public void setRP_subCount(String rP_subCount) {
 		RP_subCount = rP_subCount;
 	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	
+	
 
 }

@@ -6,10 +6,9 @@
 <!DOCTYPE html>
 <html lang="ko">
 <body>
-	<p>cate</p>
 	<c:forEach var="subcate" items="${subcatelist}">
-		<p>${subcate.RP_catesub}</p>
-		<strong>${subcate.RP_subCount}</strong>
+		<p><a href="${pageContext.request.contextPath}/category?maincate=${maincate}&subcate=${subcate.RP_catesub}">${subcate.RP_catesub}</a></p>
+		<strong><a href="${pageContext.request.contextPath}/category?subcate=${subcate.RP_catesub}">${subcate.RP_subCount}</a></strong>
 	</c:forEach>
 	<div class="itemgoods">
 		<div class="itemwrap">

@@ -22,5 +22,7 @@
 	<bean class="controller.loginController">
 		<property name="memberService" ref="memberService"></property>
 	</bean>
+	
+	
 
 </beans>
