@@ -70,25 +70,10 @@
    }
    function save() {
       var RP_itemname = document.getElementById("RP_itemname");
-      var RP_catemain = document.getElementById("RP_catemain");
-      var RP_catesub = document.getElementById("RP_catesub");
-      var RP_startdate = document.getElementById("RP_startdate");
-      var RP_enddate = document.getElementById("RP_enddate");
-      var RP_price = document.getElementById("RP_price");
-      var RP_detail = document.getElementById("RP_detail");
-      var imgInp = document.getElementById("imgInp");
-      var RP_guarantee = document.getElementById("RP_guarantee");
-
-          
-      if (RP_itemname.value == '' || RP_itemname.value == null||
-    		  RP_catesub.value == '' || RP_catesub.value == null||
-    		  RP_catemain.value == '' || RP_catemain.value == null||
-    		  RP_startdate.value == '' || RP_startdate.value == null||
-    		  RP_enddate.value == '' || RP_enddate.value == null||
-    		  RP_price.value == '' || RP_price.value == null||
-    		  RP_detail.value == '' || RP_detail.value == null||
-    		  imgInp.value == '' || imgInp.value == null) {
-           document.getElementById('result').textContent = '빈칸을 모두 입력해주세요';
+      
+      if (RP_itemname.value == '' || RP_itemname.value == null) {
+           document.getElementById('result').textContent = '아이디를 입력해주세요';
+           focus.RP_itemname;
            return false;
         }
       
@@ -122,17 +107,12 @@
 
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/resources/css/category.css?version=1.22" />
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/css/main.css?version=1.12" />
+
    
 </head>
 <body>
-   <!-- header -->
-   <div id="rent_head">
-      <%@include file="/category/category.jsp"%>
-   </div>
-   <!-- body -->
-   <div id="rent_body">
+   
+  
       <div id="rent_body_contentss">
          <!-- 게시판 등록 -->
          <form action="../itemInsertAction" name="insertForm"
@@ -184,16 +164,16 @@
                            <td style="font-family: 돋음; font-size: 12" height="16">
                               <div align="center"><h4>대여기간</h4></div>
                            </td>
-                           <td><input type="date" id ="RP_startdate"name="RP_startdate" required
+                           <td><input type="date" name="RP_startdate" required
                               style="width: 175px; height: 20px;" /> &nbsp;~&nbsp; <input
-                              id="RP_enddate" name="RP_enddate" type="date"
+                              name="RP_enddate" type="date"
                               style="width: 175px; height: 20px;" required /></td>
                         </tr>
                         <tr>
                            <td style="font-family: 돋음; font-size: 12" height="16">
                               <div align="center"><h4>일일 대여료</h4></div>
                            </td>
-                           <td><input id="RP_price" name="RP_price" type="number" 
+                           <td><input name="RP_price" type="number" 
                               maxlength="10" required/> <input id="calculator" type="button"
                               size="10" maxlength="10" value="합리적인 대여료 계산기" /></td>
 
@@ -225,7 +205,7 @@
 
             <table>
                <tr>
-                  <td>&nbsp;<textarea id="RP_detail"name="RP_detail" cols="200" rows="15" ></textarea><br>
+                  <td>&nbsp;<textarea name="RP_detail" cols="200" rows="15" ></textarea><br>
                      <br></td>
                </tr>
             </table>
@@ -237,7 +217,7 @@
                      서비스</h4><br>
                   
                   <div class="RP_guarantee" ><label style="font-weight: bold;">사   용</label> <input type="radio"
-                     onClick="display1()"   name="RP_guarantee" checked="checked" /> <label style="font-weight: bold;">사용 안함</label> <input
+                     onClick="display1()"  name="RP_guarantee" checked="checked" /> <label style="font-weight: bold;">사용 안함</label> <input
                      name="RP_guarantee" value="0"
                      type="radio" onclick="display2()" />
                      </div></td>
@@ -278,20 +258,10 @@
                   </td>
                </tr>
             </table>
-            
-
-
          </form>
          <!-- 게시판 등록 -->
       </div>
-   </div>
-   <!-- footer -->
-   <div id="rent_footer">
-      <div id="category_name"></div>
-   </div>
-
-
-
+  
 
 </body>
 

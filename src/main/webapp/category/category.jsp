@@ -35,7 +35,7 @@
 						<li><a href="#Link" title="Link ">Link</a></li>
 						<li><a href="#Link" title="Link">Link</a></li>
 					</ul></li>
-				<li><a href="item/iteminsert.jsp" title="Link">물품등록</a></li>
+				<li><a href="${pageContext.request.contextPath}/ProdInsert" title="Link">물품등록</a></li>
 				<c:set var="stat" value="${sessionScope.userInfo.r_stat}" />
 				<c:choose>
 					<c:when test="${stat eq 'normal'}">
@@ -49,7 +49,12 @@
 					</ul></li>
 					</c:when>
 					<c:when test="${stat eq 'admin'}">
-						<li><a href="login/loginForm.jsp" title="Link">관리자메뉴</a></li>
+						<li><a href="login/loginForm.jsp" title="Link">관리자메뉴</a>
+						<ul>
+						<li><a href="#">회원관리</a></li>
+						<li><a href="#">물품관리</a></li>
+						<li><a href="#">카테고리 관리</a></li>
+					</ul></li>
 					</c:when>
 					<c:otherwise>
 						<li><a href="${pageContext.request.contextPath}/loginForm" title="Link">로그인</a></li>

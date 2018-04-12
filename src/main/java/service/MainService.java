@@ -35,11 +35,11 @@ public class MainService {
 		return catesub;
 	}
 	
-	public List<bean_rent_products> getMainCateitems(bean_rent_products catebean) {
+	public List<bean_rent_products> getMainCateitems(Bean_Category catebean) {
 		List<bean_rent_products> catesub = sqlSession.selectList("mainSQL.getmaincateitems",catebean);
 		return catesub;
 	}
-	
+		
 	public List<bean_rent_products> getSearchitems(String keyword) {
 		List<bean_rent_products> resultkeyword = sqlSession.selectList("mainSQL.getsearchitems",keyword);
 		return resultkeyword;

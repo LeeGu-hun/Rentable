@@ -39,10 +39,11 @@ public class MainController {
 
 	@RequestMapping("/")
 	public String main1(Model model, @RequestParam(defaultValue = "all") String maincate,
-			@RequestParam(defaultValue = "all") String subcate ) {
-		bean_rent_products catebean = new bean_rent_products();
-		catebean.setRP_catemain(maincate);
-		catebean.setRP_catesub(subcate);
+			@RequestParam(defaultValue = "all") String subcate, @RequestParam(defaultValue="") String orderby ) {
+		Bean_Category catebean = new Bean_Category();
+		catebean.setMaincate_value(maincate);
+		catebean.setSubcate_value(subcate);
+		catebean.setOrderby(orderby);
 		// 카테고리 아이템 목록 가져오기
 		List<bean_rent_products> mainlist = null;
 		mainlist = mainService.getMainCateitems(catebean);
@@ -53,10 +54,11 @@ public class MainController {
 
 	@RequestMapping("/category")
 	public String main(HttpServletRequest request, Model model, @RequestParam(defaultValue = "all") String maincate,
-			@RequestParam(defaultValue = "all") String subcate) {
-		bean_rent_products catebean = new bean_rent_products();
-		catebean.setRP_catemain(maincate);
-		catebean.setRP_catesub(subcate);
+			@RequestParam(defaultValue = "all") String subcate, @RequestParam(defaultValue="") String orderby) {
+		Bean_Category catebean = new Bean_Category();
+		catebean.setMaincate_value(maincate);
+		catebean.setSubcate_value(subcate);
+		catebean.setOrderby(orderby);
 		// 카테고리 아이템 목록 가져오기
 		List<bean_rent_products> maincatelist = null;
 		maincatelist = mainService.getMainCateitems(catebean);

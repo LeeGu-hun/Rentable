@@ -20,6 +20,8 @@
 		rp_catesub
 	</select>
 
+
+
 	<select id="getmaincateitems" resultType="bean.bean_rent_products">
 		select
 		RP_itemnum,RP_itemname,RP_price,to_date(RP_startdate,'yy/mm/dd') as
@@ -27,21 +29,34 @@
 		from
 		rent_products
 		<include refid="category"></include>
-		order by rp_regdate desc
+		order by 
+		<include refid="orderby"></include>
 	</select>
 
 	<sql id="category">
 		<choose>
-			<when test="RP_catemain != 'all'">
-				<if test="RP_catesub == 'all'">
-					where RP_catemain = #{RP_catemain}
+			<when test="maincate_value != 'all'">
+				<if test="subcate_value == 'all'">
+					where RP_catemain = #{maincate_value}
 				</if>
-				<if test="RP_catesub != 'all'">
-					where RP_catemain = #{RP_catemain} and RP_catesub =
-					#{RP_catesub}
+				<if test="subcate_value != 'all'">
+					where RP_catemain = #{maincate_value} and RP_catesub =
+					#{subcate_value}
 				</if>
 			</when>
 			<otherwise></otherwise>
+		</choose>
+	</sql>
+
+	<sql id="orderby">
+		<choose>
+			<when test="orderby == 'price_asc'">
+				RP_price asc, rp_regdate desc
+			</when>
+			<when test="orderby == 'price_desc'">
+				RP_price desc, rp_regdate desc
+			</when>
+			<otherwise>rp_regdate desc</otherwise>
 		</choose>
 	</sql>
 
