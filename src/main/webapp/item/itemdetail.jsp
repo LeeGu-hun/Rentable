@@ -18,9 +18,7 @@
 
 </head>
 <body>
-	<div id="rent_head">
-		<%@include file="/category/category.jsp"%>
-	</div>
+	
 	<div id="shop_wrap">
 		<script type="text/javascript">
 			function big_img_show(img_url) {

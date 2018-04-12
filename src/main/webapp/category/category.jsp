@@ -26,7 +26,7 @@
 				<li><a href="#cateitemlist" title="Link">카테고리</a>
 					<ul>
 						<c:forEach items="${category}" var="cate">
-							<li><a href="../category?maincate=${cate.maincate_code}">${cate.maincate_value}</a>
+							<li><a href="${pageContext.request.contextPath}/category?maincate=${cate.maincate_value}">${cate.maincate_value}</a>
 						</c:forEach>
 						<li>
 					</ul></li>
@@ -48,14 +48,17 @@
 						<li><a href="${pageContext.request.contextPath}/user_rentlist">빌린 내역</a></li>
 					</ul></li>
 					</c:when>
+					<c:when test="${stat eq 'admin'}">
+						<li><a href="login/loginForm.jsp" title="Link">관리자메뉴</a></li>
+					</c:when>
 					<c:otherwise>
 						<li><a href="${pageContext.request.contextPath}/loginForm" title="Link">로그인</a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>
 		</nav>
-		<form class="search_box" id="search_box" action="/search/">
-			<input name="search_criteria" placeholder="Search here" value=""
+		<form class="search_box" id="search_box" action="${pageContext.request.contextPath}/search">
+			<input name="keyword" id="keyword" placeholder="Search here" value=""
 				type="text"> <input class="search_icon" value="Search"
 				type="submit">
 		</form>

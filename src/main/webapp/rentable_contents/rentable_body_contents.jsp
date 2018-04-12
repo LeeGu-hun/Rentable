@@ -5,8 +5,20 @@
 
 <body>
 	<c:choose>
-		<c:when test="${path eq 'cateitemlist'}">
+		<c:when test="${path eq 'category'}">
 			<%@include file="../rentable_include/rentable_catelist.jsp"%>
+		</c:when>
+		<c:when test="${path eq 'ProdDetail'}">
+			<%@include file="../item/itemdetail.jsp"%>
+		</c:when>
+		<c:when test="${path eq 'ProdInsert'}">
+			<%@include file="../item/iteminsert.jsp"%>
+		</c:when>
+		<c:when test="${path eq 'search'}">
+			<%@include file="../rentable_include/rentable_catelist.jsp"%>
+		</c:when>
+		<c:when test="${path eq 'user_modify'}">
+			<%@include file="../myPage/user_modify.jsp"%>
 		</c:when>
 		<c:otherwise>
 			<%@include file="../rentable_include/rentable_mainlist.jsp"%>

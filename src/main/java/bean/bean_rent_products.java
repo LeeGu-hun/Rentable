@@ -20,31 +20,11 @@ public class bean_rent_products {
 	private String RP_catemain; // 물품 카테 메인
 	private String RP_catesub; // 물품 카테 서브
 	private String RP_guarantee; // 물품 안심등록
+	private String RP_subCount; // 서브카테고리 별 물품등록 갯수
+	private String keyword; // 검색 키워드
 
 	public bean_rent_products() {
 
-	}
-	
-
-	public bean_rent_products(int rP_itemnum, String rP_itemname, int rP_price, Date rP_regdate, String rP_startdate,
-			String rP_enddate, String rP_itemstat, String rP_img1, String rP_img2, String rP_img3, int rP_usernum,
-			String rP_detail, String rP_catemain, String rP_catesub, String rP_guarantee) {
-
-		RP_itemnum = rP_itemnum;
-		RP_itemname = rP_itemname;
-		RP_price = rP_price;
-		RP_regdate = rP_regdate;
-		RP_startdate = rP_startdate;
-		RP_enddate = rP_enddate;
-		RP_itemstat = rP_itemstat;
-		RP_img1 = rP_img1;
-		RP_img2 = rP_img2;
-		RP_img3 = rP_img3;
-		RP_usernum = rP_usernum;
-		RP_detail = rP_detail;
-		RP_catemain = rP_catemain;
-		RP_catesub = rP_catesub;
-		RP_guarantee = rP_guarantee;
 	}
 
 	public int getRP_itemnum() {
@@ -166,5 +146,23 @@ public class bean_rent_products {
 	public void setRP_guarantee(String rP_guarantee) {
 		RP_guarantee = rP_guarantee;
 	}
+
+	public String getRP_subCount() {
+		return RP_subCount;
+	}
+
+	public void setRP_subCount(String rP_subCount) {
+		RP_subCount = rP_subCount;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	
+	
 
 }

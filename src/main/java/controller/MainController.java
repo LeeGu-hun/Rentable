@@ -1,57 +1,103 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import bean.Bean_Category;
 import bean.bean_rent_products;
-import bean.bean_rent_users;
-import service.ItemService;
 import service.MainService;
 
 @Controller
 public class MainController {
 
 	private MainService mainService;
-	
-	private String path = "main";
-	
-
 
 	public void setMainService(MainService mainService) {
 		this.mainService = mainService;
 	}
 
+	public List<Bean_Category> getMainCategory() {
+		return mainService.getCategory();
+	}
+	
+	public String getPath(HttpServletRequest request) {
+		String realPath = request.getServletPath();
+		String path = realPath.split("/")[1];
+		return path;
+	}
+
 	@RequestMapping("/")
-	public String main1(Model model) {
+	public String main1(Model model, @RequestParam(defaultValue = "all") String maincate,
+			@RequestParam(defaultValue = "all") String subcate ) {
+		bean_rent_products catebean = new bean_rent_products();
+		catebean.setRP_catemain(maincate);
+		catebean.setRP_catesub(subcate);
+		// 카테고리 아이템 목록 가져오기
 		List<bean_rent_products> mainlist = null;
-		mainlist = mainService.getmainlist();
-		List<Bean_Category> category = null;
-		category = mainService.getCategory();
-		model.addAttribute("category", category);
+		mainlist = mainService.getMainCateitems(catebean);
+		model.addAttribute("category", getMainCategory());
 		model.addAttribute("mainlist", mainlist);
 		return "main";
 	}
 
-	@RequestMapping(value = "/category", method = RequestMethod.POST)
-	public String main(HttpServletRequest request, Model model) {
-		if (path.equals("main")) {
-			System.out.println("하이용");
-		} else if (path.equals("cateitemlist")) {
-			System.out.println("카테고리 이동");
-			model.addAttribute("path", path);
-		}
+	@RequestMapping("/category")
+	public String main(HttpServletRequest request, Model model, @RequestParam(defaultValue = "all") String maincate,
+			@RequestParam(defaultValue = "all") String subcate) {
+		bean_rent_products catebean = new bean_rent_products();
+		catebean.setRP_catemain(maincate);
+		catebean.setRP_catesub(subcate);
+		// 카테고리 아이템 목록 가져오기
+		List<bean_rent_products> maincatelist = null;
+		maincatelist = mainService.getMainCateitems(catebean);
+		// 카테고리 서브 목록 가져오기
+		List<bean_rent_products> subcatelist = null;
+		subcatelist = mainService.getSubcate(maincate);
+		model.addAttribute("category", getMainCategory());
+		model.addAttribute("maincate", maincate);
+		model.addAttribute("maincatelist", maincatelist);
+		model.addAttribute("subcatelist", subcatelist);
+		model.addAttribute("path", getPath(request));
 		return "main";
 	}
 
+//	@RequestMapping("/ProdDetail/{id}")
+//	public String boardDetail(@PathVariable("id") int pId, Model model, bean_rent_products prodBean,
+//			HttpServletRequest request) {
+//		prodBean = mainService.prodView(pId);
+//		model.addAttribute("path", getPath(request));
+//		model.addAttribute("category", getMainCategory());
+//		model.addAttribute("prodBean", prodBean);
+//		return "main";
+//	}
+
+	@RequestMapping("/ProdInsert")
+	public String prodInsert(HttpServletRequest request, Model model) {
+		model.addAttribute("category", getMainCategory());
+		model.addAttribute("path", getPath(request));
+		return "main";
+	}
+	
+	@RequestMapping("/search")
+	public String searchProd(HttpServletRequest request, Model model, @RequestParam(defaultValue="") String keyword) {
+		bean_rent_products catebean = new bean_rent_products();
+		List<bean_rent_products> maincatelist = null;
+		maincatelist = mainService.getSearchitems(keyword);
+		model.addAttribute("maincatelist", maincatelist);
+		model.addAttribute("category", getMainCategory());
+		model.addAttribute("path", getPath(request));
+		return "main";
+	}
 
 	// @RequestMapping("/cateitemlist")
 	// public String category(HttpServletRequest request, Model model) {

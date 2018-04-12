@@ -13,13 +13,18 @@
 					<li><a href="<c:url value="/ProdDetail/${items.RP_itemnum}"/>"><img
 							alt=""
 							src="${pageContext.request.contextPath}/upload_products/${items.RP_img1}"
-							style="width: 100%; height: 70%;"> 
+							style="width: 100%; height: 70%;">
 
-						<p class="itemsinfo">
-							<em>${items.RP_itemname}</em><br> <em>
-								${items.RP_startdate} ~ ${items.RP_enddate} </em> <br> <strong>${items.RP_price}</strong>
-						</p>
-						</a></li>
+							<p class="itemsinfo">
+								<em>${items.RP_itemname}</em><br> <em> <fmt:parseDate
+										var="dateString1" value="${items.RP_startdate}"
+										pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
+										value="${dateString1}" pattern="yyyy.MM.dd" /> ~ <fmt:parseDate
+										var="dateString2" value="${items.RP_enddate}"
+										pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
+										value="${dateString2}" pattern="yyyy.MM.dd" />
+								</em> <br> <strong>${items.RP_price}</strong>
+							</p> </a></li>
 				</c:forEach>
 			</ul>
 		</div>

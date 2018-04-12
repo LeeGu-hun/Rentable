@@ -35,12 +35,14 @@ public class loginController {
 		String r_password = request.getParameter("R_password");
 		usersInfo = memberService.loginMember(r_id);
 		session.setAttribute("userInfo", usersInfo);
+		String main = "";
 		if (r_password.equals(usersInfo.getR_password())) {
-			System.out.println("로그인성공");
+			main = "redirect:/";
 		} else {
-			System.out.println("실패");
+			main = "login/loginForm";
 		}
-		return "redirect:/";
+		System.out.println(main);
+		return main;
 	}
 
 	@RequestMapping("/logout")

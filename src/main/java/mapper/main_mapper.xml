@@ -7,24 +7,55 @@
 	<!-- <resultMap type="member" id="member"> <result property="name" column="name"/> 
 		<result property="email" column="email"/> <result property="password" column="password"/> 
 		<result property="regdate" column="regdate"/> </resultMap> -->
+	<select id="maincate" resultType="bean.Bean_Category">
+		select * from rent_maincate
+	</select>
 
-	<select id="getMainItemList" resultType="bean.bean_rent_products">
+	<select id="subcate" resultType="bean.bean_rent_products">
+		select (CASE WHEN
+		COUNT(rp_catesub) is null THEN 0 ELSE count(RP_catesub) END) as
+		RP_subCount,
+		rp_catesub from rent_products where
+		rp_catemain=#{RP_catemain} group by
+		rp_catesub
+	</select>
+
+	<select id="getmaincateitems" resultType="bean.bean_rent_products">
 		select
 		RP_itemnum,RP_itemname,RP_price,to_date(RP_startdate,'yy/mm/dd') as
 		RP_startdate, to_date(RP_enddate,'yy/mm/dd') as RP_enddate, RP_img1
 		from
 		rent_products
+		<include refid="category"></include>
 		order by rp_regdate desc
 	</select>
 
-	<select id="maincate" resultType="bean.Bean_Category">
-		select * from rent_maincate
+	<sql id="category">
+		<choose>
+			<when test="RP_catemain != 'all'">
+				<if test="RP_catesub == 'all'">
+					where RP_catemain = #{RP_catemain}
+				</if>
+				<if test="RP_catesub != 'all'">
+					where RP_catemain = #{RP_catemain} and RP_catesub =
+					#{RP_catesub}
+				</if>
+			</when>
+			<otherwise></otherwise>
+		</choose>
+	</sql>
+
+	<select id="getsearchitems" resultType="bean.bean_rent_products">
+		select
+		RP_itemnum,RP_itemname,RP_price,to_date(RP_startdate,'yy/mm/dd') as
+		RP_startdate, to_date(RP_enddate,'yy/mm/dd') as RP_enddate, RP_img1
+		from
+		rent_products
+		WHERE (rp_itemname like '%'||#{keyword}||'%'
+		OR
+		rp_detail like '%'||#{keyword}||'%')
+		order by rp_regdate desc
 	</select>
-	
-<!-- 	<select id="subcate" resultType="bean.Bean_Category">
-		select subcate_value from rent_subcate where maincate_code = #{maincate_code}
-	</select>
- -->
 
 </mapper>
 
