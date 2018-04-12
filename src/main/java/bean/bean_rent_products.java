@@ -24,6 +24,7 @@ public class bean_rent_products {
 	public bean_rent_products() {
 
 	}
+	
 
 	public bean_rent_products(int rP_itemnum, String rP_itemname, int rP_price, Date rP_regdate, String rP_startdate,
 			String rP_enddate, String rP_itemstat, String rP_img1, String rP_img2, String rP_img3, int rP_usernum,

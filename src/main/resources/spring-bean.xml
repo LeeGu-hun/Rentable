@@ -13,4 +13,6 @@
 	<bean class="service.MemberService" id="memberService" />
 	<bean class="service.ItemService" id="itemService" />
 	<bean class="service.JoinService" id="joinService" />
+	<bean class="service.UserItemService" id="userItemService"/>
+	
 </beans>

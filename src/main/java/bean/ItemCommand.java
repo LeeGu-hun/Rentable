@@ -45,6 +45,7 @@ public class ItemCommand {
 	public ItemCommand() {
 
 	}
+	
 
 	public int getRP_itemnum() {
 		return RP_itemnum;

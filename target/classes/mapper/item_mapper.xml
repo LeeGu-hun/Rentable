@@ -15,6 +15,18 @@
 		#{RP_itemname},#{RP_catemain},#{RP_catesub},#{RP_price},sysdate,#{RP_startdate},#{RP_enddate},#{RP_img1},#{RP_img2},#{RP_img3},#{RP_usernum},
 		#{RP_detail},#{RP_guarantee},1000)
 	</insert>
+	
+	   	<update id="itemUpdate" parameterType="bean.bean_rent_products" >
+      update rent_products set RP_itemname=#{RP_itemname},RP_catemain=#{RP_catemain}, RP_catesub=#{RP_catesub}, RP_price=#{RP_price}
+      , RP_startdate=#{RP_startdate}, RP_enddate=#{RP_enddate}, RP_img1=#{RP_img1}, RP_img2=#{RP_img2}, RP_img3=#{RP_img3}, RP_detail=#{RP_detail}
+     
+      where Rp_itemnum =#{RP_itemnum} AND RP_usernum =#{RP_usernum}
+   </update>
+   
+   	<delete id="itemDelete" parameterType="int">
+      delete rent_products where RP_itemnum = #{RP_itemnum} 
+      					
+   </delete>
 
 
 	<!-- <select id="subcate" resultType="bean.Bean_Category"> select subcate_value 

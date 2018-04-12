@@ -13,7 +13,7 @@
 <body>
    <div class="login">
       <h1>Rentable</h1>
-      <form method="post" action="../loginAction">
+      <form method="post" action="${pageContext.request.contextPath}/loginAction">
          <input type="text" id="R_id" name="R_id" placeholder="ID" required="required" />
          <input type="password" id="R_passowrd" name="R_password" placeholder="Pass" required="required" /> 
          <input type="checkbox" name="toggle" /> 
@@ -22,7 +22,7 @@
       </form>
       <p class="text-center">
          아직 회원이 아니세요?&nbsp 
-      <a href="joinForm.jsp" style="text-decoration: none; color: white;">회원가입</a> 
+      <a href="${pageContext.request.contextPath}/joinForm" style="text-decoration: none; color: white;">회원가입</a> 
       <span class="fontawesome-arrow-right"></span>
       </p>
    </div>

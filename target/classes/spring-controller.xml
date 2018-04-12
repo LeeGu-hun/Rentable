@@ -9,6 +9,7 @@
 
 	<bean class="controller.MainController">
 		<property name="mainService" ref="mainService"></property>
+
 	</bean>
 
 	<bean class="controller.JoinController">
@@ -17,10 +18,22 @@
 
 	<bean class="controller.ItemController">
 		<property ref="itemService" name="itemService" />
+		<property ref="prodService" name="prodService"/>
+
 	</bean>
-	
+
 	<bean class="controller.loginController">
 		<property name="memberService" ref="memberService"></property>
 	</bean>
 
+
+	<bean class="controller.UserItemController">
+		<property name="useritemService" ref="userItemService"></property>
+
+	</bean>
+	<bean class="controller.ProdController">
+
+<property ref="prodService" name="prodService"/>
+
+</bean>
 </beans>

@@ -39,10 +39,17 @@
 				<c:set var="stat" value="${sessionScope.userInfo.r_stat}" />
 				<c:choose>
 					<c:when test="${stat eq 'normal'}">
-						<li><a href="login/loginForm.jsp" title="Link">개인정보</a></li>
+						<li><a href="#Link" title="Link">마이페이지</a>
+					<ul>
+						<li><a href="${pageContext.request.contextPath}/user_modify">개인정보수정</a></li>
+						<li><a href="${pageContext.request.contextPath}/user_interlist">찜 목록</a></li>
+						<li><a href="${pageContext.request.contextPath}/user_registerlist">등록 내역</a></li>
+						<li><a href="${pageContext.request.contextPath}/user_loanlist">빌려준 내역</a></li>
+						<li><a href="${pageContext.request.contextPath}/user_rentlist">빌린 내역</a></li>
+					</ul></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="login/loginForm.jsp" title="Link">로그인</a></li>
+						<li><a href="${pageContext.request.contextPath}/loginForm" title="Link">로그인</a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>

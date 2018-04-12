@@ -3,13 +3,18 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="memberSQL">
-	<insert id="joinUser" parameterType="bean.bean_rent_users">
-		insert into RENT_USERS values((select nvl(max(R_idnum),0)+1 from
-		rent_users),
-		#{R_id},#{R_password},#{R_name},#{R_address},#{R_phone},#{R_card},#{R_cardnum}
-		,0,'normal',sysdate)
-	</insert>
-	<select resultType="bean.bean_rent_users" id="loginCheck">select * from
-		rent_users where R_id = #{R_id} </select>
-</mapper>
 
+	<insert parameterType="bean.bean_rent_users" id="joinUser"> insert into
+		RENT_USERS values((select nvl(max(R_idnum),0)+1 from rent_users),
+		#{R_id},#{R_password},#{R_name},#{R_address},#{R_phone},#{R_card},#{R_cardnum}
+		,0,'normal',sysdate) </insert>
+
+	<select id="loginCheck" resultType="bean.bean_rent_users">select * from rent_users
+		where R_id = #{R_id} </select>
+
+	<update id="userModify"> update rent_users set R_password = #{new_password},
+		R_name = #{R_name}, R_address = #{R_address}, R_phone = #{R_phone},
+		R_card = #{R_card}, R_cardnum = #{R_cardnum} where R_id = #{R_id} and
+		R_password = #{R_password} </update>
+
+</mapper>

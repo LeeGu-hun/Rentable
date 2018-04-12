@@ -1,26 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html lang="ko-KR">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%@ page import="bean.*" %>
-<%
-	bean_rent_products prod = (bean_rent_products)request.getAttribute("prodBean");
-%>
+
 <title>Rent</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/category.css?version=1.22" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/itemgoods2.css?version=1.11" />
-	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/itemdetail.css?version=1.11" />
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/main.css?version=1.12" />
-	<link rel="stylesheet"
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/common.css?version=1.12" />
+
 </head>
 <body>
-<div id="rent_head">
+	<div id="rent_head">
 		<%@include file="/category/category.jsp"%>
 	</div>
 	<div id="shop_wrap">
@@ -37,33 +35,37 @@
 		<!-- 상품상세페이지 시작 -->
 		<div id="goods_detail">
 			<div class="goods_info_top_box">
+			<form action=../ItemPay>
 				<div class="goods_info_top_left">
-					<div class="goods_image">
-						<img src='../images/thumb1a5e097242c9d526c0c7c970492d0384.png'
-							id='goods_big_img' style='vertical-align: middle;'>
-					</div>
 
+					<div class="goods_image">
+					<img src="${pageContext.request.contextPath}/upload_products/${prodBean.RP_img1}"
+							id='goods_big_img' style="width: 100%; max-width: 760px; vertical-align: middle">
+					</div>
 					<div class="goods_thumb_img">
 						<ul>
 							<li><a href=''
-								onmouseover="javascript:big_img_show('../images/thumb1a5e097242c9d526c0c7c970492d0384.png');"><img
-									src='../images/11.png'></a></li>
+								onmouseover="javascript:big_img_show('${pageContext.request.contextPath}/upload_products/${prodBean.RP_img1}');">
+								<img src='${pageContext.request.contextPath}/upload_products/${prodBean.RP_img1}'
+									style="width: 10%; max-width: 760px; vertical-align: middle"></a></li>
 							<li><a href=''
-								onmouseover="javascript:big_img_show('../images/thumbbf68d385a23d5967d692ea17f0b51097.jpg');"><img
-									src='../images/33.jpg'></a></li>
+								onmouseover="javascript:big_img_show('${pageContext.request.contextPath}/upload_products/${prodBean.RP_img2}');"><img
+									src='${pageContext.request.contextPath}/upload_products/${prodBean.RP_img2}'
+									style="width: 10%; max-width: 760px; vertical-align: middle"></a></li>
 							<li><a href=''
-								onmouseover="javascript:big_img_show('../data/goods/thumb/goods_item/thumb4fd760706df04746601b7589d846d358.jpg');"><img
-									src='../data/goods/thumb/gallery/thumb4fd760706df04746601b7589d846d358.jpg'></a></li>
+								onmouseover="javascript:big_img_show('${pageContext.request.contextPath}/upload_products/${prodBean.RP_img3}');"><img
+									src='${pageContext.request.contextPath}/upload_products/${prodBean.RP_img3}'
+									style="width: 10%; max-width: 760px; vertical-align: middle"></a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="goods_info_top_right">
-					<div class="goods_name"><%=prod.getRP_itemname()%></div>
+					<div class="goods_name">${prodBean.RP_itemname}</div>
 					<table class="goods-tb">
 						<tbody>
 							<tr>
 								<th scope="row">일별단위금액</th>
-								<td class="goods_sale_price">${prodBean.RP_enddate}</td>
+								<td class="goods_sale_price" id="RP_price">${prodBean.RP_price}</td>
 							</tr>
 
 						</tbody>
@@ -74,57 +76,125 @@
 
 							<tr>
 								<th scope="row">판매자 등록 기간</th>
-								<td class="goods_sale_price"><%=prod.getRP_startdate()%>
-									~<%=prod.getRP_enddate()%></td>
+								<td class="goods_sale_price">${prodBean.RP_startdate}
+									~${prodBean.RP_enddate}</td>
+									
 							</tr>
 
-								<tr>
-									<td style="font-family: 돋음; font-size: 15" height="16">
-										<div align="center">대여기간</div>
-									</td>
-									<td><input name="BOARD_NAME" type="date" style="width:175px;height:20px;"
-										 /> &nbsp;~&nbsp; <input name="BOARD_NAME"
-										type="date" style="width:175px;height:20px;"   /></td>
-								</tr>
+							<tr>
+									<th scope="row">대여 기간</th>
+								<td><input id="stdate" name="stdate" type="date"
+									style="width: 175px; height: 20px;" /> &nbsp;~&nbsp; <input
+									id="eddate" name="eddate" type="date"
+									style="width: 175px; height: 20px;" /></td>
+							</tr>
+							<tr>
+								<th scope="row">금액 계산 하기</th>
+								<td><input  type="button" onclick="myFunction()"value="계산하기"/></td>
+							</tr>
+																	<script type="text/javascript">
+         function myFunction() {
+             var date1 = document.getElementById("stdate").value;
+             var date2 = document.getElementById("eddate").value;
 
+            date1 = date1.split('-');
+            date2 = date2.split('-');
+  
+            date1 = new Date(date1[0], date1[1], date1[2]);
+            date2 = new Date(date2[0], date2[1], date2[2]);
+
+            date1_unixtime = parseInt(date1.getTime() / 1000);
+            date2_unixtime = parseInt(date2.getTime() / 1000);
+
+            var timeDifference = date2_unixtime - date1_unixtime;
+
+            var timeDifferenceInHours = timeDifference/60/60;
+
+            var timeDifferenceInDays = timeDifferenceInHours  / 24;
+            document.getElementById("allPrice").value = (timeDifferenceInDays+1)*${prodBean.RP_price};
+         }
+
+         </script>
+               <script type="text/javascript">
+
+function delbtn(){
+	
+	var con = confirm("정말로 삭제 하시겠습니까?");
+	var del1 = document.getElementById("del");
+	del1 = con
+		
+	if(del1 == true){
+		del.href="<c:url value="/itemDelete/${prodBean.RP_itemnum}"/>"
+		alert("삭제가 완료되었습니다");
+	}
+	else if(del1 == false){
+		
+		del.href="#";
+		
+		return false;
+	  
+	}
+	
+	
+	
+}
+
+window.onload = function () {
+	var thisnum= document.getElementById("thisnum").value;
+	var loginnum = document.getElementById("loginnum").value;
+	
+	if(thisnum == loginnum){
+		
+		View_User.style.display = 'line';
+	
+
+		
+		
+	}else
+	
+	View_User.style.display = 'none';
+	
+ }
+
+
+
+
+</script>
+							<tr>
+								<th scope="row">총상품 금액</th>
+								<td><input class="goods_order_tot_price" type="text" id="allPrice" name="allPrice"/></td>
+							</tr>
+							
+	
 						</tbody>
 					</table>
-
-					<div class="goods_order_tot_area">
-						총상품 금액 <span class="goods_order_tot_price" id="order_tot_price">
-							0</span>원
-					</div>
+		<input type="hidden" name="state" id="state" value="cart">
+					<div></div>
 					<div class="goods_btn_area">
-						<input type="button" value=" 대여하기 " id="btn_submit"
-							class="order_btn_buy" onclick="submit_reg('buy');"> <input
+						<input type="submit" value=" 대여하기 " id="btn_submit"
+							class="order_btn_buy"> <input
 							type="button" value=" 관심상품 " id="btn_submit"
 							class="order_btn_cart" onclick="submit_reg('cart');">
 					</div>
 					<iframe name="ifm_proc" id="ifm_proc" src="" frameborder="0"
 						scrolling="no" style="display: none;"></iframe>
+					
 					</form>
-					<script type="text/javascript">
-						
-					</script>
+			
 				</div>
 			</div>
 
 			<div class="goods_contents" id="goods_detail_box">
 				<ul class="link">
-					<li id="tab_detail_01" class="selected"><a href="#goods_detail">상품상세정보</a></li>
+					<li id="tab_detail_01" class="selected"><a
+						href="#goods_detail">상품상세정보</a></li>
 					<li id="tab_detail_02"><a href="#goods_delivery">배송/교환/반품정보</a></li>
 					<li id="tab_detail_03"><a href="#goods_review">상품구매후기</a></li>
 					<li id="tab_detail_04"><a href="#goods_qan">상품문의</a></li>
 				</ul>
 				<div class=''>
-					<div style="width: 100%;">
-						<center>
-							<img src='../images/thumb1a5e097242c9d526c0c7c970492d0384.png'
-								width='640' style='text-align: middle;'>
-						</center>
-					</div>
 					<p></p>
-					<span class="text_bold"><%=prod.getRP_detail()%></span>
+					<span class="text_bold">${prodBean.RP_detail}</span>
 					<p></p>
 				</div>
 			</div>
@@ -139,10 +209,6 @@
 					<li id="tab_delivery_04"><a href="#goods_qan">상품문의</a></li>
 				</ul>
 				<div class=''>
-					<p>
-						<a href="http://www.sitedomain.net/images/pg/log.gif"><span
-							style="color: rgb(90, 90, 90); line-height: normal; font-family: dotum, serif; background-color: rgb(255, 255, 255);"></span></a>
-					</p>
 					<p>&nbsp;</p>
 					<p>&nbsp;</p>
 					<p>
@@ -357,7 +423,8 @@
 				<ul class="link">
 					<li id="tab_review_01"><a href="#goods_detail">상품상세정보</a></li>
 					<li id="tab_review_02"><a href="#goods_delivery">배송/교환/반품정보</a></li>
-					<li id="tab_review_03" class="selected"><a href="#goods_review">상품구매후기</a></li>
+					<li id="tab_review_03" class="selected"><a
+						href="#goods_review">상품구매후기</a></li>
 					<li id="tab_review_04"><a href="#goods_qan">상품문의</a></li>
 				</ul>
 			</div>
@@ -550,6 +617,20 @@
 					</div>
 				</form>
 			</div>
+				<table id="View_User">
+			
+		
+			<tr align="right" >
+			<td align="right">
+			<a href="<c:url value="/ItemModify/${prodBean.RP_itemnum}"/>">수정</a>
+			<a  id="del" onclick="delbtn()">삭제</a>
+			<input id="thisnum"type="hidden" value="${prodBean.RP_usernum}" >
+			<input id="loginnum"type="hidden" value="${sessionScope.userInfo.r_idnum}" >
+			 </td>
+			
+			</tr>
+						
+			</table>
 
 
 			<script>

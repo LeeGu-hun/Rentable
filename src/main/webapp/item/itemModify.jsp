@@ -9,6 +9,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
 
 <title>MVC 게시판</title>
 
@@ -92,8 +95,9 @@
            return false;
         }
       
-      insertForm.submit();
-      alert("등록이 완료되었습니다.");
+      updateForm.submit();
+      alert("수정이 완료되었습니다.");
+      
    }
 </script>
   <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
@@ -135,11 +139,14 @@
    <div id="rent_body">
       <div id="rent_body_contentss">
          <!-- 게시판 등록 -->
-         <form action="../itemInsertAction" name="insertForm"
+         <form action="../itemModifyAction" name="updateForm"
             enctype="multipart/form-data" method="POST">
             <table>
                <tr align="center" valign="middle">
-                  <th colspan="5"><h3>상품 등록 페이지</h3></th>
+                  <th colspan="5"><h3>상품 수정 페이지</h3>
+                  <input type="hidden" id="RP_itemnum" name="RP_itemnum" value="${prodBean.RP_itemnum}" >
+                  </th>
+                  
                </tr>
                <tr>
                   <td><img id="blah" src="#" alt="이미지를 등록하세요" width="700" height="400" /></td>
@@ -150,7 +157,7 @@
                               <div align="center"><h4>상품명</h4></div>
                               
                            </td>
-                           <td><input id="RP_itemname"name="RP_itemname" type="text" size="51"
+                           <td><input id="RP_itemname"name="RP_itemname" type="text" size="51" value="${prodBean.RP_itemname}"
                               maxlength="100" required/>
 
                         </tr>
@@ -186,14 +193,14 @@
                            </td>
                            <td><input type="date" id ="RP_startdate"name="RP_startdate" required
                               style="width: 175px; height: 20px;" /> &nbsp;~&nbsp; <input
-                              id="RP_enddate" name="RP_enddate" type="date"
+                              id="RP_enddate" name="RP_enddate" type="date" 
                               style="width: 175px; height: 20px;" required /></td>
                         </tr>
                         <tr>
                            <td style="font-family: 돋음; font-size: 12" height="16">
                               <div align="center"><h4>일일 대여료</h4></div>
                            </td>
-                           <td><input id="RP_price" name="RP_price" type="number" 
+                           <td><input id="RP_price" name="RP_price" type="text" value="${prodBean.RP_price}"
                               maxlength="10" required/> <input id="calculator" type="button"
                               size="10" maxlength="10" value="합리적인 대여료 계산기" /></td>
 
@@ -208,9 +215,9 @@
 
                   <td style="font-family: 돋음; font-size: 12">
                      <div align="left">
-                        <input id="imgInp" name="RP_img1" type="file" /> <input
+                        <input id="imgInp" name="RP_img1" type="file"/> <input
                            id="imgInp2"name="RP_img2" type="file" /> <input id="imgInp3" name="RP_img3"
-                           type="file" />
+                          type="file" />
                      </div>
                   </td>
 
@@ -225,7 +232,7 @@
 
             <table>
                <tr>
-                  <td>&nbsp;<textarea id="RP_detail"name="RP_detail" cols="200" rows="15" ></textarea><br>
+                  <td>&nbsp;<textarea id="RP_detail"name="RP_detail"  cols="200" rows="15" >${prodBean.RP_detail}</textarea><br>
                      <br></td>
                </tr>
             </table>
@@ -237,7 +244,7 @@
                      서비스</h4><br>
                   
                   <div class="RP_guarantee" ><label style="font-weight: bold;">사   용</label> <input type="radio"
-                     onClick="display1()"   name="RP_guarantee" checked="checked" /> <label style="font-weight: bold;">사용 안함</label> <input
+                     onClick="display1()"  name="RP_guarantee" checked="checked" /> <label style="font-weight: bold;">사용 안함</label> <input
                      name="RP_guarantee" value="0"
                      type="radio" onclick="display2()" />
                      </div></td>
@@ -273,7 +280,7 @@
 
                <tr align="center" valign="middle">
 
-                  <a href="javascript:save()" class="button">등록</a>&nbsp;&nbsp;
+                  <a href="javascript:save()" class="button">수정 완료</a>&nbsp;&nbsp;
                   <a href="javascript:history.go(-1)">[뒤로]</a>
                   </td>
                </tr>

@@ -1,9 +1,9 @@
 package controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,13 +13,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import bean.Bean_Category;
 import bean.bean_rent_products;
+import bean.bean_rent_users;
+import service.ItemService;
 import service.MainService;
 
 @Controller
 public class MainController {
 
 	private MainService mainService;
+	
 	private String path = "main";
+	
+
 
 	public void setMainService(MainService mainService) {
 		this.mainService = mainService;
@@ -47,12 +52,6 @@ public class MainController {
 		return "main";
 	}
 
-	@RequestMapping("/ProdDetail/{id}")
-	public String boardDetail(@PathVariable("id") int pId, Model model, bean_rent_products prodBean) {
-		prodBean = mainService.prodView(pId);
-		model.addAttribute("prodBean", prodBean);
-		return "item/iteminsert2";
-	}
 
 	// @RequestMapping("/cateitemlist")
 	// public String category(HttpServletRequest request, Model model) {
