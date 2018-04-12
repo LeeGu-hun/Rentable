@@ -23,7 +23,7 @@
 										var="dateString2" value="${items.RP_enddate}"
 										pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
 										value="${dateString2}" pattern="yyyy.MM.dd" />
-								</em> <br> <strong>${items.RP_price}</strong>
+								</em> <br> <strong>${items.RP_price}1</strong>
 							</p> </a></li>
 				</c:forEach>
 			</ul>
