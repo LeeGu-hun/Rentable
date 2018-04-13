@@ -14,5 +14,6 @@
 	<bean class="service.ItemService" id="itemService" />
 	<bean class="service.JoinService" id="joinService" />
 	<bean class="service.UserItemService" id="userItemService"/>
+	<bean class="service.AdminService" id="adminService"/>
 	
 </beans>

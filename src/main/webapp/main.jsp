@@ -11,24 +11,26 @@
 <title>Responsive Auto Show/Hide Toggle Menu Demo</title>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/category.css?version=1.111" />
+	href="${pageContext.request.contextPath}/resources/css/category.css?version=1.11111" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/main.css?version=1.111" />
+	href="${pageContext.request.contextPath}/resources/css/main.css?version=1.11111" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/itemgoods.css?version=1.111" />
-
+	href="${pageContext.request.contextPath}/resources/css/itemgoods.css?version=1.11111" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
 </head>
 
 <body>
 	<div id="wrap">
 		<!-- header -->
 		<div id="rent_head">
+			<div class="banner"></div>
 			<%@include file="/category/category.jsp"%>
 		</div>
 		<!-- body -->
 		<div id="rent_body">
 			<div id="rent_body_contents">
-			<%@include file="/rentable_contents/rentable_body_contents.jsp"%>
+				<%@include file="/rentable_contents/rentable_body_contents.jsp"%>
 			</div>
 		</div>
 		<!-- footer -->

@@ -1,17 +1,13 @@
 package controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import bean.Bean_Category;
@@ -30,7 +26,7 @@ public class MainController {
 	public List<Bean_Category> getMainCategory() {
 		return mainService.getCategory();
 	}
-	
+
 	public String getPath(HttpServletRequest request) {
 		String realPath = request.getServletPath();
 		String path = realPath.split("/")[1];
@@ -39,7 +35,7 @@ public class MainController {
 
 	@RequestMapping("/")
 	public String main1(Model model, @RequestParam(defaultValue = "all") String maincate,
-			@RequestParam(defaultValue = "all") String subcate, @RequestParam(defaultValue="") String orderby ) {
+			@RequestParam(defaultValue = "all") String subcate, @RequestParam(defaultValue = "") String orderby) {
 		Bean_Category catebean = new Bean_Category();
 		catebean.setMaincate_value(maincate);
 		catebean.setSubcate_value(subcate);
@@ -54,7 +50,7 @@ public class MainController {
 
 	@RequestMapping("/category")
 	public String main(HttpServletRequest request, Model model, @RequestParam(defaultValue = "all") String maincate,
-			@RequestParam(defaultValue = "all") String subcate, @RequestParam(defaultValue="") String orderby) {
+			@RequestParam(defaultValue = "all") String subcate, @RequestParam(defaultValue = "") String orderby) {
 		Bean_Category catebean = new Bean_Category();
 		catebean.setMaincate_value(maincate);
 		catebean.setSubcate_value(subcate);
@@ -73,15 +69,16 @@ public class MainController {
 		return "main";
 	}
 
-//	@RequestMapping("/ProdDetail/{id}")
-//	public String boardDetail(@PathVariable("id") int pId, Model model, bean_rent_products prodBean,
-//			HttpServletRequest request) {
-//		prodBean = mainService.prodView(pId);
-//		model.addAttribute("path", getPath(request));
-//		model.addAttribute("category", getMainCategory());
-//		model.addAttribute("prodBean", prodBean);
-//		return "main";
-//	}
+	// @RequestMapping("/ProdDetail/{id}")
+	// public String boardDetail(@PathVariable("id") int pId, Model model,
+	// bean_rent_products prodBean,
+	// HttpServletRequest request) {
+	// prodBean = mainService.prodView(pId);
+	// model.addAttribute("path", getPath(request));
+	// model.addAttribute("category", getMainCategory());
+	// model.addAttribute("prodBean", prodBean);
+	// return "main";
+	// }
 
 	@RequestMapping("/ProdInsert")
 	public String prodInsert(HttpServletRequest request, Model model) {
@@ -89,9 +86,9 @@ public class MainController {
 		model.addAttribute("path", getPath(request));
 		return "main";
 	}
-	
+
 	@RequestMapping("/search")
-	public String searchProd(HttpServletRequest request, Model model, @RequestParam(defaultValue="") String keyword) {
+	public String searchProd(HttpServletRequest request, Model model, @RequestParam(defaultValue = "") String keyword) {
 		bean_rent_products catebean = new bean_rent_products();
 		List<bean_rent_products> maincatelist = null;
 		maincatelist = mainService.getSearchitems(keyword);

@@ -2,6 +2,7 @@
 
 .itemgoods {
 	width: 100%;
+	display: inline-block;
 }
 
 .itemgoods>.itemwrap {
@@ -16,7 +17,6 @@
 	margin: auto;
 	width: 100%;
 	display: inline-block;
-	box-shadow: 0px 0px 5px 0px rgba(102, 186, 255, 0.4);
 }
 
 .itemlist_row li {

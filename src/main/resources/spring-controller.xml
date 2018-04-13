@@ -14,7 +14,7 @@
 
 	<bean class="controller.JoinController">
 		<property ref="joinService" name="joinService" />
-		<property name="mainService" ref="mainService"/>
+		<property name="mainService" ref="mainService" />
 	</bean>
 
 	<bean class="controller.ItemController">
@@ -30,11 +30,18 @@
 
 	<bean class="controller.UserItemController">
 		<property name="useritemService" ref="userItemService"></property>
-
 	</bean>
+
+
 	<bean class="controller.ProdController">
 		<property name="mainService" ref="mainService"></property>
 		<property ref="prodService" name="prodService" />
-
 	</bean>
+
+	<bean class="controller.AdminController">
+		<property name="adminService" ref="adminService"></property>
+		<property name="mainService" ref="mainService"></property>
+	</bean>
+
+
 </beans>

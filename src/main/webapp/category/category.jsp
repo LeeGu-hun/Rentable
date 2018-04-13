@@ -3,11 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-
-</head>
 <body>
 	<div class="nav_wrapper">
 		<!--<a class="menu-link" href="#menu"></a>-->
@@ -26,7 +21,8 @@
 				<li><a href="#cateitemlist" title="Link">카테고리</a>
 					<ul>
 						<c:forEach items="${category}" var="cate">
-							<li><a href="${pageContext.request.contextPath}/category?maincate=${cate.maincate_value}">${cate.maincate_value}</a>
+							<li><a
+								href="${pageContext.request.contextPath}/category?maincate=${cate.maincate_value}">${cate.maincate_value}</a>
 						</c:forEach>
 						<li>
 					</ul></li>
@@ -35,34 +31,46 @@
 						<li><a href="#Link" title="Link ">Link</a></li>
 						<li><a href="#Link" title="Link">Link</a></li>
 					</ul></li>
-				<li><a href="${pageContext.request.contextPath}/ProdInsert" title="Link">물품등록</a></li>
+				<li><a href="${pageContext.request.contextPath}/ProdInsert"
+					title="Link">물품등록</a></li>
 				<c:set var="stat" value="${sessionScope.userInfo.r_stat}" />
 				<c:choose>
 					<c:when test="${stat eq 'normal'}">
 						<li><a href="#Link" title="Link">마이페이지</a>
-					<ul>
-						<li><a href="${pageContext.request.contextPath}/user_modify">개인정보수정</a></li>
-						<li><a href="${pageContext.request.contextPath}/user_interlist">찜 목록</a></li>
-						<li><a href="${pageContext.request.contextPath}/user_registerlist">등록 내역</a></li>
-						<li><a href="${pageContext.request.contextPath}/user_loanlist">빌려준 내역</a></li>
-						<li><a href="${pageContext.request.contextPath}/user_rentlist">빌린 내역</a></li>
-					</ul></li>
+							<ul>
+								<li><a
+									href="${pageContext.request.contextPath}/user_modify">개인정보수정</a></li>
+								<li><a
+									href="${pageContext.request.contextPath}/user_interlist">찜
+										목록</a></li>
+								<li><a
+									href="${pageContext.request.contextPath}/user_registerlist">등록
+										내역</a></li>
+								<li><a
+									href="${pageContext.request.contextPath}/user_loanlist">빌려준
+										내역</a></li>
+								<li><a
+									href="${pageContext.request.contextPath}/user_rentlist">빌린
+										내역</a></li>
+							</ul></li>
 					</c:when>
 					<c:when test="${stat eq 'admin'}">
 						<li><a href="login/loginForm.jsp" title="Link">관리자메뉴</a>
-						<ul>
-						<li><a href="#">회원관리</a></li>
-						<li><a href="#">물품관리</a></li>
-						<li><a href="#">카테고리 관리</a></li>
-					</ul></li>
+							<ul>
+								<li><a href="${pageContext.request.contextPath}/user_manage">회원관리</a></li>
+								<li><a href="#">물품관리</a></li>
+								<li><a href="#">카테고리 관리</a></li>
+							</ul></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="${pageContext.request.contextPath}/loginForm" title="Link">로그인</a></li>
+						<li><a href="${pageContext.request.contextPath}/loginForm"
+							title="Link">로그인</a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>
 		</nav>
-		<form class="search_box" id="search_box" action="${pageContext.request.contextPath}/search">
+		<form class="search_box" id="search_box"
+			action="${pageContext.request.contextPath}/search">
 			<input name="keyword" id="keyword" placeholder="Search here" value=""
 				type="text"> <input class="search_icon" value="Search"
 				type="submit">
@@ -72,7 +80,8 @@
 
 
 
-	<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/category.js?version=1.11"></script>
 </body>

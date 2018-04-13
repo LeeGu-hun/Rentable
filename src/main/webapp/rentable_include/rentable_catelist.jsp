@@ -6,34 +6,73 @@
 <!DOCTYPE html>
 <html lang="ko">
 <style>
-#ctglist {
-	width: 95%;
-	margin: auto;
-	height: auto;
+.hdbox {
+	width: 93%;
+	margin-top:2%;
+	margin-left: auto;
+	margin-right: auto;
+	height: 41px;
+	padding-top: 13px;
+	border-bottom: 1px solid #ededed;
+	background: #fff;
+	text-align: center;
+	font-weight: bold;
+	font-size: 15px;
 }
 
-#ctglist>ul {
-	list-style: none;
+.ctglist {
+	width: 93%;
 	margin: auto;
+	overflow: hidden;
+	background: #fff;
+	box-shadow: 0 2px 2px -2px #999;
+	overflow: hidden;
+}
+
+.ctglist>ul {
 	width: 100%;
-	box-shadow: 0px 0px 5px 0px rgba(102, 186, 255, 0.4);
-	display: inline-block;
+	list-style: none;
+	overflow: hidden;
+	margin: 0 -1px -1px 0;
 }
 
-#ctglist>ul>li {
-	width: 47%;
-	magin:auto;
+.ctglist>ul>li {
 	float: left;
-	background: white;
-	height: 50px;
-	border: 1px solid;
+	width: 49.6%;
+	height: 41px;
+	border-width: 0 1px 1px 0;
+	border-style: solid;
+	border-color: #ededed;
+}
+
+.ctglist ul li a {
+	display: block;
+	overflow: hidden;
+	height: 40px;
+	padding: 13px 12px 0;
+	font-size: 13px;
+}
+
+.ctglist ul li a em {
+	display: inline-block;
+	width: 77%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.ctglist ul li a span {
+	display: inline-block;
+	color: #999;
+	white-space: nowrap;
+	float: right;
 }
 </style>
 
 <body>
 	<div class="itemgoods">
-		<div id="ctglist">
-		<p>${maincate}</p>
+		<div class="hdbox">${maincate}</div>
+		<div class="ctglist">
 			<ul>
 				<c:forEach var="subcate" items="${subcatelist}">
 					<li><a

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="adminSQL">
+
+	<select id="getUserlists" resultType="bean.bean_rent_users">select r_idnum, r_id,r_name,
+		r_address,r_card,r_cash, r_stat from rent_users where r_stat != 'admin'</select>
+		
+
+</mapper>

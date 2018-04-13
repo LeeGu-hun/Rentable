@@ -20,6 +20,9 @@
 		<c:when test="${path eq 'user_modify'}">
 			<%@include file="../myPage/user_modify.jsp"%>
 		</c:when>
+		<c:when test="${path eq 'user_manage'}">
+			<%@include file="../admin/manage_users.jsp"%>
+		</c:when>
 		<c:otherwise>
 			<%@include file="../rentable_include/rentable_mainlist.jsp"%>
 		</c:otherwise>
