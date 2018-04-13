@@ -9,28 +9,50 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>대여 내역</title>
 <script type="text/javascript">
+	
 </script>
 </head>
 
 <body>
 	<div style="margin: 0 auto" align="left">
 		<!-- 게시판 수정 -->
-		<form:form commandName="boardCommand" method="post" name="modifyform"
-			enctype="multipart/form-data">
-			<input type="hidden" id="R_id" name="R_id">
-			<table cellpadding="0" cellspacing="0" width="100%">
-				<div>
-					<span><h2>찜 목록</h2></span>
-				</div>
+		<form>
+
+			<h2>찜 목록</h2>
+			<table
+				style="background: #2980b9; width: 100%; border: 1; border-style: solid; border-color: #D5D5D5;">
+
+
+
 				<tr align="center" valign="middle" bordercolor="#222">
-					<td width="20%">제품명</td>
-					<td width="20%">제품 현황</td>
-					<td width="20%">남은 기간</td>
-					<td width="20%">수익</td>
-					<td width="20%">수령확인</td>
-				</tr>			
+
+					<td width="80%"style="text-align: center; color: white; font-size: 30px;">제품명</td>
+					<td width="20%"style="text-align: center; color: white; font-size: 30px;">가격</td>
+
+
+				</tr>
 			</table>
-		</form:form>
+			<div id="likelist">
+				
+		<div>
+			<ul  style="list-style:none; border: 1px;" >
+				<c:forEach var="likelist" items="${likelist}">
+				
+					<li >
+					
+						<em style="color: green;font-size:20px;margin-left:12px; background-color:pink; border: 1;border-radius: 100%">${likelist.RL_itemnum}</em>
+						<a style="margin-left: 450px ;text-decoration:none;color: black; " href="<c:url value="/ProdDetail/${likelist.RL_itemnum}"/>">
+						 <em style="font-size: 20px">${likelist.RL_itemname}</em></a><em style="font-size: 20px;margin-left: 450px ;">${likelist.RL_price}</em>
+						 <em style=""><a href="<c:url value="/likeDelete/${likelist.RL_itemnum}"/>">삭제</a></em> <br> 
+						</li>
+						
+				</c:forEach>
+			</ul>
+		</div>
+	</div>
+			
+			
+		</form>
 	</div>
 </body>
 </html>

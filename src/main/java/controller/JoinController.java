@@ -25,6 +25,11 @@ import service.MainService;
 public class JoinController {
 	private JoinService joinService;
 	private MainService mainService;
+	private bean_rent_users usersInfo;
+	
+	public void setUsersInfo(bean_rent_users usersInfo) {
+		this.usersInfo = usersInfo;
+	}
 
 	public void setJoinService(JoinService joinService) {
 		this.joinService = joinService;
@@ -46,7 +51,6 @@ public class JoinController {
 
 	@RequestMapping("/joinForm")
 	public String JoinUserGet(bean_rent_users rent) {
-		System.out.println("1");
 		return "login/joinForm";
 	}
 
@@ -92,5 +96,35 @@ public class JoinController {
 		model.addAttribute("path",getPath(request));
 		return "main";
 	}
-
+	
+	@RequestMapping("/userAction")
+	public String userUpdate(joinCommand join, HttpSession session, HttpServletRequest request) {
+		bean_rent_users bru = new bean_rent_users();
+		bru.setR_id(join.getR_id());
+		bru.setR_password(join.getR_password());
+		bru.setR_name(join.getR_name());
+		bru.setR_address(join.getR_address());
+		bru.setR_phone(join.getR_phone());
+		bru.setR_card(join.getR_card());
+		bru.setR_cardnum(join.getR_cardnum());
+		joinService.userModify(bru);
+		return "redirect:/";
+	}
+	@RequestMapping("/user_delete")
+	public String userDelete(joinCommand join, Model model, HttpSession session, HttpServletRequest request) {
+		bean_rent_users bru = new bean_rent_users();
+		bru.setR_id(join.getR_id());
+		bru.setR_password(join.getR_password());
+		model.addAttribute("category", getMainCategory());
+		model.addAttribute("path",getPath(request));
+		return "main";
+	}
+	@RequestMapping("/deleteAction")
+	public String userdelete(joinCommand join, HttpSession session, HttpServletRequest request) {
+		bean_rent_users bru = new bean_rent_users();
+		bru.setR_id(join.getR_id());
+		bru.setR_password(join.getR_password());
+		joinService.userDelete(bru);
+		return "login/loginForm";
+	}
 }

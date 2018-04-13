@@ -15,22 +15,22 @@
 <body>
 	<div style="margin: 0 auto" align="left">
 		<!-- 게시판 수정 -->
-		<form:form commandName="boardCommand" method="post" name="modifyform"
-			enctype="multipart/form-data">
-			<input type="hidden" id="R_id" name="R_id">
-			<table cellpadding="0" cellspacing="0" width="100%">
-				<div>
-					<span><h2>빌린 내역</h2></span>
-				</div>
+		<form>
+		
+			<h2>빌린 내역</h2>
+			<table style="background:  #2980b9; width: 100%; border:1; border-style: solid; border-color: #D5D5D5;">
+				
+					
+				
 				<tr align="center" valign="middle" bordercolor="#222">
-					<td width="20%">제품명</td>
-					<td width="20%">제품 현황</td>
-					<td width="20%">남은 기간</td>
-					<td width="20%">수익</td>
-					<td width="20%">수령확인</td>
+				<td width="20%" style="text-align: center;  color: white;  font-size: 30px;">주문번호</td>
+					<td width="20%" style="text-align: center;  color: white;  font-size: 30px;">제품명</td>
+					<td width="20%"style="text-align: center;  color: white;  font-size: 30px;">남은 기간</td>
+					<td width="20%"style="text-align: center;  color: white;  font-size: 30px;">가격</td>
+					<td width="20%"style="text-align: center;  color: white;  font-size: 30px;">제품 현황</td>
 				</tr>			
 			</table>
-		</form:form>
+		</form>
 	</div>
 </body>
 </html>

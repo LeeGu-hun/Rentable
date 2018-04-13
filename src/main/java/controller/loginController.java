@@ -41,7 +41,6 @@ public class loginController {
 		} else {
 			main = "login/loginForm";
 		}
-		System.out.println(main);
 		return main;
 	}
 

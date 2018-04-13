@@ -11,7 +11,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>MVC 게시판</title>
-
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
 <script language="javascript">
 	function addboard() {
 		boardform.submit();

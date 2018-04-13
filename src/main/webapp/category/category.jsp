@@ -67,6 +67,7 @@
 							title="Link">로그인</a></li>
 					</c:otherwise>
 				</c:choose>
+				<li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
 			</ul>
 		</nav>
 		<form class="search_box" id="search_box"

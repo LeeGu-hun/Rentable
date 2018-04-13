@@ -16,8 +16,6 @@
 	href="${pageContext.request.contextPath}/resources/css/main.css?version=1.11111" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/itemgoods.css?version=1.11111" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
 </head>
 
 <body>

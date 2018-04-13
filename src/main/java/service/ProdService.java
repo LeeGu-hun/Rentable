@@ -1,20 +1,38 @@
 package service;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import bean.bean_rent_order_items;
+import bean.bean_rent_orders;
 import bean.bean_rent_products;
+import bean.bean_rent_users;
 
 @Service
 public class ProdService {
 
-   @Autowired
-   private SqlSession sqlSession;
+	@Autowired
+	private SqlSession sqlSession;
 
-   public bean_rent_products prodView(int num) {
-	   bean_rent_products prod = sqlSession.selectOne("prodSQL.prodView", num);
+	public bean_rent_products prodView(int num) {
+		bean_rent_products prod = sqlSession.selectOne("prodSQL.prodView", num);
 		return prod;
 	}
+
+	public void prodOrders(bean_rent_orders orders) {
+		sqlSession.insert("prodSQL.orderInsert", orders);
+	}
+
+	public int orderNum() {
+		int orderNum1 = sqlSession.selectOne("prodSQL.orderNum");
+		return orderNum1;
+	}
+	
+	public void prodOrdersItem(bean_rent_order_items ordersItems) {
+		sqlSession.insert("prodSQL.orderItemInsert", ordersItems);
+	}
+
 }
-   

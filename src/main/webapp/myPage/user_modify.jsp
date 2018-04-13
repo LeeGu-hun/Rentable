@@ -8,14 +8,16 @@
 <script language="javascript">
 	function Check() {
 		var R_password = document.getElementById("R_password");
-		var new_password = document.getElementById("new_password");
-		var new_passcheck = document.getElementById("new_passcheck");
+		var R_password = document.getElementById("passcheck");
+
 
 		var hp1 = document.getElementById("phone1");
 		var hp2 = document.getElementById("phone2");
 		var hp3 = document.getElementById("phone3");
 		var R_phone = hp1.value + "-" + hp2.value + "-" + hp3.value;
 
+		var R_card = document.getElementById("R_card");
+		
 		var card1 = document.getElementById("card1");
 		var card2 = document.getElementById("card2");
 		var card3 = document.getElementById("card3");
@@ -25,21 +27,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 		if (R_password.value == '' || R_password.value == null) {
-			document.getElementById('result').textContent = '현재 비밀번호를 입력해주세요';
+			document.getElementById('result').textContent = '비밀번호를 입력해주세요';
 			focus.R_password;
 			return false;
 		}
-		if (new_password.value == '' || new_password.value == null) {
-			document.getElementById('result').textContent = '새 비밀번호를 입력해주세요';
-			focus.new_password;
+		if (passcheck.value == '' || passcheck.value == null) {
+			document.getElementById('result').textContent= '비밀번호확인을 입력해주세요';
+			focus.passcheck;
 			return false;
 		}
-		if (new_passcheck.value == '' || new_passcheck.value == null) {
-			document.getElementById('result').textContent= '새 비밀번호확인을 입력해주세요';
-			focus.new_passcheck;
-			return false;
-		}
-		if (new_password.value != new_passcheck.value) {
+		if (R_password.value != passcheck.value) {
 			document.getElementById('result').textContent= '비밀번호가 일치하지 않습니다';
 			focus.R_password;
 			return false;
@@ -115,7 +112,7 @@
 		} 
 	}
 	function save() {	
-		joinForm.submit();
+		userModify.submit();
 		alert("수정이 완료되었습니다.");
 	}
 </script>
@@ -129,22 +126,22 @@
 	href="http://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css"
 	rel="stylesheet">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/joinform.css?version=1.1" />
+	href="${pageContext.request.contextPath}/resources/css/user_modify.css?version=1.2" />
 </head>
 <style>
 </style>
 <body>
-	<div class="joinBox" valign="middle">
+	<div class="modifyBox" align="center" >
+		<div align="left" style="width:380px;">
 		<h1>회원수정</h1>
-		<form action="${pageContext.request.contextPath}/userAction" name="joinForm" method="POST" enctype="multipart/form-data">
-			<input type="text" name="R_id" id="R_id" placeholder="" value="${userInfo.r_id}" readonly/>
-			<input type="password" name="R_password" id="R_password" placeholder="Password" required />
-			<input type="password" name="new_password" id="R_password" placeholder="NewPassword" required />
-			<input type="password" name="new_passcheck" id="passcheck" placeholder="NewPasswordCheck" required />
+		<form action="${pageContext.request.contextPath}/userAction" name="userModify" method="POST" enctype="multipart/form-data">
+			<input type="text" name="R_id" id="R_id" placeholder="" value="${userInfo.r_id}" readonly/><br><br>
+			<input type="password" name="R_password" id="R_password" placeholder="Password" required /><br><br>
+			<input type="password" name="passcheck" id="passcheck" placeholder="PasswordCheck" required /><br><br>
 			<span id="result" style="font-size:10pt;color:#e22424;">${requestScope.result }</span>
 			<span id="result1" style="font-size:10pt;color:#13af32;">${requestScope.result }</span><br><br>
-			<input type="text" name="R_name" id="R_name" placeholder="Name" required value="${userInfo.r_name}" />
-			<input type="text" name="R_address" id="R_address" placeholder="Address" required value="${userInfo.r_address}" />
+			<input type="text" name="R_name" id="R_name" placeholder="Name" required value="${userInfo.r_name}" /><br><br>
+			<input type="text" name="R_address" id="R_address" placeholder="Address" required value="${userInfo.r_address}" /><br><br>
 			<span id="result2" style="font-size:10pt;color:#e22424;">${requestScope.result }</span><br><br>
 
 			<label> Phone </label>
@@ -162,30 +159,30 @@
 			<span id="result3" style="font-size:10pt;color:#e22424;">${requestScope.result }</span><br>
 			<label> Card </label>
 			<br>
-			<select id="R_card">
-				<option>${userInfo.r_card}</option>
-				<option>A</option>
-				<option>B</option>
-				<option>C</option>
-			</select><br>
-			
+			<select id="R_card" name="R_card">
+				<option id="R_card" name="R_card">${userInfo.r_card}</option>
+				<option value="A"id="R_card" name="R_card">A</option>
+				<option value="B"id="R_card" name="R_card">B</option>
+				<option value="C"id="R_card" name="R_card">C</option>
+			</select><br>			
 		<input type="text" id="card1" name="card1" maxlength="4" style="width: 56px;" value="${card1}"> 
         -&nbsp 
         <input type="text" id="card2" name="card2" maxlength="4" style="width: 56px;" value="${card2}">
         -&nbsp 
         <input type="text" id="card3" name="card3" maxlength="4" style="width: 56px;" value="${card3}">
         -&nbsp 
-        <input type="text" id="card4" name="card4" maxlength="4" style="width: 56px;" value="${card4}"><br>
+        <input type="text" id="card4" name="card4" maxlength="4" style="width: 56px;" value="${card4}">
         <input type="hidden" id="R_cardnum" name="R_cardnum">
-		<span id="result4" style="font-size:10pt;color:#e22424;">${requestScope.result }</span>	
+		<span id="result4" style="font-size:10pt;color:#e22424;">${requestScope.result }</span><br><br>
 
 				<tr align="center" valign="middle">
 					<td colspan="5"><font size=2>
-					<a href="javascript:Check()" class="button" >수정</a>&nbsp;&nbsp;
-					</font></td>
+					<a href="javascript:Check()" class="button" > 정보수정</a>&nbsp;&nbsp;
+					</font></td><br><br><br><br><br>
 				</tr>
 			</table>
 		</form>
+		</div>
 	</div>
 </body>
 </html>

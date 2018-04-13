@@ -30,6 +30,7 @@
 
 	<bean class="controller.UserItemController">
 		<property name="useritemService" ref="userItemService"></property>
+		<property ref="mainService" name="mainService"/>
 	</bean>
 
 

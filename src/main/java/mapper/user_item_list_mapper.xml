@@ -6,13 +6,35 @@
 <mapper namespace="useritemlistSQL">
 
 
-	<select id="myList" resultType="bean.bean_rent_products">
+	<select id="myList" parameterType="bean.bean_rent_users" resultType="bean.bean_rent_products">
 		select
-		RP_itemnum,RP_itemname,RP_usernum
+		RP_itemnum,RP_itemname
 		from
-		rent_products
+		rent_products where RP_usernum =#{R_idnum}
 		order by rp_itemnum desc
 	</select>
+	
+	
+		<insert id="likeInsert" parameterType="bean.bean_like_items">
+		insert into rent_like_items
+		values(#{RL_itemnum},#{RL_itemname},#{RL_price},#{RL_usernum})
+	</insert>
+	
+		<select id="likeList" parameterType="bean.bean_rent_users" resultType="bean.bean_like_items">
+		select
+		RL_itemnum,RL_itemname,RL_price
+		from
+		rent_like_items where RL_usernum =#{R_idnum}
+		order by rl_itemnum desc
+	</select>
+	
+	   	<delete id="likeDelete" parameterType="int">
+      delete rent_like_items where RL_itemnum = #{RL_itemnum} 
+      					
+   </delete>
+	
+	
+	
 
 
 

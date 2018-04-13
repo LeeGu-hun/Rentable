@@ -8,5 +8,23 @@
 		SELECT *
 		FROM RENT_PRODUCTS WHERE RP_ITEMNUM=#{RP_itemnum}
 	</select>
+	
+	<insert id="orderInsert" parameterType="bean.bean_rent_orders">
+			insert into RENT_ORDERS
+		values((select nvl(max(RO_ORDERNUM),0)+1 from RENT_ORDERS),#{RO_usernum},#{RO_total},sysdate)
+	</insert>
+	
+	<select id="orderNum" resultType="int">
+	select max(RO_ORDERNUM)  from RENT_ORDERS
+	</select>
+	
+	<insert id="orderItemInsert" parameterType="bean.bean_rent_order_items">
+			insert into RENT_ORDERS_ITEMS
+		values((select nvl(max(ROI_ITEMID),0)+1 from RENT_ORDERS_ITEMS),#{ROI_ordernum},#{ROI_itemnum},#{ROI_price},
+		#{ROI_startdate},#{ROI_enddate},#{ROI_buyidnum},#{ROI_saleidnum},#{ROI_stat},#{ROI_buyername},#{ROI_buyeraddress},
+		#{ROI_buyerphone},#{ROI_comment})
+	</insert>
+	
+	
 </mapper>
 

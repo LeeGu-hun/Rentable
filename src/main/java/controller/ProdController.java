@@ -9,8 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import bean.Bean_Category;
+import bean.bean_rent_order_items;
+import bean.bean_rent_orders;
 import bean.bean_rent_products;
 import bean.bean_rent_users;
 import service.MainService;
@@ -50,14 +53,15 @@ public class ProdController {
 		return "main";
 	}
 
-	@RequestMapping("ItemPay")
-	public String boardPay(HttpServletRequest request, Model model, HttpSession session) {
+	@RequestMapping("/ProdPay")
+	public String prodPay(HttpServletRequest request, Model model, HttpSession session) {
 		String stdate = request.getParameter("stdate");
 		String eddate = request.getParameter("eddate");
 		String allPrice = request.getParameter("allPrice");
+
 		bean_rent_products prodBean = (bean_rent_products) session.getAttribute("prodBean");
 		bean_rent_users usersInfo = (bean_rent_users) session.getAttribute("userInfo");
-		System.out.println(allPrice);
+
 		String phone1 = usersInfo.getR_phone().split("-")[0];
 		String phone2 = usersInfo.getR_phone().split("-")[1];
 		String phone3 = usersInfo.getR_phone().split("-")[2];
@@ -76,15 +80,51 @@ public class ProdController {
 		model.addAttribute("stdate", stdate);
 		model.addAttribute("eddate", eddate);
 		model.addAttribute("allPrice", allPrice);
-
+		model.addAttribute("category", getMainCategory());
+		model.addAttribute("path", getPath(request));
 		model.addAttribute("usersInfo", usersInfo);
 		model.addAttribute("prodBean", prodBean);
-		return "/item/itempay";
+		return "main";
 	}
 
-	@RequestMapping("/CompPay")
-	public String compPay(HttpServletRequest request, Model model, HttpSession session) {
+	@RequestMapping(value = "/CompPay", method = RequestMethod.POST)
+	public String compPay(HttpServletRequest request, Model model, HttpSession session, bean_rent_orders orders) {
+		bean_rent_users usersInfo = (bean_rent_users) session.getAttribute("userInfo");
+		bean_rent_products prodBean = (bean_rent_products) session.getAttribute("prodBean");
+		bean_rent_order_items ordersItems=new bean_rent_order_items();
+		int orderNum = 0;
+		int allPrice = Integer.parseInt(request.getParameter("allPrice"));
+		String stdate = request.getParameter("stdate");
+		String eddate = request.getParameter("eddate");
+		String delivery_addr1 = request.getParameter("delivery_addr1");
+		String delivery_name = request.getParameter("delivery_name");
+		String delivery_hp1 = request.getParameter("delivery_hp1");
+		String delivery_hp2 = request.getParameter("delivery_hp2");
+		String delivery_hp3 = request.getParameter("delivery_hp3");
+		String delivery_hp4 = delivery_hp1 + "-" + delivery_hp2 + "-" + delivery_hp3;
+		String order_contents = request.getParameter("order_contents");
 
+		orders.setRO_usernum(usersInfo.getR_idnum());
+		orders.setRO_total(allPrice);
+
+		prodService.prodOrders(orders);
+		orderNum = prodService.orderNum();
+		ordersItems.setROI_buyeraddress(delivery_addr1);
+		ordersItems.setROI_buyername(delivery_name);
+		ordersItems.setROI_buyerphone(delivery_hp4);
+		ordersItems.setROI_buyidnum(usersInfo.getR_idnum());
+		ordersItems.setROI_comment(order_contents);
+		ordersItems.setROI_enddate(eddate);
+		ordersItems.setROI_itemnum(prodBean.getRP_itemnum());
+		ordersItems.setROI_ordernum(orderNum);
+		ordersItems.setROI_price(allPrice);
+		ordersItems.setROI_saleidnum(prodBean.getRP_usernum());
+		ordersItems.setROI_startdate(stdate);
+		ordersItems.setROI_stat("대여중");
+
+		prodService.prodOrdersItem(ordersItems);
+		model.addAttribute("category", getMainCategory());
+		model.addAttribute("path", getPath(request));
 		return "main";
 	}
 
