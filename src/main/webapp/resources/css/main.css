@@ -29,6 +29,10 @@ body {
 	float: left;
 }
 
+.banner {
+	display:inline-block;
+}
+
 #rent_body {
 	width: 100%;
 	float: left;

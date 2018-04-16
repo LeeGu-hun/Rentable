@@ -5,8 +5,6 @@
 <html>
 <body>
 	<div class="nav_wrapper">
-		<!--<a class="menu-link" href="#menu"></a>-->
-
 		<div class="spinner-master">
 			<input type="checkbox" id="spinner-form" /> <label
 				for="spinner-form" class="spinner-spin">
@@ -57,7 +55,8 @@
 					<c:when test="${stat eq 'admin'}">
 						<li><a href="login/loginForm.jsp" title="Link">관리자메뉴</a>
 							<ul>
-								<li><a href="${pageContext.request.contextPath}/user_manage">회원관리</a></li>
+								<li><a
+									href="${pageContext.request.contextPath}/user_manage">회원관리</a></li>
 								<li><a href="#">물품관리</a></li>
 								<li><a href="#">카테고리 관리</a></li>
 							</ul></li>
@@ -77,13 +76,8 @@
 				type="submit">
 		</form>
 	</div>
-
-
-
-
 	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/category.js?version=1.11"></script>
+		src="${pageContext.request.contextPath}/resources/js/category.js?version=1.14"></script>
+
 </body>
 </html>

@@ -9,26 +9,32 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Responsive Auto Show/Hide Toggle Menu Demo</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css?version=1.13" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/main.css?version=1.13" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/itemgoods.css?version=1.13" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/category.css?version=1.13" />
+<script
+	src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/category.css?version=1.11111" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/main.css?version=1.11111" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/itemgoods.css?version=1.11111" />
 </head>
 
 <body>
 	<div id="wrap">
 		<!-- header -->
-		<div id="rent_head">
-			<div class="banner"></div>
-			<%@include file="/category/category.jsp"%>
-		</div>
+		<div id="rent_head"></div>
 		<!-- body -->
 		<div id="rent_body">
 			<div id="rent_body_contents">
-				<%@include file="/rentable_contents/rentable_body_contents.jsp"%>
+				<div id="container">
+					<%@include file="/category/category.jsp"%>
+					<%@include file="/rentable_contents/rentable_body_contents.jsp"%>
+				</div>
 			</div>
 		</div>
 		<!-- footer -->

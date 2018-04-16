@@ -8,7 +8,7 @@
 <style>
 .hdbox {
 	width: 93%;
-	margin-top:2%;
+	margin-top: 2%;
 	margin-left: auto;
 	margin-right: auto;
 	height: 41px;
@@ -81,6 +81,13 @@
 					</a></li>
 				</c:forEach>
 			</ul>
+
+			<select class="selectpicker show-menu-arrow">
+				<option>Mustard</option>
+				<option>Ketchup</option>
+				<option>Relish</option>
+			</select>
+
 		</div>
 
 		<div class="itemwrap">

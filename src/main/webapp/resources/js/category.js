@@ -29,9 +29,9 @@ $(function () {
     $(window).scroll(function () {
         var n = $(document).scrollTop();
         if ($(document).scrollTop() >= 50) {
-            $('.nav_wrapper').css('position', 'fixed');
+            $('.nav_wrapper').css('position', 'relative');
         } else {
-            $('.nav_wrapper').css('position', 'fixed');
+            $('.nav_wrapper').css('position', 'relative');
         }
         if (n > t) {
             $('.nav_wrapper').addClass('scroll');
