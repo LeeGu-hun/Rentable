@@ -16,5 +16,6 @@
 	<bean class="service.UserItemService" id="userItemService"/>
 	<bean class="service.AdminService" id="adminService"/>
 	<bean class="bean.bean_like_items" id="bean_like_items"/>
+	<bean class="bean.bean_rent_review" id="bean_rent_review"/>
 	
 </beans>

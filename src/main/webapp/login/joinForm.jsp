@@ -185,7 +185,7 @@
         
 			<p>
 				By clicking Register, you agree on our 
-				<a href="service.jsp">서비스 약관</a>
+				<a href="${pageContext.request.contextPath}/service">서비스 약관</a>
 			</p><br><br>
 			<a href="javascript:Check()" class="button" >회원가입</a>
 			

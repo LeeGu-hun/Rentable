@@ -14,13 +14,19 @@ import bean.Bean_Category;
 import bean.ItemCommand;
 import bean.bean_like_items;
 import bean.bean_rent_products;
+import bean.bean_rent_user_slae;
 import bean.bean_rent_users;
 import service.MainService;
+import service.ProdService;
 import service.UserItemService;
 @Controller
 public class UserItemController {
-	
+	private ProdService prodService;
 	UserItemService useritemService;
+	
+	public void setProdService(ProdService prodService) {
+		this.prodService = prodService;
+	}
 	public void setUseritemService(UserItemService useritemService) {
 		this.useritemService = useritemService;
 	}
@@ -53,6 +59,9 @@ public class UserItemController {
 	@RequestMapping("/user_rentlist")
 	public String userRentlist(Model model, HttpSession session,HttpServletRequest request ) {
 		bean_rent_users userInfo = (bean_rent_users) session.getAttribute("userInfo");
+		List<bean_rent_user_slae> userSale=null;
+		userSale=prodService.userSaleBuy(userInfo.getR_idnum());
+		model.addAttribute("userSale", userSale);
 		model.addAttribute("path", getPath(request));
 		model.addAttribute("category", getMainCategory());
 		return "main";
@@ -72,6 +81,9 @@ public class UserItemController {
 	@RequestMapping("/user_loanlist")
 	public String userLoanlist(Model model, HttpSession session,HttpServletRequest request ) {
 		bean_rent_users userInfo = (bean_rent_users) session.getAttribute("userInfo");
+		List<bean_rent_user_slae> userSale=null;
+		userSale=prodService.userSaleSell(userInfo.getR_idnum());
+		model.addAttribute("userSale", userSale);
 		model.addAttribute("path", getPath(request));
 		model.addAttribute("category", getMainCategory());
 		return "main";

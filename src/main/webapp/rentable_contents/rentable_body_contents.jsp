@@ -29,7 +29,7 @@
 		<c:when test="${path eq 'user_manage'}">
 			<%@include file="../admin/manage_users.jsp"%>
 		</c:when>
-				<c:when test="${path eq 'user_registerlist'}">
+		<c:when test="${path eq 'user_registerlist'}">
 			<%@include file="../myPage/user_registerlist.jsp"%>
 		</c:when>
 		<c:when test="${path eq 'user_interlist'}">
@@ -43,6 +43,12 @@
 		</c:when>
 		<c:when test="${path eq 'user_delete'}">
 			<%@include file="../myPage/user_delete.jsp"%>
+		</c:when>
+		<c:when test="${path eq 'user_loanlist'}">
+			<%@include file="../myPage/user_loanlist.jsp"%>
+		</c:when>
+		<c:when test="${path eq 'user_rentlist'}">
+			<%@include file="../myPage/user_rentlist.jsp"%>
 		</c:when>
 		<c:otherwise>
 			<%@include file="../rentable_include/rentable_mainlist.jsp"%>

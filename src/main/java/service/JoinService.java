@@ -24,4 +24,9 @@ public class JoinService {
 		int result = sqlSession.update("memberSQL.user_delete", rentBean);
 		return result;
 	}
+	public int checkSignup(bean_rent_users rentBean) {
+		int result = sqlSession.update("memberSQL.checkSignup", rentBean);
+		return result;
+	}
+
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import bean.bean_rent_order_items;
 import bean.bean_rent_orders;
 import bean.bean_rent_products;
+import bean.bean_rent_user_slae;
 import bean.bean_rent_users;
 
 @Service
@@ -33,6 +34,16 @@ public class ProdService {
 	
 	public void prodOrdersItem(bean_rent_order_items ordersItems) {
 		sqlSession.insert("prodSQL.orderItemInsert", ordersItems);
+	}
+
+	public List<bean_rent_user_slae> userSaleBuy(int roi_buyidnum) {
+		List<bean_rent_user_slae> userSale=sqlSession.selectList("prodSQL.userSaleBuy",roi_buyidnum);
+		return userSale;
+	}
+
+	public List<bean_rent_user_slae> userSaleSell(int roi_sellidnum) {
+		List<bean_rent_user_slae> userSale=sqlSession.selectList("prodSQL.userSaleSell",roi_sellidnum);
+		return userSale;
 	}
 
 }

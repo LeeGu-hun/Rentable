@@ -27,6 +27,21 @@
       delete rent_products where RP_itemnum = #{RP_itemnum} 
       					
    </delete>
+   
+   <insert id="reviewInsert" parameterType="bean.bean_rent_review">
+		insert into rent_review
+		values((select nvl(max(Rr_reviewnum),0)+1 from
+		rent_review),
+		#{RR_itemnum},#{RR_usernum},#{RR_userid},#{RR_subject},#{RR_content},#{RR_img},sysdate,#{RR_grade})
+	</insert>
+	
+		<select id="reviewList" parameterType="bean.bean_rent_products" resultType="bean.bean_rent_review">
+		select
+		RR_subject,RR_userid
+		from
+		rent_review where RR_itemnum =#{RP_itemnum}
+		order by rr_reviewnum desc
+	</select>
 
 
 	<!-- <select id="subcate" resultType="bean.Bean_Category"> select subcate_value 

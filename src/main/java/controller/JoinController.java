@@ -127,4 +127,8 @@ public class JoinController {
 		joinService.userDelete(bru);
 		return "login/loginForm";
 	}
+	@RequestMapping("/service")
+	public String service(bean_rent_users rent) {
+		return "login/service";
+	}
 }

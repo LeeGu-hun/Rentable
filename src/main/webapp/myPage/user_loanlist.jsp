@@ -19,16 +19,28 @@
 		
 			<h2>빌려준 내역</h2>
 			<table style="background:  #2980b9; width: 100%; border:1; border-style: solid; border-color: #D5D5D5;">
-				
-					
-				
 				<tr align="center" valign="middle" bordercolor="#222">
 				<td width="20%" style="text-align: center;  color: white;  font-size: 30px;">주문번호</td>
-					<td width="20%"style="text-align: center;  color: white;  font-size: 30px;">제품 현황</td>
+					<td width="20%"style="text-align: center;  color: white;  font-size: 30px;">제품명</td>
 					<td width="20%"style="text-align: center;  color: white;  font-size: 30px;">남은 기간</td>
 					<td width="20%"style="text-align: center;  color: white;  font-size: 30px;">수익</td>
 					<td width="20%"style="text-align: center;  color: white;  font-size: 30px;">제품 현황</td>
-				</tr>			
+				</tr>	
+				<tr></tr>
+				<c:forEach var="items" items="${userSale}">
+				<tr align="center" valign="middle" bordercolor="#222">
+					<td width="20%"
+						style="text-align: center; color: white; font-size: 15px;">${items.ROI_ordernum}</td>
+					<td width="20%"
+						style="text-align: center; color: white; font-size: 15px;">${items.RP_ITEMNAME}</td>
+					<td width="20%"
+						style="text-align: center; color: white; font-size: 15px;">${items.ROI_enddate}</td>
+					<td width="20%"
+						style="text-align: center; color: white; font-size: 15px;">${items.ROI_price}</td>
+					<td width="20%"
+						style="text-align: center; color: white; font-size: 15px;">${items.ROI_stat}</td>
+				</tr>
+				</c:forEach>		
 			</table>
 		</form>
 	</div>

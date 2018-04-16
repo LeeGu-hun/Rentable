@@ -32,31 +32,23 @@
 				<li><a href="${pageContext.request.contextPath}/ProdInsert"
 					title="Link">물품등록</a></li>
 				<c:set var="stat" value="${sessionScope.userInfo.r_stat}" />
-				<c:choose>
+								<c:choose>
 					<c:when test="${stat eq 'normal'}">
 						<li><a href="#Link" title="Link">마이페이지</a>
 							<ul>
-								<li><a
-									href="${pageContext.request.contextPath}/user_modify">개인정보수정</a></li>
-								<li><a
-									href="${pageContext.request.contextPath}/user_interlist">찜
-										목록</a></li>
-								<li><a
-									href="${pageContext.request.contextPath}/user_registerlist">등록
-										내역</a></li>
-								<li><a
-									href="${pageContext.request.contextPath}/user_loanlist">빌려준
-										내역</a></li>
-								<li><a
-									href="${pageContext.request.contextPath}/user_rentlist">빌린
-										내역</a></li>
-							</ul></li>
+								<li><a href="${pageContext.request.contextPath}/user_modify">개인정보수정</a></li>
+								<li><a href="${pageContext.request.contextPath}/user_interlist">찜 목록</a></li>
+								<li><a href="${pageContext.request.contextPath}/user_registerlist">등록 내역</a></li>
+								<li><a href="${pageContext.request.contextPath}/user_loanlist">빌려준 내역</a></li>
+								<li><a href="${pageContext.request.contextPath}/user_rentlist">빌린 내역</a></li>
+								<li><a href="${pageContext.request.contextPath}/user_delete">회원탈퇴</a></li>
+					</ul></li>
+					<li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
 					</c:when>
 					<c:when test="${stat eq 'admin'}">
 						<li><a href="login/loginForm.jsp" title="Link">관리자메뉴</a>
 							<ul>
-								<li><a
-									href="${pageContext.request.contextPath}/user_manage">회원관리</a></li>
+								<li><a href="${pageContext.request.contextPath}/user_manage">회원관리</a></li>
 								<li><a href="#">물품관리</a></li>
 								<li><a href="#">카테고리 관리</a></li>
 							</ul></li>
@@ -66,7 +58,6 @@
 							title="Link">로그인</a></li>
 					</c:otherwise>
 				</c:choose>
-				<li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
 			</ul>
 		</nav>
 		<form class="search_box" id="search_box"

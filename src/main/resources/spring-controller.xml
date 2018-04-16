@@ -29,14 +29,16 @@
 
 
 	<bean class="controller.UserItemController">
-		<property name="useritemService" ref="userItemService"></property>
-		<property ref="mainService" name="mainService"/>
+		<property ref="userItemService" name="useritemService" />
+		<property ref="mainService" name="mainService" />
+		<property ref="prodService" name="prodService" />
 	</bean>
 
 
 	<bean class="controller.ProdController">
-		<property name="mainService" ref="mainService"></property>
+		<property ref="mainService" name="mainService" />
 		<property ref="prodService" name="prodService" />
+		<property ref="itemService" name="itemService" />
 	</bean>
 
 	<bean class="controller.AdminController">

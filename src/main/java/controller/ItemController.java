@@ -3,6 +3,7 @@ package controller;
 import java.io.File;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import bean.ItemCommand;
+import bean.bean_like_items;
 import bean.bean_rent_products;
+import bean.bean_rent_review;
 import bean.bean_rent_users;
+import bean.reviewCommand;
 import service.ItemService;
 import service.MainService;
 import service.ProdService;
@@ -53,7 +57,7 @@ public class ItemController {
 		String originalFilename = "", newFilename = "";
 		String originalFilename2 = "", newFilename2 = "";
 		String originalFilename3 = "", newFilename3 = "";
-		System.out.println("물품등록시작");
+
 		if (multi != null) {
 			originalFilename = multi.getOriginalFilename();
 			newFilename = System.currentTimeMillis() + "_" + originalFilename;
@@ -137,7 +141,7 @@ public class ItemController {
 		String originalFilename = "", newFilename = "";
 		String originalFilename2 = "", newFilename2 = "";
 		String originalFilename3 = "", newFilename3 = "";
-		System.out.println("물품등록시작");
+
 		if (multi != null) {
 			originalFilename = multi.getOriginalFilename();
 			newFilename = System.currentTimeMillis() + "_" + originalFilename;
@@ -212,6 +216,41 @@ public class ItemController {
 			
 		return "redirect:/";
 	}
+	@RequestMapping( value = "/itemReview", method = RequestMethod.POST)
+	public String itemreview(reviewCommand review, HttpSession session, HttpServletRequest request) {
+		MultipartFile multi = review.getRR_img();
+		String originalFilename = "", newFilename = "";
+		if (multi != null) {
+			originalFilename = multi.getOriginalFilename();
+			newFilename = System.currentTimeMillis() + "_" + originalFilename;
+			String root_path = request.getSession().getServletContext().getRealPath("/");
+			String attach_path = "upload_products/";
+			String path1 = root_path + attach_path + newFilename;
+
+			try {
+				File file = new File(path1);
+				multi.transferTo(file);
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+		}
+		bean_rent_users userInfo = (bean_rent_users) session.getAttribute("userInfo");
+		bean_rent_review re =  new bean_rent_review();
+		re.setRR_userid(userInfo.getR_id());
+		re.setRR_usernum(userInfo.getR_idnum());
+		re.setRR_content(review.getRR_content());
+		re.setRR_grade(review.getRR_grade());
+		re.setRR_img(newFilename);
+		re.setRR_itemnum(review.getRR_itemnum());
+		re.setRR_subject(review.getRR_subject());
+		itemService.ReviewInsert(re);
+
+		return "redirect:/";
+
+	}
+	
+
 
 	
 	

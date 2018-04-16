@@ -15,7 +15,9 @@ import bean.Bean_Category;
 import bean.bean_rent_order_items;
 import bean.bean_rent_orders;
 import bean.bean_rent_products;
+import bean.bean_rent_review;
 import bean.bean_rent_users;
+import service.ItemService;
 import service.MainService;
 import service.ProdService;
 
@@ -23,6 +25,11 @@ import service.ProdService;
 public class ProdController {
 	private ProdService prodService;
 	private MainService mainService;
+	private ItemService itemService;
+
+	public void setItemService(ItemService itemService) {
+		this.itemService = itemService;
+	}
 
 	public void setProdService(ProdService prodService) {
 		this.prodService = prodService;
@@ -46,6 +53,9 @@ public class ProdController {
 	public String boardDetail(@PathVariable("id") int pId, Model model, HttpSession session,
 			bean_rent_products prodBean, HttpServletRequest request) {
 		prodBean = prodService.prodView(pId);
+		List<bean_rent_review> reviewlist = null;
+		reviewlist = itemService.Reviewlist(prodBean);
+		model.addAttribute("reviewlist", reviewlist);
 		model.addAttribute("category", getMainCategory());
 		model.addAttribute("path", getPath(request));
 		model.addAttribute("prodBean", prodBean);

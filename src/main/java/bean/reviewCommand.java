@@ -1,17 +1,33 @@
 package bean;
 
+import java.util.Date;
+
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class reviewCommand {
 	private int	RR_reviewnum;
 	private int	RR_itemnum;
 	private int	RR_usernum;
-	private String	RR_username;
+	private String	RR_userid;
 	private String	RR_subject;
 	private String	RR_content;
-	private MultipartFile	RR_img;
-	private String	RR_reddate;
+	private MultipartFile RR_img;
+	private Date	RR_regdate;
 	private int	RR_grade;
+	public reviewCommand(int rR_reviewnum, int rR_itemnum, int rR_usernum, String rR_userid, String rR_subject,
+			String rR_content, MultipartFile rR_img, Date rR_regdate, int rR_grade) {
+		super();
+		RR_reviewnum = rR_reviewnum;
+		RR_itemnum = rR_itemnum;
+		RR_usernum = rR_usernum;
+		RR_userid = rR_userid;
+		RR_subject = rR_subject;
+		RR_content = rR_content;
+		RR_img = rR_img;
+		RR_regdate = rR_regdate;
+		RR_grade = rR_grade;
+	}
 	public reviewCommand() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -34,11 +50,11 @@ public class reviewCommand {
 	public void setRR_usernum(int rR_usernum) {
 		RR_usernum = rR_usernum;
 	}
-	public String getRR_username() {
-		return RR_username;
+	public String getRR_userid() {
+		return RR_userid;
 	}
-	public void setRR_username(String rR_username) {
-		RR_username = rR_username;
+	public void setRR_userid(String rR_userid) {
+		RR_userid = rR_userid;
 	}
 	public String getRR_subject() {
 		return RR_subject;
@@ -58,11 +74,11 @@ public class reviewCommand {
 	public void setRR_img(MultipartFile rR_img) {
 		RR_img = rR_img;
 	}
-	public String getRR_reddate() {
-		return RR_reddate;
+	public Date getRR_regdate() {
+		return RR_regdate;
 	}
-	public void setRR_reddate(String rR_reddate) {
-		RR_reddate = rR_reddate;
+	public void setRR_regdate(Date rR_regdate) {
+		RR_regdate = rR_regdate;
 	}
 	public int getRR_grade() {
 		return RR_grade;
@@ -70,18 +86,7 @@ public class reviewCommand {
 	public void setRR_grade(int rR_grade) {
 		RR_grade = rR_grade;
 	}
-	public reviewCommand(int rR_reviewnum, int rR_itemnum, int rR_usernum, String rR_username, String rR_subject,
-			String rR_content, MultipartFile rR_img, String rR_reddate, int rR_grade) {
-		super();
-		RR_reviewnum = rR_reviewnum;
-		RR_itemnum = rR_itemnum;
-		RR_usernum = rR_usernum;
-		RR_username = rR_username;
-		RR_subject = rR_subject;
-		RR_content = rR_content;
-		RR_img = rR_img;
-		RR_reddate = rR_reddate;
-		RR_grade = rR_grade;
-	}
-
+	
+	
+	
 }
