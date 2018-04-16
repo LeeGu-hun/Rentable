@@ -27,7 +27,7 @@
 <body>
 	<div id="wrap">
 		<!-- header -->
-		<div id="rent_head"></div>
+		<div id="rent_head"><a href="${pageContext.request.contextPath}">메인으로</a></div>
 		<!-- body -->
 		<div id="rent_body">
 			<div id="rent_body_contents">
