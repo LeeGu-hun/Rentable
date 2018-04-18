@@ -131,7 +131,7 @@ public class ItemController {
 	public String insertModify(@PathVariable("v") int pId, Model model, bean_rent_products prodBean) {
 		prodBean = prodService.prodView(pId);
 		model.addAttribute("prodBean", prodBean);
-		return "item/itemModify";
+		return "main";
 	}
 	@RequestMapping(value = "/itemModifyAction", method = RequestMethod.POST)
 	public String itemModifyPost(ItemCommand item, HttpSession session, HttpServletRequest request) {
@@ -218,35 +218,17 @@ public class ItemController {
 	}
 	@RequestMapping( value = "/itemReview", method = RequestMethod.POST)
 	public String itemreview(reviewCommand review, HttpSession session, HttpServletRequest request) {
-		MultipartFile multi = review.getRR_img();
-		String originalFilename = "", newFilename = "";
-		if (multi != null) {
-			originalFilename = multi.getOriginalFilename();
-			newFilename = System.currentTimeMillis() + "_" + originalFilename;
-			String root_path = request.getSession().getServletContext().getRealPath("/");
-			String attach_path = "upload_products/";
-			String path1 = root_path + attach_path + newFilename;
-
-			try {
-				File file = new File(path1);
-				multi.transferTo(file);
-			} catch (IOException e) {
-
-				e.printStackTrace();
-			}
-		}
 		bean_rent_users userInfo = (bean_rent_users) session.getAttribute("userInfo");
 		bean_rent_review re =  new bean_rent_review();
 		re.setRR_userid(userInfo.getR_id());
 		re.setRR_usernum(userInfo.getR_idnum());
 		re.setRR_content(review.getRR_content());
 		re.setRR_grade(review.getRR_grade());
-		re.setRR_img(newFilename);
 		re.setRR_itemnum(review.getRR_itemnum());
-		re.setRR_subject(review.getRR_subject());
+		int nn=review.getRR_itemnum();
 		itemService.ReviewInsert(re);
 
-		return "redirect:/";
+		return "redirect:/ProdDetail/"+nn;
 
 	}
 	

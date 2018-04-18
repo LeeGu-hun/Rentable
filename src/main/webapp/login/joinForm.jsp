@@ -7,26 +7,24 @@
 <head>
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script language="javascript">
-
-$(document).ready(function (){
-    $('#checkbtn').on('click', function(){
-        $.ajax({
-            type: 'POST',
-            url: '${pageContext.request.contextPath}/checkSignup',
-            data: {
-                "R_id" : $('#R_id').val()
-            },
-            success: function(data){
-                if($.trim(data) == 0){
-                    $('#checkMsg').html('<p style="color:blue">사용가능</p>');
-                }
-                else{
-                    $('#checkMsg').html('<p style="color:red">사용불가능</p>');
-                }
-            }
-        });    //end ajax    
-    });    //end on    
-});
+	$(document).ready(function() {
+		$('#checkbtn').on('click', function() {
+			$.ajax({
+				type : 'POST',
+				url : '${pageContext.request.contextPath}/checkSignup',
+				data : {
+					"R_id" : $('#R_id').val()
+				},
+				success : function(data) {
+					if ($.trim(data) == 0) {
+						$('#checkMsg').html('<p style="color:blue">사용가능</p>');
+					} else {
+						$('#checkMsg').html('<p style="color:red">사용불가능</p>');
+					}
+				}
+			}); //end ajax    
+		}); //end on    
+	});
 
 	function Check() {
 		var R_id = document.getElementById("R_id");
@@ -42,9 +40,10 @@ $(document).ready(function (){
 		var card2 = document.getElementById("card2");
 		var card3 = document.getElementById("card3");
 		var card4 = document.getElementById("card4");
-		var R_cardnum = card1.value +  "-" + card2.value +  "-" + card3.value +  "-" + card4.value;
-	
-////////////////////////////////////////////////////////////////////////////////
+		var R_cardnum = card1.value + "-" + card2.value + "-" + card3.value
+				+ "-" + card4.value;
+
+		////////////////////////////////////////////////////////////////////////////////
 		if (R_id.value == '' || R_id.value == null) {
 			document.getElementById('result').textContent = '아이디를 입력해주세요';
 			focus.R_id;
@@ -56,27 +55,27 @@ $(document).ready(function (){
 			return false;
 		}
 		if (passcheck.value == '' || passcheck.value == null) {
-			document.getElementById('result').textContent= '비밀번호확인을 입력해주세요';
+			document.getElementById('result').textContent = '비밀번호확인을 입력해주세요';
 			focus.passcheck;
 			return false;
 		}
 		if (R_password.value != passcheck.value) {
-			document.getElementById('result').textContent= '비밀번호가 일치하지 않습니다';
+			document.getElementById('result').textContent = '비밀번호가 일치하지 않습니다';
 			focus.R_password;
 			return false;
-		} else if(R_password.value == passcheck.value){
-			document.getElementById('result').textContent= '';
-			document.getElementById('result1').textContent= '일치';
-		} 
-////////////////////////////////////////////////////////////////////////////////		
-		
+		} else if (R_password.value == passcheck.value) {
+			document.getElementById('result').textContent = '';
+			document.getElementById('result1').textContent = '일치';
+		}
+		////////////////////////////////////////////////////////////////////////////////		
+
 		if (R_name.value == '' || R_name.value == null) {
 			document.getElementById('result2').textContent = '이름을 입력해주세요';
 			focus.R_name;
 			return false;
 		}
 		if (!isNaN(R_name.value)) {
-			document.getElementById('result2').textContent= '이름을 정확히 입력해주세요';
+			document.getElementById('result2').textContent = '이름을 정확히 입력해주세요';
 			return false;
 		}
 		if (R_address.value == '' || R_address.value == null) {
@@ -88,59 +87,61 @@ $(document).ready(function (){
 			document.getElementById('result2').textContent = '';
 
 		}
-////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////
 
 		if (isNaN(hp1.value)) {
-			document.getElementById('result3').textContent= '휴대폰앞자리를 선택해주세요';
+			document.getElementById('result3').textContent = '휴대폰앞자리를 선택해주세요';
 			return false;
 		}
 		if (hp2.value.length <= 3 || hp3.value.length != 4) {
-			document.getElementById('result3').textContent= '휴대폰번호를 정확히 입력해주세요';
+			document.getElementById('result3').textContent = '휴대폰번호를 정확히 입력해주세요';
 			focus.hp2;
 			return false;
 		}
 
 		if (isNaN(hp2.value) || isNaN(hp3.value)) {
-			document.getElementById('result3').textContent= '휴대폰번호는 숫자만 들어갈 수 있습니다';
+			document.getElementById('result3').textContent = '휴대폰번호는 숫자만 들어갈 수 있습니다';
 			return false;
 		}
 		if (hp2.value.length > 3 || hp3.value.length == 4) {
 			document.getElementById('result3').textContent = '';
 			document.getElementById("R_phone").value = R_phone;
 		}
-////////////////////////////////////////////////////////////////////////////////
-		
+		////////////////////////////////////////////////////////////////////////////////
+
 		if (card1.value.length <= 3) {
-			document.getElementById('result4').textContent= '카드번호를 정확히 입력해주세요';
+			document.getElementById('result4').textContent = '카드번호를 정확히 입력해주세요';
 			focus.card1;
 			return false;
 		}
 		if (card2.value.length <= 3) {
-			document.getElementById('result4').textContent= '카드번호를 정확히 입력해주세요';
+			document.getElementById('result4').textContent = '카드번호를 정확히 입력해주세요';
 			focus.card2;
 			return false;
 		}
 		if (card3.value.length <= 3) {
-			document.getElementById('result4').textContent= '카드번호를 정확히 입력해주세요';
+			document.getElementById('result4').textContent = '카드번호를 정확히 입력해주세요';
 			focus.card3;
 			return false;
 		}
 		if (card4.value.length <= 3) {
-			document.getElementById('result4').textContent= '카드번호를 정확히 입력해주세요';
+			document.getElementById('result4').textContent = '카드번호를 정확히 입력해주세요';
 			focus.card4;
 			return false;
 		}
-		if (isNaN(card1.value) || isNaN(card2.value) || isNaN(card3.value) || isNaN(card4.value)) {
-			document.getElementById('result4').textContent= '카드번호는 숫자만 들어갈 수 있습니다';
+		if (isNaN(card1.value) || isNaN(card2.value) || isNaN(card3.value)
+				|| isNaN(card4.value)) {
+			document.getElementById('result4').textContent = '카드번호는 숫자만 들어갈 수 있습니다';
 			return false;
 		}
-		if(card1.value.length>3 || card2.value.length>3 || card3.value.length>3 || card4.value.length>3){
+		if (card1.value.length > 3 || card2.value.length > 3
+				|| card3.value.length > 3 || card4.value.length > 3) {
 			document.getElementById('result4').textContent = '';
 			document.getElementById("R_cardnum").value = R_cardnum;
 			save();
-		} 
+		}
 	}
-	function save() {	
+	function save() {
 		joinForm.submit();
 		alert("가입이 완료되었습니다.");
 	}
@@ -162,58 +163,58 @@ $(document).ready(function (){
 <body>
 	<div class="joinBox" valign="middle">
 		<h1>회원가입</h1>
-		<form action="${pageContext.request.contextPath}/joinAction" name="joinForm" method="POST" enctype="multipart/form-data">
+		<form action="${pageContext.request.contextPath}/joinAction"
+			name="joinForm" method="POST" enctype="multipart/form-data">
 			<input type="text" name="R_id" id="R_id" placeholder="ID" required />
+
 			<div id="checkMsg"></div>
 			<button type="submit" id="checkbtn" onclick="checkbtn" class="button">중복확인</button>
 
-			<input type="password" name="R_password" id="R_password" placeholder="Password" required />
-			<input type="password" name="passcheck" id="passcheck" placeholder="PasswordCheck" required />
-			<span id="result" style="font-size:10pt;color:#e22424;">${requestScope.result }</span>
-			<span id="result1" style="font-size:10pt;color:#13af32;">${requestScope.result }</span><br><br>
-			<input type="text" name="R_name" id="R_name" placeholder="Name" required />
-			<input type="text" name="R_address" id="R_address" placeholder="Address" required />
-			<span id="result2" style="font-size:10pt;color:#e22424;">${requestScope.result }</span><br><br>
 
-			<label> Phone </label>
-			<br>
-			<select id="phone1"><option>선택</option>
+			<span id="result" style="font-size: 10pt; color: #e22424;">${requestScope.result }</span>
+
+			<input type="password" name="R_password" id="R_password"
+				placeholder="Password" required /> <input type="password"
+				name="passcheck" id="passcheck" placeholder="PasswordCheck" required />
+			<span id="result" style="font-size: 10pt; color: #e22424;">${requestScope.result }</span>
+			<span id="result1" style="font-size: 10pt; color: #13af32;">${requestScope.result }</span><br>
+			<br> <input type="text" name="R_name" id="R_name"
+				placeholder="Name" required /> <input type="text" name="R_address"
+				id="R_address" placeholder="Address" required /> <span id="result2"
+				style="font-size: 10pt; color: #e22424;">${requestScope.result }</span><br>
+			<br> <label> Phone </label> <br> <select id="phone1"><option>선택</option>
 				<option value="010">010</option>
 				<option value="011">011</option>
 				<option value="017">017</option>
-			</select> 
-         -&nbsp  
-         <input type="text" id="phone2" maxlength="4" style="width: 93px;"> 
-         -&nbsp 
-         <input type="text" id="phone3" maxlength="4" style="width: 93px;"><br>
-			<input type="hidden" id="R_phone" name="R_phone">
-			<span id="result3" style="font-size:10pt;color:#e22424;">${requestScope.result }</span><br>
-			<label> Card </label>
-			<br>
+			</select> -&nbsp <input type="text" id="phone2" maxlength="4"
+				style="width: 93px;"> -&nbsp <input type="text" id="phone3"
+				maxlength="4" style="width: 93px;"><br> <input
+				type="hidden" id="R_phone" name="R_phone"> <span
+				id="result3" style="font-size: 10pt; color: #e22424;">${requestScope.result }</span><br>
+			<label> Card </label> <br>
 			<div class="R_card" id="R_card">
-				<input type="radio" value="A" id="A" name="R_card" checked /> 
-				<label for="A" class="radio">A</label> 
-				<input type="radio" value="B" id="B" name="R_card" /> 
-				<label for="B" class="radio">B</label> 
-				<input type="radio" value="C" id="C" name="R_card" /> 
-				<label for="C" class="radio">C</label>
+				<input type="radio" value="A" id="A" name="R_card" checked /> <label
+					for="A" class="radio">A</label> <input type="radio" value="B"
+					id="B" name="R_card" /> <label for="B" class="radio">B</label> <input
+					type="radio" value="C" id="C" name="R_card" /> <label for="C"
+					class="radio">C</label>
 			</div>
-		<input type="text" id="card1" name="card1" maxlength="4" style="width: 56px;"> 
-        -&nbsp 
-        <input type="text" id="card2" name="card2" maxlength="4" style="width: 56px;">
-        -&nbsp 
-        <input type="text" id="card3" name="card3" maxlength="4" style="width: 56px;">
-        -&nbsp 
-        <input type="text" id="card4" name="card4" maxlength="4" style="width: 56px;"><br>
-        <input type="hidden" id="R_cardnum" name="R_cardnum">
-		<span id="result4" style="font-size:10pt;color:#e22424;">${requestScope.result }</span>	
-        
+			<input type="text" id="card1" name="card1" maxlength="4"
+				style="width: 56px;"> -&nbsp <input type="text" id="card2"
+				name="card2" maxlength="4" style="width: 56px;"> -&nbsp <input
+				type="text" id="card3" name="card3" maxlength="4"
+				style="width: 56px;"> -&nbsp <input type="text" id="card4"
+				name="card4" maxlength="4" style="width: 56px;"><br> <input
+				type="hidden" id="R_cardnum" name="R_cardnum"> <span
+				id="result4" style="font-size: 10pt; color: #e22424;">${requestScope.result }</span>
+
 			<p>
-				By clicking Register, you agree on our 
-				<a href="${pageContext.request.contextPath}/service">서비스 약관</a>
-			</p><br><br>
-			<a href="javascript:Check()" class="button" >회원가입</a>
-			
+				By clicking Register, you agree on our <a
+					href="${pageContext.request.contextPath}/service">서비스 약관</a>
+			</p>
+			<br>
+			<br> <a href="javascript:Check()" class="button">회원가입</a>
+
 		</form>
 	</div>
 </body>

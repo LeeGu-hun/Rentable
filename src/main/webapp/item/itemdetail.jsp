@@ -309,6 +309,7 @@ function delbtn(){
 				<li id="tab_detail_04"><a href="#goods_qan">상품문의</a></li>
 			</ul>
 			<div class=''>
+<<<<<<< HEAD
 				<p>&nbsp;</p>
 				<p>&nbsp;</p>
 				<p>
@@ -318,6 +319,14 @@ function delbtn(){
 					</span>
 				</p>
 				<p>&nbsp;</p>
+=======
+				<p></p>
+				<span class="text_bold">
+				  <img src="${pageContext.request.contextPath}/upload_products/${prodBean.RP_img1}">
+				  <br>
+				${prodBean.RP_detail}</span>
+				<p></p>
+>>>>>>> branch 'origin' of https://github.com/LeeGu-hun/Rentable.git
 			</div>
 		</div>
 		<div class="goods_contents" id="goods_delivery">
@@ -348,7 +357,7 @@ function delbtn(){
 									<td
 								style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); height: 112px; background-color: rgb(255, 255, 255);"
 								class=""><p>&nbsp;</p>
-								<p>&nbsp;${saleUserInfo.R_id}</p>
+								<p>&nbsp;${saleUserInfo.getR_id()}</p>
 								</td>
 								<td
 								style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); width: 120px; height: 112px; background-color: rgb(255, 255, 255);"
@@ -359,7 +368,7 @@ function delbtn(){
 								<td
 								style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); height: 112px; background-color: rgb(255, 255, 255);"
 								class=""><p>&nbsp;</p>
-								<p>&nbsp;${saleUserInfo.R_name}</p>
+								<p>&nbsp;${saleUserInfo.getR_name()}</p>
 								</td>
 						</tr>
 								<tr>
@@ -372,7 +381,7 @@ function delbtn(){
 								<td
 								style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); height: 112px; background-color: rgb(255, 255, 255);"
 								class=""><p>&nbsp;</p>
-								<p>&nbsp;${saleUserInfo.R_phone}</p>
+								<p>&nbsp;${saleUserInfo.getR_phone()}</p>
 								</td>
 								<td
 								style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); width: 120px; height: 112px; background-color: rgb(255, 255, 255);"
@@ -383,7 +392,7 @@ function delbtn(){
 								<td
 								style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); height: 112px; background-color: rgb(255, 255, 255);"
 								class=""><p>&nbsp;</p>
-								<p>&nbsp;${saleUserInfo.R_address}</p>
+								<p>&nbsp;${saleUserInfo.getR_address()}</p>
 								</td>
 						</tr>
 					</tbody>

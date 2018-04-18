@@ -155,7 +155,7 @@
 						<tr>
 							<td style="font-family: 돋음; font-size: 12" height="16">
 								<div align="center">
-									<h4>대여기간</h4>
+									<h4>대여 가능기간</h4>
 								</div>
 							</td>
 							<td><input type="date" name="RP_startdate" required
@@ -250,7 +250,7 @@
 		<table>
 			<tr>
 				<td colspan="2">&nbsp;<span id="result"
-					style="font-size: 10pt; color: #e22424;">${requestScope.result }</span></td>
+					style="font-size: 10pt; color: #e22424;">${requestScope.result}</span></td>
 			</tr>
 
 

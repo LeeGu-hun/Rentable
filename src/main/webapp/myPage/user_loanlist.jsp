@@ -10,6 +10,26 @@
 <title>대여 내역</title>
 <script type="text/javascript">
 </script>
+<script type="text/javascript">
+
+function itemstat(){
+	var dd =  document.getElementById("dd").value;
+	var con = confirm("거래가 완료되었습니까?");
+	var istat = document.getElementById("istat");
+	if(con == true){
+	}
+	else if(con == false){
+		return false;
+	}	
+	
+	
+	
+	
+	
+	
+}
+
+</script>
 </head>
 
 <body>
@@ -27,25 +47,24 @@
 					<td width="20%"style="text-align: center;  color: white;  font-size: 30px;">제품 현황</td>
 				</tr>	
 				<tr></tr>
-					</table>
-				<table style="width: 100%; border:1; border-style: solid; border-color: #D5D5D5;">
 				<c:forEach var="items" items="${userSale}">
 				<tr align="center" valign="middle" bordercolor="#222">
 					<td width="20%"
-						style="text-align: center; color: black; font-size: 20px;">${items.ROI_ordernum}</td>
-					<td width="20%">				
-						<a style="text-align: center; text-decoration: none; color: black; font-size: 20px;" 
-						href="<c:url value="/ProdDetail/${items.ROI_itemnum}"/>">
-									<em style="font-size: 20px">${items.RP_ITEMNAME}</em></td>
+						style="text-align: center; color: white; font-size: 15px;">${items.ROI_ordernum}</td>						
 					<td width="20%"
-						style="text-align: center; color: black; font-size: 20px;">${items.ROI_enddate}</td>
+						style="text-align: center; color: white; font-size: 15px;">${items.RP_ITEMNAME}</td>
 					<td width="20%"
-						style="text-align: center; color: black; font-size: 20px;">${items.ROI_price}</td>
+						style="text-align: center; color: white; font-size: 15px;">${items.ROI_enddate}</td>
 					<td width="20%"
-						style="text-align: center; color: black; font-size: 20px;">${items.ROI_stat}</td>
+						style="text-align: center; color: white; font-size: 15px;">${items.ROI_price}</td>
+					<td width="20%"
+						style="text-align: center; color: white; font-size: 15px;">
+						<a id="dd"href="<c:url value="/StatModify/${items.ROI_ordernum}"/>"onclick="itemstat()"><input id="istat" type="button" value="${items.ROI_stat}"></a>
+						</td>
+						
 				</tr>
 				</c:forEach>		
-		</table>
+			</table>
 		</form>
 	</div>
 </body>

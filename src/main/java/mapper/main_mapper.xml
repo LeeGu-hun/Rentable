@@ -23,13 +23,24 @@
 
 
 	<select id="getmaincateitems" resultType="bean.bean_rent_products">
-		select
-		RP_itemnum,RP_itemname,RP_price,to_date(RP_startdate,'yy/mm/dd') as
-		RP_startdate, to_date(RP_enddate,'yy/mm/dd') as RP_enddate, RP_img1
-		from
-		rent_products
+		select rp.RP_ITEMNUM, rp.RP_ITEMNAME, rp.RP_PRICE,
+		rp.RP_STARTDATE,rp.RP_img1,
+		rp.RP_ENDDATE, gd.grade,
+		roi.ROI_STAT,rp.rp_regdate from RENT_PRODUCTS
+		rp,
+		(select rp.RP_itemnum,
+		nvl(round(avg(rr.rr_grade),1),'0') grade from
+		rent_review rr,
+		RENT_PRODUCTS rp where rr.RR_ITEMNUM(+) =
+		rp.RP_ITEMNUM
+		group by
+		rp.RP_ITEMNUM order by grade desc) gd, (select rp.RP_itemnum,
+		roi.ROI_STAT from rent_orders_items roi, RENT_PRODUCTS rp where
+		roi.ROI_ITEMNUM(+) = rp.RP_ITEMNUM) roi
+		where rp.RP_itemnum =
+		gd.RP_itemnum and rp.RP_ITEMNUM = roi.RP_itemnum
 		<include refid="category"></include>
-		order by 
+		order by
 		<include refid="orderby"></include>
 	</select>
 
@@ -37,10 +48,11 @@
 		<choose>
 			<when test="maincate_value != 'all'">
 				<if test="subcate_value == 'all'">
-					where RP_catemain = #{maincate_value}
+					and rp.RP_catemain = #{maincate_value}
 				</if>
 				<if test="subcate_value != 'all'">
-					where RP_catemain = #{maincate_value} and RP_catesub =
+					and rp.RP_catemain = #{maincate_value} and rp.RP_catesub
+					=
 					#{subcate_value}
 				</if>
 			</when>
@@ -51,10 +63,13 @@
 	<sql id="orderby">
 		<choose>
 			<when test="orderby == 'price_asc'">
-				RP_price asc, rp_regdate desc
+				rp.RP_price asc, rp.rp_regdate desc
 			</when>
 			<when test="orderby == 'price_desc'">
-				RP_price desc, rp_regdate desc
+				rp.RP_price desc, rp.RP_regdate desc
+			</when>
+			<when test="orderby == 'prod_popular'">
+				gd.grade desc, rp.RP_REGDATE desc
 			</when>
 			<otherwise>rp_regdate desc</otherwise>
 		</choose>

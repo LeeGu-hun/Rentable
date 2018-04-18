@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import bean.bean_like_items;
+import bean.bean_rent_order_items;
 import bean.bean_rent_products;
 import bean.bean_rent_users;
 
@@ -34,6 +35,11 @@ public class UserItemService {
 		   public int LikeDelete(int num) {
 			      return sqlSession.delete("useritemlistSQL.likeDelete", num);
 			   }
+		   
+		   public int StatUpdate(bean_rent_order_items rentBean) {
+			      int result = sqlSession.update("useritemlistSQL.statUpdate", rentBean);
+			      return result;
+			      }
 	
 	
 

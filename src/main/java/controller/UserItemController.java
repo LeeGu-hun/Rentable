@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import bean.Bean_Category;
 import bean.ItemCommand;
+import bean.ItemstatCommand;
 import bean.bean_like_items;
+import bean.bean_rent_order_items;
 import bean.bean_rent_products;
 import bean.bean_rent_user_slae;
 import bean.bean_rent_users;
@@ -22,8 +24,7 @@ import service.UserItemService;
 @Controller
 public class UserItemController {
 	private ProdService prodService;
-	UserItemService useritemService;
-	
+	private UserItemService useritemService;	
 	public void setProdService(ProdService prodService) {
 		this.prodService = prodService;
 	}
@@ -60,7 +61,10 @@ public class UserItemController {
 	public String userRentlist(Model model, HttpSession session,HttpServletRequest request ) {
 		bean_rent_users userInfo = (bean_rent_users) session.getAttribute("userInfo");
 		List<bean_rent_user_slae> userSale=null;
+//		bean_rent_order_items roi = new bean_rent_order_items();
+//		int ordernum = roi.getROI_ordernum();
 		userSale=prodService.userSaleBuy(userInfo.getR_idnum());
+//		model.addAttribute("ordernum",ordernum);
 		model.addAttribute("userSale", userSale);
 		model.addAttribute("path", getPath(request));
 		model.addAttribute("category", getMainCategory());
@@ -83,7 +87,6 @@ public class UserItemController {
 		bean_rent_users userInfo = (bean_rent_users) session.getAttribute("userInfo");
 		List<bean_rent_user_slae> userSale=null;
 		userSale=prodService.userSaleSell(userInfo.getR_idnum());
-		
 		model.addAttribute("userSale", userSale);
 		model.addAttribute("path", getPath(request));
 		model.addAttribute("category", getMainCategory());
@@ -99,7 +102,12 @@ public class UserItemController {
 		like.setRL_price(cmd.getRP_price());
 		like.setRL_usernum(userInfo.getR_idnum());
 		
-		useritemService.LikeInsert(like);
+		try {
+			useritemService.LikeInsert(like);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return "redirect:/";
 	}
@@ -108,6 +116,16 @@ public class UserItemController {
 		model.addAttribute("delete", useritemService.LikeDelete(num));
 		
 		return "redirect:/user_interlist";
+	}
+	@RequestMapping("/StatModify/{s}")
+	public String StatModify(@PathVariable("s")int num, Model model,HttpServletRequest request,ItemstatCommand cmd) {
+		bean_rent_order_items roi = new bean_rent_order_items();
+		
+		roi.setROI_stat("거래 완료");
+		roi.setROI_ordernum(num);
+		useritemService.StatUpdate(roi);
+		
+		return "redirect:/user_loanlist";
 	}
 
 	

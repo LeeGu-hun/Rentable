@@ -32,6 +32,17 @@
       delete rent_like_items where RL_itemnum = #{RL_itemnum} 
       					
    </delete>
+      
+   <update id="statUpdate" parameterType="bean.bean_rent_order_items" >
+      update rent_orders_items set ROI_stat =#{ROI_stat} 
+     where ROI_ordernum =#{ROI_ordernum}
+   </update>
+   
+
+   
+   
+   
+
 	
 	
 	
