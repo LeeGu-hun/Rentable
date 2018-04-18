@@ -7,14 +7,16 @@ public class bean_rent_user_slae {
 	private String ROI_enddate; // 물품 반납일
 	private int ROI_price; // 1개 물품의 대여료
 	private String ROI_stat;//현황
-	public bean_rent_user_slae(int rOI_ordernum, String rP_ITEMNAME, String rOI_enddate, int rOI_price,
-			String rOI_stat) {
+	private int ROI_itemnum; // 1개 물품의 대여료
+	public bean_rent_user_slae(int rOI_ordernum, String rP_ITEMNAME, String rOI_enddate, int rOI_price, String rOI_stat,
+			int rOI_itemnum) {
 		super();
 		ROI_ordernum = rOI_ordernum;
 		RP_ITEMNAME = rP_ITEMNAME;
 		ROI_enddate = rOI_enddate;
 		ROI_price = rOI_price;
 		ROI_stat = rOI_stat;
+		ROI_itemnum = rOI_itemnum;
 	}
 	public bean_rent_user_slae() {
 		super();
@@ -50,6 +52,11 @@ public class bean_rent_user_slae {
 	public void setROI_stat(String rOI_stat) {
 		ROI_stat = rOI_stat;
 	}
+	public int getROI_itemnum() {
+		return ROI_itemnum;
+	}
+	public void setROI_itemnum(int rOI_itemnum) {
+		ROI_itemnum = rOI_itemnum;
+	}
 	
-
 }

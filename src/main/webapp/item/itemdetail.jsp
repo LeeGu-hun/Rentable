@@ -126,18 +126,13 @@
 	vertical-align: middle;
 }
 </style>
-
 <title>Rent</title>
-
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/itemdetail.css?version=1.11" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/common.css?version=1.12" />
 <body>
-
-
-
 	<div id="shop_wrap">
 		<script type="text/javascript">
 			function big_img_show(img_url) {
@@ -145,7 +140,18 @@
 				obj.src = img_url;
 			}
 		</script>
-
+		<script type="text/javascript">
+			function logsession() {
+				var logid = document.getElementById("logid");
+				var thisrent = document.getElementById("thisrent");
+				if (logid.value == '' || logid.value == null) {
+					alert("로그인 이후 사용할수있습니다");
+					zzim.href = "#"
+				}
+				else
+					thisrent.type = "submit"
+			}
+		</script>
 		<div class="goods_category" style="width: 1200px; margin: 0 auto;">
 			CATEGORY : ${prodBean.RP_catemain} > ${prodBean.RP_catesub}</div>
 
@@ -154,7 +160,6 @@
 			<div class="goods_info_top_box">
 				<form action="${pageContext.request.contextPath}/ProdPay">
 					<div class="goods_info_top_left">
-
 						<div class="goods_image">
 							<img
 								src="${pageContext.request.contextPath}/upload_products/${prodBean.RP_img1}"
@@ -197,31 +202,56 @@
 
 								<tr>
 									<th scope="row">판매자 등록 기간</th>
-									<td class="goods_sale_price">${prodBean.RP_startdate}
-										~${prodBean.RP_enddate}</td>
-
+									<td class="goods_sale_price"><em> <fmt:parseDate
+												var="dateString1" value="${prodBean.RP_startdate}"
+												pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
+												value="${dateString1}" pattern="yyyy.MM.dd" /> ~ <fmt:parseDate
+												var="dateString2" value="${prodBean.RP_enddate}"
+												pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
+												value="${dateString2}" pattern="yyyy.MM.dd" /></em> <input
+										type="hidden" id="salestdate" name="salestdate"
+										value="${prodBean.RP_startdate}" /> <input type="hidden"
+										id="saleeddate" name="saleeddate"
+										value="${prodBean.RP_enddate}" /></td>
 								</tr>
-
 								<tr>
 									<th scope="row">대여 기간</th>
-									<td><input id="stdate" name="stdate" type="date"
+									<td><input id="stdate" name="stdate" type="date" required
 										style="width: 175px; height: 20px;" /> &nbsp;~&nbsp; <input
-										id="eddate" name="eddate" type="date"
-										style="width: 175px; height: 20px;" /></td>
-								</tr>
-								<tr>
-									<th scope="row">금액 계산 하기</th>
-									<td><input type="button" onclick="myFunction()"
-										value="계산하기" /></td>
+										id="eddate" name="eddate" type="date" required
+										style="width: 175px; height: 20px;" oninput="myFunction()" /></td>
 								</tr>
 								<script type="text/javascript">
          function myFunction() {
              var date1 = document.getElementById("stdate").value;
              var date2 = document.getElementById("eddate").value;
+             var dt = new Date();
+             var month = dt.getMonth()+1;
+             var day = dt.getDate();
+             var year = dt.getFullYear();
+             if(day<10) {
+            	 day='0'+day
+            	} 
 
+            	if(month<10) {
+            		month='0'+month
+            	} 
+             var saledate1=year + '-' + month + '-' + day;
+             var saledate2 = document.getElementById("saleeddate").value;
+             
             date1 = date1.split('-');
             date2 = date2.split('-');
-  
+            saledate1 = saledate1.split('-');
+            saledate2 = saledate2.split('-');
+            
+        	if (date1 <saledate1 || date1 > saledate2 || date2 <saledate1 || date2 > saledate2 ) {
+        		alert("기간을 다시 설정하세요");
+        		  document.getElementById("allPrice").value="";
+				  document.getElementById("stdate").value="";
+				  document.getElementById("eddate").value="";
+				return;
+			}
+        	else{
             date1 = new Date(date1[0], date1[1], date1[2]);
             date2 = new Date(date2[0], date2[1], date2[2]);
 
@@ -229,64 +259,45 @@
             date2_unixtime = parseInt(date2.getTime() / 1000);
 
             var timeDifference = date2_unixtime - date1_unixtime;
-
             var timeDifferenceInHours = timeDifference/60/60;
-
             var timeDifferenceInDays = timeDifferenceInHours  / 24;
             document.getElementById("allPrice").value = (timeDifferenceInDays+1)*${prodBean.RP_price};
          }
-
+         }
          </script>
 								<script type="text/javascript">
-
 function delbtn(){
-	
 	var con = confirm("정말로 삭제 하시겠습니까?");
 	var del1 = document.getElementById("del");
 	del1 = con
-		
 	if(del1 == true){
 		del.href="<c:url value="/itemDelete/${prodBean.RP_itemnum}"/>"
 		alert("삭제가 완료되었습니다");
 	}
 	else if(del1 == false){
-		
 		del.href="#";
-		
 		return false;
-	  
-	}
-	
-	
-	
+	}	
 }
-
-
-
-
-
-
 </script>
 								<tr>
 									<th scope="row">총상품 금액</th>
 									<td><input class="goods_order_tot_price" type="text"
 										id="allPrice" name="allPrice" readonly /></td>
 								</tr>
-
-
 							</tbody>
 						</table>
 						<input type="hidden" name="state" id="state" value="cart">
 						<div></div>
 						<div class="goods_btn_area">
-							<input type="submit" value=" 대여하기 " id="btn_submit"
-								class="order_btn_buy"> <a href="javascript:submitlike()"
-								class="button">찜</a>
+							<input type="button" value=" 대여하기 " id="thisrent"
+								onclick="logsession()" class="order_btn_buy"> <a
+								href="javascript:submitlike()" class="button"
+								onclick="logsession()" id="zzim">찜</a>
 						</div>
 						<iframe name="ifm_proc" id="ifm_proc" src="" frameborder="0"
 							scrolling="no" style="display: none;"></iframe>
 				</form>
-
 			</div>
 		</div>
 
@@ -298,22 +309,85 @@ function delbtn(){
 				<li id="tab_detail_04"><a href="#goods_qan">상품문의</a></li>
 			</ul>
 			<div class=''>
-				<p></p>
-				<span class="text_bold">${prodBean.RP_detail}</span>
-				<p></p>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>
+					<span class="text_bold"> <img
+						src="${pageContext.request.contextPath}/upload_products/${prodBean.RP_img1}">
+						${prodBean.RP_detail}
+					</span>
+				</p>
+				<p>&nbsp;</p>
 			</div>
 		</div>
-
-
 		<div class="goods_contents" id="goods_delivery">
 			<ul class="link">
 				<li id="tab_delivery_01"><a href="#goods_detail">상품상세정보</a></li>
 				<li id="tab_delivery_02" class="selected"><a
-					href="#goods_delivery">배송/교환/반품정보</a></li>
+					href="#goods_delivery">판매자/반품/교환정보</a></li>
 				<li id="tab_delivery_03"><a href="#goods_review">상품구매후기</a></li>
 				<li id="tab_delivery_04"><a href="#goods_qan">상품문의</a></li>
 			</ul>
 			<div class=''>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+				<p>
+					<b><span style="font-size: 18pt;">판매자정보</span></b>
+				</p>
+				<table
+					style="width: 100%; border: 1px solid #cccccc; border-left: 0; border-bottom: 0;"
+					class="__se_tbl" border="0" cellpadding="0" cellspacing="0">
+					<tbody>
+						<tr>
+							<td
+								style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); width: 120px; height: 112px; background-color: rgb(255, 255, 255);"
+								class=""><p>
+									&nbsp;<span style="line-height: 1.5; font-size: 11pt;"><b>판매자 ID</b></span>
+								</p>
+								<p>&nbsp;</p></td>
+									<td
+								style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); height: 112px; background-color: rgb(255, 255, 255);"
+								class=""><p>&nbsp;</p>
+								<p>&nbsp;${saleUserInfo.R_id}</p>
+								</td>
+								<td
+								style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); width: 120px; height: 112px; background-color: rgb(255, 255, 255);"
+								class=""><p>
+									&nbsp;<span style="line-height: 1.5; font-size: 11pt;"><b>판매자 이름</b></span>
+								</p>
+								<p>&nbsp;</p></td>
+								<td
+								style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); height: 112px; background-color: rgb(255, 255, 255);"
+								class=""><p>&nbsp;</p>
+								<p>&nbsp;${saleUserInfo.R_name}</p>
+								</td>
+						</tr>
+								<tr>
+							<td
+								style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); width: 120px; height: 112px; background-color: rgb(255, 255, 255);"
+								class=""><p>
+									&nbsp;<span style="line-height: 1.5; font-size: 11pt;"><b>연락처</b></span>
+								</p>
+								<p>&nbsp;</p></td>
+								<td
+								style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); height: 112px; background-color: rgb(255, 255, 255);"
+								class=""><p>&nbsp;</p>
+								<p>&nbsp;${saleUserInfo.R_phone}</p>
+								</td>
+								<td
+								style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); width: 120px; height: 112px; background-color: rgb(255, 255, 255);"
+								class=""><p>
+									&nbsp;<span style="line-height: 1.5; font-size: 11pt;"><b>주소</b></span>
+								</p>
+								<p>&nbsp;</p></td>
+								<td
+								style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); height: 112px; background-color: rgb(255, 255, 255);"
+								class=""><p>&nbsp;</p>
+								<p>&nbsp;${saleUserInfo.R_address}</p>
+								</td>
+						</tr>
+					</tbody>
+				</table>
 				<p>&nbsp;</p>
 				<p>&nbsp;</p>
 				<p>
@@ -490,7 +564,7 @@ function delbtn(){
 							<td class="" rowspan="1" colspan="1"
 								style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); height: 58px; background-color: rgb(255, 255, 255);"><p>
 									&nbsp;<span
-										style="font-size: 14.6666669845581px; line-height: 22px;"><b>반품/교환</b></span>
+										style="font-size: 14.6666669845581px; line-height: 22px;"><b>판매자/반품/교환정보</b></span>
 								</p>
 								<p>
 									<span style="font-size: 14.6666669845581px; line-height: 22px;"><b>&nbsp;불가항목</b></span>
@@ -526,7 +600,7 @@ function delbtn(){
 		<div class="goods_contents" id="goods_review">
 			<ul class="link">
 				<li id="tab_review_01"><a href="#goods_detail">상품상세정보</a></li>
-				<li id="tab_review_02"><a href="#goods_delivery">배송/교환/반품정보</a></li>
+				<li id="tab_review_02"><a href="#goods_delivery">판매자/반품/교환정보</a></li>
 				<li id="tab_review_03" class="selected"><a href="#goods_review">상품구매후기</a></li>
 				<li id="tab_review_04"><a href="#goods_qan">상품문의</a></li>
 			</ul>
@@ -538,99 +612,74 @@ function delbtn(){
 				<caption>목록</caption>
 				<thead>
 					<tr>
-						<th scope="col">no</th>
+						<th scope="col">별점</th>
 						<th scope="col">제목</th>
 						<th scope="col">등록자</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<th scope="col">no 들어가는칸</th>
-						<th scope="col">제목 들어가는칸</th>
-						<th scope="col">등록자 들어가는칸</th>
-					</tr>
+					<c:forEach var="reviewlist" items="${reviewlist}">
+
+
+						<tr>
+							<th scope="col">${reviewlist.RR_grade}</th>
+							<th scope="col">${reviewlist.RR_content}</th>
+							<th scope="col">${reviewlist.RR_userid}</th>
+						</tr>
+
+					</c:forEach>
 					<tr>
 						<td></td>
 						<td></td>
 						<td align="right"><input onclick="display1()" type="button"
 							value="후기 등록"></td>
 					</tr>
-
-
 				</tbody>
 			</table>
-			
-			
-			<c:forEach var="reviewlist" items="${reviewlist}">
-				
-					<li >
-					
-						<em style="color: green;font-size:20px;margin-left:12px; background-color:pink; border: 1;border-radius: 100%">${reviewlist.RR_subject}</em>
-						 <em style="font-size: 20px">${reviewlist.RR_userid}</em><br> 
-						</li>
-						
-				</c:forEach>
-			
-		
-			
-			
-			
-			
-			
 			<script language="javascript">
-			   window.onload = function() {
-				   display2();
-				   delfy();
-				  }
-   function display1(box) {
-	   invisi.style.display = 'inline-block';
-   }
-
-   function display2(box) {
-	   invisi.style.display = 'none';
-   }
-
-function delfy() {
-		var thisnum= document.getElementById("thisnum").value;
-		var loginnum = document.getElementById("loginnum").value;
-		
-		
-		
-		if(thisnum == loginnum){
+				window.onload = function() {
+					display2();
+					delfy();
+				}
+				function display1(box) {
+					invisi.style.display = 'inline-block';
+				}
 			
-			View_User.style.display = 'line';
-		
-
+				function display2(box) {
+					invisi.style.display = 'none';
+				}
 			
+				function delfy() {
+					var thisnum = document.getElementById("thisnum").value;
+					var loginnum = document.getElementById("loginnum").value;
+					if (thisnum == loginnum) {
+						View_User.style.display = 'line';
+					} else
+						View_User.style.display = 'none';
+				}
+			</script>
+			<script type="text/javascript">
+				$(function() {
+					$("#imgInp").on('change', function() {
+						readURL(this);
+					});
+				});
 			
-		}else
-		
-		View_User.style.display = 'none';
-		
-	 }
-</script>
-<script type="text/javascript">
-	$(function() {
-		$("#imgInp").on('change', function() {
-			readURL(this);
-		});
-	});
-
-	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-
-			reader.onload = function(e) {
-				$('#blah').attr('src', e.target.result);
-			}
-
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-</script>
-
-			<form action="../itemReview"  name="reviewform"  enctype="multipart/form-data" method="post">
-				<table id="invisi" border="1">
+				function readURL(input) {
+					if (input.files && input.files[0]) {
+						var reader = new FileReader();
+			
+						reader.onload = function(e) {
+							$('#blah').attr('src', e.target.result);
+						}
+			
+						reader.readAsDataURL(input.files[0]);
+					}
+				}
+			</script>
+			<form action="../itemReview" name="reviewform"
+				enctype="multipart/form-data" method="post">
+				<table id="invisi">
 					<tr height="100">
 						<td>별점<span class="RR_grade"> <span class="input">
 									<input type="radio" name="RR_grade" id="p1" value="1"><label
@@ -650,62 +699,43 @@ function delfy() {
 							</span>
 						</span>
 						</td>
-						<td>제목<input type="text" name="RR_subject"></td>
-
-					</tr>
-					<tr>
-						<td width="100">이미지<img id="blah" src="#" alt="이미지를 등록하세요" width="700" height="400" /></td>
-						<td><input type="text" name="RR_content">내용</td>
-					</tr>
-					<tr>
-						<td><input id="imgInp" type="file" name="RR_img"></td>
-						
+						<td>내용<input size="180" style="line-height: 50px" type="text"
+							name="RR_content"></td>
 						<td align="right"><a href="javascript:submitreview()"
-								class="button">등록</a>
-						<td>
-						<input
-						 type="hidden" name="R_idnum"
-						value="${sessionScope.userInfo.r_idnum}">
-						<input
-						 type="hidden" name="R_id"
-						value="${sessionScope.userInfo.r_id}">
-						<input type="hidden" name="RR_itemnum"
-						value="${prodBean.RP_itemnum}">
-						</td>
-						
-
+							class="button">등록</a></td>
 					</tr>
-					
+					<tr>
+						<td><input type="hidden" id="logid" name="R_idnum"
+							value="${sessionScope.userInfo.r_idnum}"> <input
+							type="hidden" name="R_id" value="${sessionScope.userInfo.r_id}">
+							<input type="hidden" name="RR_itemnum"
+							value="${prodBean.RP_itemnum}"></td>
+					</tr>
 				</table>
-
-
 			</form>
-
 			<div class="list_bottom_center">
 				<nav class="pg_wrap">
 					<span class="pg"></span>
 				</nav>
 			</div>
 		</div>
-
 		<script>
-				function review_contents_shop(id) {
-					if ($("#review_id_" + id).css("display") == 'none') {
-						$("#review_id_" + id).fadeIn("slow");
-					} else {
-						$("#review_id_" + id).fadeOut("slow");
-					}
+			function review_contents_shop(id) {
+				if ($("#review_id_" + id).css("display") == 'none') {
+					$("#review_id_" + id).fadeIn("slow");
+				} else {
+					$("#review_id_" + id).fadeOut("slow");
 				}
-			</script>
+			}
+		</script>
 	</div>
 	<!-- 상품 리뷰 끝 -->
-
 	<!-- 상품 문의 시작 -->
 	<div id="goods_qan_box">
 		<div class="goods_contents" id="goods_qan">
 			<ul class="link">
 				<li id="tab_goods_qan_01"><a href="#goods_detail">상품상세정보</a></li>
-				<li id="tab_goods_qan_02"><a href="#goods_delivery">배송/교환/반품정보</a></li>
+				<li id="tab_goods_qan_02"><a href="#goods_delivery">판매자/반품/교환정보</a></li>
 				<li id="tab_goods_qan_03"><a href="#goods_qna">상품구매후기</a></li>
 				<li id="tab_goods_qan_04" class="selected"><a href="#goods_qan">상품문의</a></li>
 			</ul>
@@ -730,10 +760,8 @@ function delfy() {
 					</tr>
 				</thead>
 				<tbody>
-
 					<!-- 리스트 루프 시작 -->
 					<!-- 리스트 루프 끝 -->
-
 				</tbody>
 			</table>
 			<div class="list_bottom_right">
@@ -746,9 +774,6 @@ function delfy() {
 				</nav>
 			</div>
 		</div>
-
-
-
 		<div class="form_div" id="qanda_form_div" style="display: none;">
 			<form id="fregisterform2" name="fregisterform2" action=""
 				onsubmit="return fregisterform_submit2(this);" method="post"
@@ -821,8 +846,6 @@ function delfy() {
 							<td><input type="file" name="upfiles[]" id="raview_img"
 								class="input_box"></td>
 						</tr>
-
-
 						<tr>
 							<th scope="row"><label for="raview_img">개인정보 수집 및<br>
 									이용 동의
@@ -851,8 +874,7 @@ function delfy() {
 			</form>
 		</div>
 
-		<form action="../ItemLike" name="like
-" >
+		<form action="../ItemLike" name="likeform">
 			<table id="View_User">
 
 
@@ -873,114 +895,112 @@ function delfy() {
 			</table>
 		</form>
 		<script type="text/javascript">
-
-function submitlike(){
-	likeform.submit();
-	 alert("찜 완료![개인정보->찜 목록에서 확인하세요.]");
-	
-	
-}
-
-function submitreview(){
-	reviewform.submit();
-	 alert("댓글 등록완료!");
-	
-	
-}
-
-</script>
+		
+			function submitlike() {
+				likeform.submit();
+				alert("찜 완료![개인정보->찜 목록에서 확인하세요.]");
+		
+		
+			}
+		
+			function submitreview() {
+				reviewform.submit();
+				alert("댓글 등록완료!");
+		
+		
+			}
+		</script>
 
 		<script>
-				// submit 폼체크
-				function fregisterform_submit2(f) {
-					if (f.name.value.length < 1) {
-						alert("이름을 입력해 주세요.");
-						f.name.focus();
-						return false;
-					}
-
-					if (f.password.value.length < 1) {
-						alert("비밀번호를 입력해 주세요.");
-						f.password.focus();
-						return false;
-					}
-
-					if (f.category.value.length < 1) {
-						alert("구분을 선택해 주세요.");
-						f.category.focus();
-						return false;
-					}
-
-					if (f.subject.value.length < 1) {
-						alert("제목을 입력해 주세요.");
-						f.subject.focus();
-						return false;
-					}
-
-					if (f.content.value.length < 1) {
-						alert("내용을 입력해 주세요.");
-						f.content.focus();
-						return false;
-					}
-
-					if (f.privacy_agreement[0].checked == false) {
-						alert("개인정보 수집 및 이용에 동의 하셔야 문의글을 등록 할 수 있습니다.");
-						f.privacy_agreement[0].focus();
-						return false;
-					}
-
-					var form = document.getElementById("fregisterform2");
-					form.action = './goods_review_qna_proc.php';
-					form.target = "ifm_proc";
-					form.method = 'post';
-					form.submit();
-
-					return true;
+			// submit 폼체크
+			function fregisterform_submit2(f) {
+				if (f.name.value.length < 1) {
+					alert("이름을 입력해 주세요.");
+					f.name.focus();
+					return false;
 				}
-
-				function goods_qna_reg() {
-					if ($("#qanda_form_div").css("display") == 'none') {
-						$("#qanda_form_div").fadeIn("slow");
+		
+				if (f.password.value.length < 1) {
+					alert("비밀번호를 입력해 주세요.");
+					f.password.focus();
+					return false;
+				}
+		
+				if (f.category.value.length < 1) {
+					alert("구분을 선택해 주세요.");
+					f.category.focus();
+					return false;
+				}
+		
+				if (f.subject.value.length < 1) {
+					alert("제목을 입력해 주세요.");
+					f.subject.focus();
+					return false;
+				}
+		
+				if (f.content.value.length < 1) {
+					alert("내용을 입력해 주세요.");
+					f.content.focus();
+					return false;
+				}
+		
+				if (f.privacy_agreement[0].checked == false) {
+					alert("개인정보 수집 및 이용에 동의 하셔야 문의글을 등록 할 수 있습니다.");
+					f.privacy_agreement[0].focus();
+					return false;
+				}
+		
+				var form = document.getElementById("fregisterform2");
+				form.action = './goods_review_qna_proc.php';
+				form.target = "ifm_proc";
+				form.method = 'post';
+				form.submit();
+		
+				return true;
+			}
+		
+			function goods_qna_reg() {
+				if ($("#qanda_form_div").css("display") == 'none') {
+					$("#qanda_form_div").fadeIn("slow");
+				} else {
+					$("#qanda_form_div").fadeOut("slow");
+				}
+			}
+		
+			function qanda_contents_shop(id, no, goods_no, option) {
+				var admin_session = '';
+				if ($("#qanda_id_" + id).css("display") == 'block') {
+					$("#qanda_id_" + id).fadeOut("slow");
+					return;
+				}
+		
+				if (option == "secret") {
+					if (!admin_session) {
+						qanda_password_check_form(id, no, goods_no);
 					} else {
-						$("#qanda_form_div").fadeOut("slow");
+						var obj2 = document.getElementById("div_popup_ifm");
+						obj2.src = "./goods_qanda_pass.php?no=" + no
+							+ "&goods_no=" + goods_no + "&id=" + id;
 					}
-				}
-
-				function qanda_contents_shop(id, no, goods_no, option) {
-					var admin_session = '';
-					if ($("#qanda_id_" + id).css("display") == 'block') {
+					return;
+				} else {
+		
+					$("#qanda_pass_check_div").css("display", "none");
+					if ($("#qanda_id_" + id).css("display") == 'none') {
+						$("#qanda_id_" + id).fadeIn("slow");
+					} else {
 						$("#qanda_id_" + id).fadeOut("slow");
-						return;
-					}
-
-					if (option == "secret") {
-						if (!admin_session) {
-							qanda_password_check_form(id, no, goods_no);
-						} else {
-							var obj2 = document.getElementById("div_popup_ifm");
-							obj2.src = "./goods_qanda_pass.php?no=" + no
-									+ "&goods_no=" + goods_no + "&id=" + id;
-						}
-						return;
-					} else {
-
-						$("#qanda_pass_check_div").css("display", "none");
-						if ($("#qanda_id_" + id).css("display") == 'none') {
-							$("#qanda_id_" + id).fadeIn("slow");
-						} else {
-							$("#qanda_id_" + id).fadeOut("slow");
-						}
 					}
 				}
-
-				function qanda_password_check_form(id, no, goods_no) {
-
-					var obj2 = document.getElementById("div_popup_ifm");
-					obj2.src = "./goods_qanda_pass.php?no=" + no + "&goods_no="
-							+ goods_no + "&id=" + id;
-					div_block_popup(380, 300, "");
-				}
-			</script>
+			}
+		
+			function qanda_password_check_form(id, no, goods_no) {
+				var obj2 = document.getElementById("div_popup_ifm");
+				obj2.src = "./goods_qanda_pass.php?no=" + no + "&goods_no="
+					+ goods_no + "&id=" + id;
+				div_block_popup(380, 300, "");
+			}
+		</script>
 	</div>
 </body>
 </html>

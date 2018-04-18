@@ -83,6 +83,7 @@ public class UserItemController {
 		bean_rent_users userInfo = (bean_rent_users) session.getAttribute("userInfo");
 		List<bean_rent_user_slae> userSale=null;
 		userSale=prodService.userSaleSell(userInfo.getR_idnum());
+		
 		model.addAttribute("userSale", userSale);
 		model.addAttribute("path", getPath(request));
 		model.addAttribute("category", getMainCategory());

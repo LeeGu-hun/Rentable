@@ -131,4 +131,14 @@ public class JoinController {
 	public String service(bean_rent_users rent) {
 		return "login/service";
 	}
+	
+	@ResponseBody
+    @RequestMapping(value = "/checkSignup", method = RequestMethod.POST)
+    public String checkSignup(HttpServletRequest request, Model model) {
+        String id = request.getParameter("R_id");
+        System.out.println(id);
+        int rowcount = joinService.checkSignup(id);
+        
+        return String.valueOf(rowcount);
+    }
 }

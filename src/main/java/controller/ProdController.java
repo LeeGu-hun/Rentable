@@ -16,7 +16,9 @@ import bean.bean_rent_order_items;
 import bean.bean_rent_orders;
 import bean.bean_rent_products;
 import bean.bean_rent_review;
+import bean.bean_rent_user_slae;
 import bean.bean_rent_users;
+import bean.bean_rent_users_info;
 import service.ItemService;
 import service.MainService;
 import service.ProdService;
@@ -53,8 +55,12 @@ public class ProdController {
 	public String boardDetail(@PathVariable("id") int pId, Model model, HttpSession session,
 			bean_rent_products prodBean, HttpServletRequest request) {
 		prodBean = prodService.prodView(pId);
+		bean_rent_users_info saleUserInfo=new bean_rent_users_info();
+		saleUserInfo=prodService.prodUserSaleInfo(prodBean.getRP_usernum());
+		System.out.println(saleUserInfo.getR_id());
 		List<bean_rent_review> reviewlist = null;
 		reviewlist = itemService.Reviewlist(prodBean);
+		model.addAttribute("saleUserInfo",saleUserInfo);
 		model.addAttribute("reviewlist", reviewlist);
 		model.addAttribute("category", getMainCategory());
 		model.addAttribute("path", getPath(request));
@@ -68,10 +74,10 @@ public class ProdController {
 		String stdate = request.getParameter("stdate");
 		String eddate = request.getParameter("eddate");
 		String allPrice = request.getParameter("allPrice");
-
+		
 		bean_rent_products prodBean = (bean_rent_products) session.getAttribute("prodBean");
 		bean_rent_users usersInfo = (bean_rent_users) session.getAttribute("userInfo");
-
+		
 		String phone1 = usersInfo.getR_phone().split("-")[0];
 		String phone2 = usersInfo.getR_phone().split("-")[1];
 		String phone3 = usersInfo.getR_phone().split("-")[2];
@@ -95,6 +101,7 @@ public class ProdController {
 		model.addAttribute("usersInfo", usersInfo);
 		model.addAttribute("prodBean", prodBean);
 		return "main";
+		
 	}
 
 	@RequestMapping(value = "/CompPay", method = RequestMethod.POST)
@@ -113,7 +120,7 @@ public class ProdController {
 		String delivery_hp3 = request.getParameter("delivery_hp3");
 		String delivery_hp4 = delivery_hp1 + "-" + delivery_hp2 + "-" + delivery_hp3;
 		String order_contents = request.getParameter("order_contents");
-
+		List<bean_rent_user_slae> userSale=null;
 		orders.setRO_usernum(usersInfo.getR_idnum());
 		orders.setRO_total(allPrice);
 
@@ -133,6 +140,8 @@ public class ProdController {
 		ordersItems.setROI_stat("대여중");
 
 		prodService.prodOrdersItem(ordersItems);
+		userSale=prodService.userSaleBuy(ordersItems.getROI_buyidnum());
+		model.addAttribute("userSale",userSale);
 		model.addAttribute("category", getMainCategory());
 		model.addAttribute("path", getPath(request));
 		return "main";

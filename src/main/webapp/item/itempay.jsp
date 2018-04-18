@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Rent</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/common.css?version=1.12" />
+	href="${pageContext.request.contextPath}/resources/css/common.css?version=1.14" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/itempay.css?version=1.12" />
 <script type="text/javascript"
@@ -16,7 +16,7 @@
 <body>
 	<div id="shop_wrap">
 		<div class="line_1px"></div>
-		<form action="CompPay" method="POST">
+		<form id="order_list_frm" name="order_list_frm" action="" method="POST">
 			<div id="order_list">
 				<div class="order_title">| SHOPPING ORDER</div>
 				<div id="goods_order_list">
@@ -46,15 +46,15 @@
 									<div class="goods_name">${prodBean.RP_itemname}</div>
 								</td>
 								<td class="td_50_right"></td>
-
 								<td class="td_50_right"></td>
-								<input type="hidden" id="stdate" name="stdate" value="${stdate}">
-								<input type="hidden" id="eddate" name="eddate" value="${eddate}">
-								<td class="td_80_right">${stdate}~${eddate}</td>
+								<td class="td_80_right">${stdate}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~<br>
+									${eddate} <input type="hidden" id="stdate" name="stdate"
+									value="${stdate}"> <input type="hidden" id="eddate"
+									name="eddate" value="${eddate}">
+								</td>
 								<td class="td_50_right"></td>
-								<input type="hidden" id="allPrice" name="allPrice"
-									value="${allPrice}">
-								<td class="td_50_right">${allPrice}</td>
+								<td class="td_50_right">${allPrice}<input type="hidden"
+									id="allPrice" name="allPrice" value="${allPrice}"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -76,6 +76,7 @@
 									style="color: #FF3366;"> * </span></th>
 								<td><input type="text" id="order_name" name="order_name"
 									required class="input_box" value="${usersInfo.getR_name()}">
+									<span id="result" style="font-size:10pt;color:#e22424;">${requestScope.result }</span>
 								</td>
 							</tr>
 							<tr>
@@ -96,6 +97,7 @@
 									value="${phone2}" required class="input_box50" maxlength="4">-
 									<input type="text" name="order_hp3" id="order_hp3"
 									value="${phone3}" required class="input_box50" maxlength="4">
+										<span id="result1" style="font-size:10pt;color:#e22424;">${requestScope.result1 }</span>
 								</td>
 							</tr>
 							<tr>
@@ -103,7 +105,7 @@
 									style="color: #FF3366;"> * </span></th>
 								<td><input type="text" name="order_addr1" id="order_addr1"
 									value="${usersInfo.getR_address()}" required class="input_box"
-									size="60"></td>
+									size="60">	<span id="result2" style="font-size:10pt;color:#e22424;">${requestScope.result2 }</span></td>
 							</tr>
 						</tbody>
 					</table>
@@ -114,7 +116,6 @@
 					<div class="order_form_right">
 						<input type="checkbox" name="order_same" id="order_same"
 							onclick="order_info_same();">주문자 정보와 동일
-
 					</div>
 					<div class="form_title">배송지 정보 (DELIVERY)</div>
 
@@ -126,6 +127,7 @@
 									style="color: #FF3366;"> * </span></th>
 								<td><input type="text" id="delivery_name"
 									name="delivery_name" required class="input_box" value="">
+										<span id="result3" style="font-size:10pt;color:#e22424;">${requestScope.result3 }</span>
 								</td>
 							</tr>
 							<tr>
@@ -146,18 +148,18 @@
 									id="delivery_hp2" value="" required class="input_box50"
 									maxlength="4">- <input type="text" name="delivery_hp3"
 									id="delivery_hp3" value="" required class="input_box50"
-									maxlength="4"></td>
+									maxlength="4">
+										<span id="result4" style="font-size:10pt;color:#e22424;">${requestScope.result4 }</span></td>
 							</tr>
 							<tr>
 								<th scope="row"><label for="delivery_addr1">주소</label><span
 									style="color: #FF3366;"> * </span></th>
-								<td><input type="text" name="delivery_zip1"
-									id="delivery_zip1" value="" required class="input_box" size="9"
-									maxlength="5" readonly>
-									<button type="button" class="button_small"
-										onclick="execDaumPostcode();" readonly>주소 검색</button> <br>
+								<td>
+									<input type="button" name="btn1" class="button_small"
+										onclick="execDaumPostcode();" readonly value="주소검색"><br>
 									<input type="text" name="delivery_addr1" id="delivery_addr1"
-									value="" required class="input_box" size="60"></td>
+									value="" required class="input_box" size="60">
+										<span id="result5" style="font-size:10pt;color:#e22424;">${requestScope.result5 }</span></td>
 							</tr>
 							<tr>
 								<th scope="row"><label for="order_contents">요구 사항</label></th>
@@ -208,8 +210,8 @@
 						</tbody>
 					</table>
 					<div class="btn_area">
-						<input type="submit" id="btn_submit1" class="order_btn_buy"
-							value="대여하기">
+						<input type="button" onclick="submit_buy(this.form)"
+							id="btn_submit" class="order_btn_buy" value="대여하기" />
 					</div>
 				</div>
 			</div>
@@ -219,63 +221,61 @@
 	<script>
 		function execDaumPostcode() {
 			new daum.Postcode(
-					{
-						oncomplete : function(data) {
-							// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-							// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-							// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-							var fullAddr = ''; // 최종 주소 변수
-							var extraAddr = ''; // 조합형 주소 변수
-							// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-							if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-								fullAddr = data.roadAddress;
-							} else { // 사용자가 지번 주소를 선택했을 경우(J)
-								fullAddr = data.jibunAddress;
-							}
-							// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-							if (data.userSelectedType === 'R') {
-								//법정동명이 있을 경우 추가한다.
-								if (data.bname !== '') {
-									extraAddr += data.bname;
-								}
-								// 건물명이 있을 경우 추가한다.
-								if (data.buildingName !== '') {
-									extraAddr += (extraAddr !== '' ? ', '
-											+ data.buildingName
-											: data.buildingName);
-								}
-								// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-								fullAddr += (extraAddr !== '' ? ' ('
-										+ extraAddr + ')' : '');
-							}
-							// 우편번호와 주소 정보를 해당 필드에 넣는다.
-							document.getElementById('delivery_zip1').value = data.zonecode; //5자리 새우편번호 사용
-							document.getElementById('delivery_addr1').value = fullAddr;
-							// 커서를 상세주소 필드로 이동한다.
-							document.getElementById('delivery_addr2').focus();
+				{
+					oncomplete : function(data) {
+						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+						// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+						var fullAddr = ''; // 최종 주소 변수
+						var extraAddr = ''; // 조합형 주소 변수
+						// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+						if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+							fullAddr = data.roadAddress;
+						} else { // 사용자가 지번 주소를 선택했을 경우(J)
+							fullAddr = data.jibunAddress;
 						}
-					}).open();
+						// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+						if (data.userSelectedType === 'R') {
+							//법정동명이 있을 경우 추가한다.
+							if (data.bname !== '') {
+								extraAddr += data.bname;
+							}
+							// 건물명이 있을 경우 추가한다.
+							if (data.buildingName !== '') {
+								extraAddr += (extraAddr !== '' ? ', '
+								+ data.buildingName
+									: data.buildingName);
+							}
+							// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+							fullAddr += (extraAddr !== '' ? ' ('
+							+ extraAddr + ')' : '');
+						}
+						// 우편번호와 주소 정보를 해당 필드에 넣는다.
+						document.getElementById('delivery_addr1').value = fullAddr;
+						// 커서를 상세주소 필드로 이동한다.
+					}
+				}).open();
 		}
 	</script>
 	<script>
 		function order_info_same() {
 			if (document.getElementById("order_same").checked == true) {
 				document.getElementById("delivery_name").value = document
-						.getElementById("order_name").value;
+					.getElementById("order_name").value;
 				document.getElementById("delivery_tel1").value = document
-						.getElementById("order_tel1").value;
+					.getElementById("order_tel1").value;
 				document.getElementById("delivery_tel2").value = document
-						.getElementById("order_tel2").value;
+					.getElementById("order_tel2").value;
 				document.getElementById("delivery_tel3").value = document
-						.getElementById("order_tel3").value;
+					.getElementById("order_tel3").value;
 				document.getElementById("delivery_hp1").value = document
-						.getElementById("order_hp1").value;
+					.getElementById("order_hp1").value;
 				document.getElementById("delivery_hp2").value = document
-						.getElementById("order_hp2").value;
+					.getElementById("order_hp2").value;
 				document.getElementById("delivery_addr1").value = document
-						.getElementById("order_addr1").value;
+					.getElementById("order_addr1").value;
 				document.getElementById("delivery_hp3").value = document
-						.getElementById("order_hp3").value;
+					.getElementById("order_hp3").value;
 			} else {
 				document.getElementById("delivery_name").value = "";
 				document.getElementById("delivery_tel1").value = "";
@@ -290,70 +290,61 @@
 		// submit 폼체크
 		function submit_buy(f) {
 			f = document.order_list_frm;
+			document.getElementById('result').textContent= '';
+			document.getElementById('result1').textContent= '';
+			document.getElementById('result2').textContent= '';
+			document.getElementById('result3').textContent= '';
+			document.getElementById('result4').textContent= '';
+			document.getElementById('result5').textContent= '';
 			if (f.order_name.value.length < 1) {
-				alert("주문하시는 분을 입력해 주세요.");
+				document.getElementById('result').textContent = "주문하시는 분을 입력해 주세요.";
 				f.order_name.focus();
 				return;
 			}
 			if (f.order_hp1.value.length < 1) {
-				alert("핸드폰을 입력해 주세요.");
+				document.getElementById('result1').textContent = "핸드폰을 입력해 주세요.";
+				
 				f.order_hp1.focus();
 				return;
 			}
 			if (f.order_hp2.value.length < 1) {
-				alert("핸드폰을 입력해 주세요.");
+				document.getElementById('result1').textContent = "핸드폰을 입력해 주세요.";
 				f.order_hp2.focus();
 				return;
 			}
 			if (f.order_hp3.value.length < 1) {
-				alert("핸드폰을 입력해 주세요.");
+				document.getElementById('result1').textContent = "핸드폰을 입력해 주세요.";
 				f.order_hp3.focus();
 				return;
 			}
-			if (f.order_email.value.length < 1) {
-				alert("이메일을 입력해 주세요.");
-				f.order_email.focus();
+			if (f.order_addr1.value.length < 1) {
+				document.getElementById('result2').textContent = "받으시는 분을 입력해 주세요.";
+				f.order_addr1.focus();
 				return;
 			}
 			if (f.delivery_name.value.length < 1) {
-				alert("받으시는 분을 입력해 주세요.");
+				document.getElementById('result3').textContent = "받으시는 분을 입력해 주세요.";
 				f.delivery_name.focus();
 				return;
 			}
 			if (f.delivery_hp1.value.length < 1) {
-				alert("핸드폰을 입력해 주세요.");
+				document.getElementById('result4').textContent = "핸드폰을 입력해 주세요.";
 				f.delivery_hp1.focus();
 				return;
 			}
 			if (f.delivery_hp2.value.length < 1) {
-				alert("핸드폰을 입력해 주세요.");
+				document.getElementById('result4').textContent = "핸드폰을 입력해 주세요.";
 				f.delivery_hp2.focus();
 				return;
 			}
 			if (f.delivery_hp3.value.length < 1) {
-				alert("핸드폰을 입력해 주세요.");
+				document.getElementById('result4').textContent = "핸드폰을 입력해 주세요.";
 				f.delivery_hp3.focus();
 				return;
 			}
-			if (f.delivery_zip1.value.length < 1) {
-				alert("주소을 입력해 주세요.");
-				f.delivery_zip1.focus();
-				return;
-			}
 			if (f.delivery_addr1.value.length < 1) {
-				alert("주소을 입력해 주세요.");
+				document.getElementById('result5').textContent = "주소을 입력해 주세요.";
 				f.delivery_addr1.focus();
-				return;
-			}
-			if (f.delivery_addr2.value.length < 1) {
-				alert("주소을 입력해 주세요.");
-				f.delivery_addr2.focus();
-				return;
-			}
-			checked = checked_check();
-			if (checked == "") {
-				alert("결제방법을 선택해 주세요.");
-				f.payment_type[0].focus();
 				return;
 			}
 			if (f.privacy_agreement[0].checked == false) {
@@ -362,7 +353,7 @@
 				return;
 			}
 			var form = document.getElementById("order_list_frm");
-			form.action = './goods_order_proc.php';
+			form.action = 'CompPay';
 			form.target = "ifm_proc";
 			form.method = 'post';
 			form.submit();

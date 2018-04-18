@@ -11,6 +11,7 @@ import bean.bean_rent_orders;
 import bean.bean_rent_products;
 import bean.bean_rent_user_slae;
 import bean.bean_rent_users;
+import bean.bean_rent_users_info;
 
 @Service
 public class ProdService {
@@ -44,6 +45,11 @@ public class ProdService {
 	public List<bean_rent_user_slae> userSaleSell(int roi_sellidnum) {
 		List<bean_rent_user_slae> userSale=sqlSession.selectList("prodSQL.userSaleSell",roi_sellidnum);
 		return userSale;
+	}
+
+	public bean_rent_users_info prodUserSaleInfo(int rp_usernum) {
+		bean_rent_users_info userSaleInfo=sqlSession.selectOne("prodSQL.userSaleInfo",rp_usernum);
+		return userSaleInfo;
 	}
 
 }

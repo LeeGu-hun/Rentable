@@ -117,7 +117,5 @@ public class bean_rent_order_items {
 	}
 	public void setROI_comment(String rOI_comment) {
 		ROI_comment = rOI_comment;
-	}
-	
-	
+	}	
 }

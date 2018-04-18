@@ -5,7 +5,29 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script language="javascript">
+
+$(document).ready(function (){
+    $('#checkbtn').on('click', function(){
+        $.ajax({
+            type: 'POST',
+            url: '${pageContext.request.contextPath}/checkSignup',
+            data: {
+                "R_id" : $('#R_id').val()
+            },
+            success: function(data){
+                if($.trim(data) == 0){
+                    $('#checkMsg').html('<p style="color:blue">사용가능</p>');
+                }
+                else{
+                    $('#checkMsg').html('<p style="color:red">사용불가능</p>');
+                }
+            }
+        });    //end ajax    
+    });    //end on    
+});
+
 	function Check() {
 		var R_id = document.getElementById("R_id");
 		var R_password = document.getElementById("R_password");
@@ -133,7 +155,7 @@
 	href="http://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css"
 	rel="stylesheet">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/joinform.css?version=1.1" />
+	href="${pageContext.request.contextPath}/resources/css/joinform.css?version=1.2" />
 </head>
 <style>
 </style>
@@ -142,6 +164,9 @@
 		<h1>회원가입</h1>
 		<form action="${pageContext.request.contextPath}/joinAction" name="joinForm" method="POST" enctype="multipart/form-data">
 			<input type="text" name="R_id" id="R_id" placeholder="ID" required />
+			<div id="checkMsg"></div>
+			<button type="submit" id="checkbtn" onclick="checkbtn" class="button">중복확인</button>
+
 			<input type="password" name="R_password" id="R_password" placeholder="Password" required />
 			<input type="password" name="passcheck" id="passcheck" placeholder="PasswordCheck" required />
 			<span id="result" style="font-size:10pt;color:#e22424;">${requestScope.result }</span>

@@ -107,7 +107,7 @@ table {width: 100%; border-collapse: collapse; font-size: 1em; }
 .td_50_center_blue {width:50px; text-align:center; color:#0080ff;}
 .td_50_right {width:50px; text-align:right;}
 .td_60_right {width:60px; text-align:right;}
-.td_80_right {width:80px; text-align:right;}
+.td_80_right {width:90px; text-align:left;}
 .td_90 {width:90px; text-align:center;}
 .td_100 {width:100px; text-align:center;}
 .td_120 {width:120px; text-align:center;}
