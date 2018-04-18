@@ -142,6 +142,7 @@
 		<h1>회원가입</h1>
 		<form action="${pageContext.request.contextPath}/joinAction" name="joinForm" method="POST" enctype="multipart/form-data">
 			<input type="text" name="R_id" id="R_id" placeholder="ID" required />
+			<span id="result" style="font-size:10pt;color:#e22424;">${requestScope.result }</span>
 			<input type="password" name="R_password" id="R_password" placeholder="Password" required />
 			<input type="password" name="passcheck" id="passcheck" placeholder="PasswordCheck" required />
 			<span id="result" style="font-size:10pt;color:#e22424;">${requestScope.result }</span>

@@ -299,7 +299,10 @@ function delbtn(){
 			</ul>
 			<div class=''>
 				<p></p>
-				<span class="text_bold">${prodBean.RP_detail}</span>
+				<span class="text_bold">
+				  <img src="${pageContext.request.contextPath}/upload_products/${prodBean.RP_img1}">
+				  <br>
+				${prodBean.RP_detail}</span>
 				<p></p>
 			</div>
 		</div>
