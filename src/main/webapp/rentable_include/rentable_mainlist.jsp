@@ -11,7 +11,7 @@
 			<ul class="itemlist_row">
 				<c:forEach var="items" items="${mainlist}">
 					<li>
-						<div style="position: relative; height: 100%;">
+						<div style="position: relative; height: 100%; ">
 							<a href="<c:url value="/ProdDetail/${items.RP_itemnum}"/>">
 								<div style="height: 70%">
 									<c:choose>

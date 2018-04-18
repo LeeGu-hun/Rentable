@@ -132,6 +132,7 @@ main p { 1.2em;
 	padding: 0px;
 	margin: 0px;
 	display: inline-block;
+	z-index: 10;
 }
 
 .menu>li>ul.sub_menu {
