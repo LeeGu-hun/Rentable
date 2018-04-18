@@ -8,10 +8,12 @@
 <body>
 	<div class="itemgoods">
 		<div class="itemwrap">
+			<div class="listalign"></div>
+
 			<ul class="itemlist_row">
 				<c:forEach var="items" items="${mainlist}">
 					<li>
-						<div style="position: relative; height: 100%; ">
+						<div style="position: relative; height: 100%;">
 							<a href="<c:url value="/ProdDetail/${items.RP_itemnum}"/>">
 								<div style="height: 70%">
 									<c:choose>
@@ -30,7 +32,7 @@
 										</c:otherwise>
 									</c:choose>
 								</div>
-								<div style="heigth:30%;">
+								<div style="heigth: 30%;">
 									<p class="itemsinfo">
 										<em>${items.RP_itemname}</em><br> <em> <fmt:parseDate
 												var="dateString1" value="${items.RP_startdate}"

@@ -60,16 +60,6 @@
 						<li>
 					</ul></li>
 
-				<li><a href="#Link" title="Link">지역카테</a>
-
-					<ul>
-
-						<li><a href="#Link" title="Link ">Link</a></li>
-
-						<li><a href="#Link" title="Link">Link</a></li>
-
-					</ul></li>
-
 				<c:set var="stat" value="${sessionScope.userInfo.r_stat}" />
 
 				<c:choose>

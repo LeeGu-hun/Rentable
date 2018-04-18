@@ -71,7 +71,7 @@
 			<when test="orderby == 'prod_popular'">
 				gd.grade desc, rp.RP_REGDATE desc
 			</when>
-			<otherwise>rp_regdate desc</otherwise>
+			<otherwise>rp.RP_REGDATE desc</otherwise>
 		</choose>
 	</sql>
 
