@@ -122,7 +122,7 @@
 													src="${pageContext.request.contextPath}/upload_products/${items.RP_img1}"
 													style="width: 100%; height: 70%; position: absolute;">
 											</c:if>
-											<c:if test="${items.ROI_stat eq null}">
+											<c:if test="${items.ROI_stat == '대여가능'}">
 												<img alt=""
 													src="${pageContext.request.contextPath}/upload_products/${items.RP_img1}"
 													style="width: 100%; height: 70%; position: absolute;">

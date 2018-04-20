@@ -14,6 +14,9 @@
 		<c:when test="${path eq 'ProdInsert'}">
 			<%@include file="../item/iteminsert.jsp"%>
 		</c:when>
+		<c:when test="${path eq 'ItemModify'}">
+			<%@include file="../item/itemModify.jsp"%>
+		</c:when>
 		<c:when test="${path eq 'search'}">
 			<%@include file="../rentable_include/rentable_catelist.jsp"%>
 		</c:when>

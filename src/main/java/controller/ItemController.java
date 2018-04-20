@@ -3,6 +3,8 @@ package controller;
 import java.io.File;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -234,7 +236,7 @@ public class ItemController {
 		return "redirect:/";
 	}
 	@RequestMapping( value = "/itemReview", method = RequestMethod.POST)
-	public String itemreview(reviewCommand review, HttpSession session, HttpServletRequest request) {
+	public String itemreview(reviewCommand review, HttpSession session, HttpServletRequest request) throws UnsupportedEncodingException {
 		bean_rent_users userInfo = (bean_rent_users) session.getAttribute("userInfo");
 		bean_rent_review re =  new bean_rent_review();
 		re.setRR_userid(userInfo.getR_id());
@@ -244,13 +246,9 @@ public class ItemController {
 		re.setRR_itemnum(review.getRR_itemnum());
 		int nn=review.getRR_itemnum();
 		itemService.ReviewInsert(re);
+		String stat1= (String)session.getAttribute("stat1");
+		String value = URLEncoder.encode(stat1, "euc-kr");
+		return "redirect:/ProdDetail/"+nn+"/"+value;
 
-		return "redirect:/ProdDetail/"+nn;
-
-	}
-	
-
-
-	
-	
+	}	
 }

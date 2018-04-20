@@ -10,13 +10,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Responsive Auto Show/Hide Toggle Menu Demo</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css?version=1.13" />
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css?version=1.14" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/main.css?version=1.13" />
+	href="${pageContext.request.contextPath}/resources/css/main.css?version=1.14" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/itemgoods.css?version=1.13" />
+	href="${pageContext.request.contextPath}/resources/css/itemgoods.css?version=1.14" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/category.css?version=1.13" />
+	href="${pageContext.request.contextPath}/resources/css/category.css?version=1.14" />
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <script
@@ -28,7 +28,14 @@
 	<div id="wrap">
 		<!-- header -->
 		<div id="rent_head">
-			<a href="${pageContext.request.contextPath}">메인</a>
+			<div class="left-head"
+				style="width: 75%; height: 100%; align: center">
+				<div style="width: 15%;">
+					<a href="${pageContext.request.contextPath}"> <img alt=""
+						src="${pageContext.request.contextPath}/resources/images/rentable.png"
+						style="width: 100%; height: 100%"></a>
+				</div>
+			</div>
 		</div>
 		<!-- body -->
 		<div id="rent_body">

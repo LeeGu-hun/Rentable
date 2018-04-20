@@ -44,7 +44,7 @@
 								style="color: green; font-size: 20px; margin-left: 12px; background-color: pink; border: 1; border-radius: 100%">${itemlist.RP_itemnum}</em>
 								<a
 								style="margin-left: 650px; text-decoration: none; color: black;"
-								href="<c:url value="/ProdDetail/${itemlist.RP_itemnum}"/>">
+								href="<c:url value="/ProdDetail/${itemlist.RP_itemnum}/${itemlist.ROI_stat}"/>">
 									<em style="font-size: 20px">${itemlist.RP_itemname}</em>
 							</a> <br></li>
 

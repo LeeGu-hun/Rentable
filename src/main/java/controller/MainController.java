@@ -2,7 +2,6 @@ package controller;
 
 import java.util.List;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -35,10 +34,12 @@ public class MainController {
 
 	@RequestMapping("/")
 	public String main1(Model model, @RequestParam(defaultValue = "all") String maincate,
-			@RequestParam(defaultValue = "all") String subcate, @RequestParam(defaultValue = "") String orderby) {
+			@RequestParam(defaultValue = "all") String subcate, @RequestParam(defaultValue = "") String orderby,
+			@RequestParam(defaultValue = "all") String keyword) {
 		Bean_Category catebean = new Bean_Category();
 		catebean.setMaincate_value(maincate);
 		catebean.setSubcate_value(subcate);
+		catebean.setKeyword(keyword);
 		catebean.setOrderby(orderby);
 		// 카테고리 아이템 목록 가져오기
 		List<bean_rent_products> mainlist = null;
@@ -50,10 +51,12 @@ public class MainController {
 
 	@RequestMapping("/category")
 	public String main(HttpServletRequest request, Model model, @RequestParam(defaultValue = "all") String maincate,
-			@RequestParam(defaultValue = "all") String subcate, @RequestParam(defaultValue = "") String orderby) {
+			@RequestParam(defaultValue = "all") String subcate, @RequestParam(defaultValue = "") String orderby,
+			@RequestParam(defaultValue = "all") String keyword) {
 		Bean_Category catebean = new Bean_Category();
 		catebean.setMaincate_value(maincate);
 		catebean.setSubcate_value(subcate);
+		catebean.setKeyword(keyword);
 		catebean.setOrderby(orderby);
 		// 카테고리 아이템 목록 가져오기
 		List<bean_rent_products> maincatelist = null;

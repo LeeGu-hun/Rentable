@@ -96,11 +96,13 @@ public class UserItemController {
 	@RequestMapping("/ItemLike")
 	public String insertModify(HttpSession session,Model model, ItemCommand cmd) {
 		bean_rent_users userInfo = (bean_rent_users) session.getAttribute("userInfo");
+		bean_rent_products prodBean = (bean_rent_products) session.getAttribute("prodBean");
 		bean_like_items like =new bean_like_items();
 		like.setRL_itemname(cmd.getRP_itemname());
 		like.setRL_itemnum(cmd.getRP_itemnum());
 		like.setRL_price(cmd.getRP_price());
 		like.setRL_usernum(userInfo.getR_idnum());
+		like.setRL_stat(prodBean.getROI_stat());
 		
 		try {
 			useritemService.LikeInsert(like);

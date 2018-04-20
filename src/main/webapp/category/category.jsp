@@ -134,7 +134,7 @@
 		</nav>
 
 		<form class="search_box" id="search_box"
-			action="${pageContext.request.contextPath}/search">
+			action="${pageContext.request.contextPath}/category">
 
 			<input name="keyword" id="keyword" placeholder="Search here" value=""
 				type="text"> <input class="search_icon" value="Search"

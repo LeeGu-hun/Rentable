@@ -17,12 +17,12 @@
 	
 		<insert id="likeInsert" parameterType="bean.bean_like_items">
 		insert into rent_like_items
-		values(#{RL_itemnum},#{RL_itemname},#{RL_price},#{RL_usernum})
+		values(#{RL_itemnum},#{RL_itemname},#{RL_price},#{RL_usernum},#{RL_stat})
 	</insert>
 	
 		<select id="likeList" parameterType="bean.bean_rent_users" resultType="bean.bean_like_items">
 		select
-		RL_itemnum,RL_itemname,RL_price
+		RL_itemnum,RL_itemname,RL_price,RL_stat
 		from
 		rent_like_items where RL_usernum =#{R_idnum}
 		order by rl_itemnum desc

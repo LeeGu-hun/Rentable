@@ -125,6 +125,36 @@
 	font: bold 18px Helvetica, Arial, sans-serif;
 	vertical-align: middle;
 }
+
+.heart {
+	background-color: red;
+	display: inline-block;
+	height: 20px;
+	margin: 0 10px;
+	position: relative;
+	top: 5px;
+	transform: rotate(-45deg);
+	width: 20px;
+}
+
+.heart:before, .heart:after {
+	content: "";
+	background-color: red;
+	border-radius: 50%;
+	height: 20px;
+	position: absolute;
+	width: 20px;
+}
+
+.heart:before {
+	top: -10px;
+	left: 0;
+}
+
+.heart:after {
+	left: 10px;
+	top: 0;
+}
 </style>
 <title>Rent</title>
 <meta charset="UTF-8">
@@ -258,7 +288,7 @@
 						<table class="goods-tb">
 							<tbody>
 								<tr>
-									<th scope="row">판매자 등록 기간  </th>
+									<th scope="row">판매자 등록 기간</th>
 									<td class="goods_sale_price"><em><fmt:parseDate
 												var="dateString1" value="${prodBean.RP_startdate}"
 												pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
@@ -290,8 +320,8 @@
 						<div class="goods_btn_area">
 							<input type="button" value=" 대여하기 " id="thisrent"
 								onclick="logsession()" class="order_btn_buy"> <a
-								href="javascript:submitlike()" class="button"
-								onclick="logsession()" id="zzim">찜</a>
+								href="javascript:submitlike()" class="heart"
+								onclick="logsession()" id="zzim" style="">찜</a>
 						</div>
 						<iframe name="ifm_proc" id="ifm_proc" src=""
 							style="display: none;"></iframe>
@@ -317,12 +347,7 @@
 						</p>
 						<p>&nbsp;</p>
 						<p></p>
-						<span class="text_bold"> <img
-							src="${pageContext.request.contextPath}/upload_products/${prodBean.RP_img1}"
-							onerror="this.style.display='none'"> <br>
-							${prodBean.RP_detail}
-						</span>
-						<p>&nbsp;</p> 
+						<p>&nbsp;</p>
 					</div>
 				</div>
 				<div class="goods_contents" id="goods_delivery">
@@ -347,8 +372,9 @@
 									<td
 										style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); width: 120px; height: 112px; background-color: rgb(255, 255, 255);"
 										class=""><p>&nbsp;</p>
-										<p>&nbsp;<span style="line-height: 1.5; font-size: 11pt;"><b>판매자ID</b></span>
-										</p></td> 
+										<p>
+											&nbsp;<span style="line-height: 1.5; font-size: 11pt;"><b>판매자ID</b></span>
+										</p></td>
 									<td
 										style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); height: 112px; background-color: rgb(255, 255, 255);"
 										class=""><p>&nbsp;</p>
@@ -356,8 +382,10 @@
 									<td
 										style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); width: 120px; height: 112px; background-color: rgb(255, 255, 255);"
 										class=""><p>&nbsp;</p>
-										<p>&nbsp;<span style="line-height: 1.5; font-size: 11pt;"><b>판매자 이름</b></span>
-										</p></td> 
+										<p>
+											&nbsp;<span style="line-height: 1.5; font-size: 11pt;"><b>판매자
+													이름</b></span>
+										</p></td>
 									<td
 										style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); height: 112px; background-color: rgb(255, 255, 255);"
 										class=""><p>&nbsp;</p>
@@ -367,8 +395,9 @@
 									<td
 										style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); width: 120px; height: 112px; background-color: rgb(255, 255, 255);"
 										class=""><p>&nbsp;</p>
-										<p>&nbsp;<span style="line-height: 1.5; font-size: 11pt;"><b>연락처</b></span>
-										</p></td> 
+										<p>
+											&nbsp;<span style="line-height: 1.5; font-size: 11pt;"><b>연락처</b></span>
+										</p></td>
 									<td
 										style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); height: 112px; background-color: rgb(255, 255, 255);"
 										class=""><p>&nbsp;</p>
@@ -376,13 +405,13 @@
 									<td
 										style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); width: 120px; height: 112px; background-color: rgb(255, 255, 255);"
 										class=""><p>&nbsp;</p>
-										<p>&nbsp;<span style="line-height: 1.5; font-size: 11pt;"><b>주소</b></span>
-										</p></td>  
+										<p>
+											&nbsp;<span style="line-height: 1.5; font-size: 11pt;"><b>주소</b></span>
+										</p></td>
 									<td
 										style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); height: 112px; background-color: rgb(255, 255, 255);"
 										class=""><p>&nbsp;</p>
-										<p>&nbsp;${saleUserInfo.getR_address()}</p>
-										</td>
+										<p>&nbsp;${saleUserInfo.getR_address()}</p></td>
 								</tr>
 							</tbody>
 						</table>
@@ -485,8 +514,7 @@
 							<b style="line-height: 1.5;"><span style="font-size: 18pt;">상품교환/환불안내</span></b>
 						</p>
 						<table class="__se_tbl"
-							style="width: 100%; border-width: 1px 1px 0px 0px; border-top-style: solid; border-right-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204);"
-							>
+							style="width: 100%; border-width: 1px 1px 0px 0px; border-top-style: solid; border-right-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204);">
 							<tbody>
 								<tr>
 									<td class=""
@@ -629,6 +657,7 @@
 							<td></td>
 							<td></td>
 							<td align="right"><input onclick="display1()" type="button"
+								style="border-radius: 5px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom;"
 								value="한줄평/댓글 등록"></td>
 						</tr>
 					</tbody>
@@ -673,8 +702,8 @@
 						}
 					}
 				</script>
-				<form action="../itemReview" name="reviewform"
-					enctype="multipart/form-data" method="post">
+				<form action="${pageContext.request.contextPath}/itemReview"
+					name="reviewform" method="post">
 					<table id="invisi">
 						<tr height="100">
 							<td>별점<span class="RR_grade"> <span class="input">
@@ -696,10 +725,11 @@
 								</span>
 							</span>
 							</td>
-							<td>내용<input size="180" style="line-height: 50px"
+							<td>내용<input size="135" style="line-height: 50px"
 								type="text" name="RR_content"></td>
 							<td align="right"><a href="javascript:submitreview()"
-								class="button">등록</a></td>
+								class="button"
+								style="border-radius: 2px; border-radius: 5px; width: 80px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom;">등록</a></td>
 						</tr>
 						<tr>
 							<td><input type="hidden" id="logid" name="R_idnum"
@@ -740,7 +770,7 @@
 			</div>
 			<div id="qanda_pass_check_div_box">
 				<div id="qanda_pass_check_div" style="display: none;">
-					<iframe name="ifm_proc2" id="ifm_proc2" src="" 
+					<iframe name="ifm_proc2" id="ifm_proc2" src=""
 						style="display: block; width: 100%; height: 100%;"></iframe>
 				</div>
 			</div>
@@ -869,7 +899,8 @@
 					</div>
 				</form>
 			</div>
-			<form action="../ItemLike" name="likeform">
+			<form action="${pageContext.request.contextPath}/ItemLike"
+				name="likeform">
 				<table id="View_User">
 					<tr align="right">
 						<td align="right"><a
@@ -975,9 +1006,9 @@
 		</script>
 		</div>
 	</div>
-		<div id="back-top" style="display: block;">
-			<a href="#TOP"><img
-				src='${pageContext.request.contextPath}/resources/images/top_btn.png'></a>
-		</div>
+	<div id="back-top" style="display: block;">
+		<a href="#TOP"><img
+			src='${pageContext.request.contextPath}/resources/images/top_btn.png'></a>
+	</div>
 </body>
 </html>

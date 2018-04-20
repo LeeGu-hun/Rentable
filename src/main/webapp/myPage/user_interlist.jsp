@@ -39,8 +39,8 @@
 						style="text-align: center; color: black; font-size: 20px;">${likelist.RL_itemnum}</td>
 					<td width="50%">				
 						<a style="text-align: center; text-decoration: none; color: black; font-size: 20px;" 
-						href="<c:url value="/ProdDetail/${likelist.RL_itemnum}"/>">
-									<em style="font-size: 20px">${likelist.RL_itemname}</em></td>
+						href="<c:url value="/ProdDetail/${likelist.RL_itemnum}/${likelist.RL_stat}"/>">
+									<em style="font-size: 20px">${likelist.RL_itemname}</em></a></td>
 					<td width="20%"
 						style="text-align: center; color: black; font-size: 20px;">${likelist.RL_price} 원</td>
 					<td width="10%"

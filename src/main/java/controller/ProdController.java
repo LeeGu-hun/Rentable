@@ -58,6 +58,7 @@ public class ProdController {
 		bean_rent_users_info saleUserInfo=new bean_rent_users_info();
 		saleUserInfo=prodService.prodUserSaleInfo(prodBean.getRP_usernum());
 		model.addAttribute("stat1",stat1);
+		session.setAttribute("stat1",stat1);
 		List<bean_rent_review> reviewlist = null;
 		reviewlist = itemService.Reviewlist(prodBean);
 		model.addAttribute("saleUserInfo",saleUserInfo);

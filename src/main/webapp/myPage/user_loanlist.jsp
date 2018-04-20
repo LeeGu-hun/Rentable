@@ -21,12 +21,6 @@ function itemstat(){
 	else if(con == false){
 		return false;
 	}	
-	
-	
-	
-	
-	
-	
 }
 
 </script>
@@ -71,14 +65,7 @@ function itemstat(){
 						</td>	
 				</tr>
 				</c:forEach>	
-				
-			
-			
-			
-			
 			</table>
-			
-			
 		</form>
 	</div>
 </body>

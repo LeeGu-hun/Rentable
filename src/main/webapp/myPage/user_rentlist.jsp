@@ -43,8 +43,8 @@
 						style="text-align: center; color: black; font-size: 20px;">${items.ROI_ordernum}</td>
 					<td width="20%">				
 						<a style="text-align: center; text-decoration: none; color: black; font-size: 20px;" 
-						href="<c:url value="/ProdDetail/${items.ROI_itemnum}"/>">
-									<em style="font-size: 20px">${items.RP_ITEMNAME}</em></td>
+						href="<c:url value="/ProdDetail/${items.ROI_itemnum}/${items.ROI_stat}"/>">
+									<em style="font-size: 20px">${items.RP_ITEMNAME}</em></a></td>
 					<td width="20%"
 						style="text-align: center; color: black; font-size: 20px;"><fmt:parseDate
                                     var="dateString2" value="${items.ROI_enddate}"
