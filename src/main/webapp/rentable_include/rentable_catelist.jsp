@@ -101,13 +101,14 @@
 		</div>
 
 		<div class="itemwrap">
-						<ul class="itemlist_row">
+			<ul class="itemlist_row">
 				<c:forEach var="items" items="${maincatelist}">
 					<c:choose>
 						<c:when test="${items.RP_stat > 0 }">
 							<li>
 								<div style="position: relative; height: 100%;">
-									<a href="<c:url value="/ProdDetail/${items.RP_itemnum}/${items.RP_stat}"/>">
+									<a
+										href="<c:url value="/ProdDetail/${items.RP_itemnum}/${items.RP_stat}"/>">
 										<div style="height: 70%">
 											<c:if test="${items.ROI_stat == '대여중'}">
 												<img alt=""
@@ -126,7 +127,7 @@
 												<img alt=""
 													src="${pageContext.request.contextPath}/upload_products/${items.RP_img1}"
 													style="width: 100%; height: 70%; position: absolute;">
-											</c:if>	
+											</c:if>
 										</div>
 										<div style="height: 30%">
 											<p class="itemsinfo">
@@ -137,7 +138,9 @@
 														var="dateString2" value="${items.RP_enddate}"
 														pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
 														value="${dateString2}" pattern="yyyy.MM.dd" />
-												</em> <br> <strong>${items.RP_price}</strong>
+												</em> <br>
+												<strong>일일 대여료:</strong><strong
+													style="color: rgb(255, 128, 0);">${items.RP_price}</strong>
 											</p>
 										</div>
 									</a>

@@ -176,7 +176,6 @@
 				var thisrent = document.getElementById("thisrent");
 				var stat1 = document.getElementById("stat1").value;
 				if (logid.value == '' || logid.value == null) {
-					alert("로그인 이후 사용할수있습니다");
 					zzim.href = "#"
 				} else if (stat1 == "대여중") {
 					alert("대여중인 물품입니다");
@@ -204,6 +203,7 @@
 		            date2 = date2.split('-');
 		            saledate1 = saledate1.split('-');
 		            saledate2 = saledate2.split('-');
+		            alert("date1" + saledate1 + "/" + "date2" + saledate2);
 		        	if (date1 <saledate1 || date1 > saledate2 || date2 <saledate1 || date2 > saledate2 ||date2<date1 ) {
 		        		alert("기간을 다시 설정하세요");
 		        		  document.getElementById("allPrice").value="";
@@ -319,7 +319,8 @@
 						<div></div>
 						<div class="goods_btn_area">
 							<input type="button" value=" 대여하기 " id="thisrent"
-								onclick="logsession()" class="order_btn_buy"> <a
+								onclick="logsession()" class="order_btn_buy" data-toggle="modal"
+								data-target="#myModal"> <a
 								href="javascript:submitlike()" class="heart"
 								onclick="logsession()" id="zzim" style="">찜</a>
 						</div>
@@ -657,7 +658,7 @@
 							<td></td>
 							<td></td>
 							<td align="right"><input onclick="display1()" type="button"
-								style="border-radius: 5px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom;"
+								style="border-radius: 5px; margin: 1px; border: 1px solid #999; width: 120px; height: 35px; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom;"
 								value="한줄평/댓글 등록"></td>
 						</tr>
 					</tbody>
@@ -1009,6 +1010,24 @@
 	<div id="back-top" style="display: block;">
 		<a href="#TOP"><img
 			src='${pageContext.request.contextPath}/resources/images/top_btn.png'></a>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content" style="z-index: 11;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">선택 옵션</h4>
+				</div>
+				<div class="modal-body">
+					<div class="modal-select"></div>
+				</div>
+			</div>
+
+		</div>
 	</div>
 </body>
 </html>

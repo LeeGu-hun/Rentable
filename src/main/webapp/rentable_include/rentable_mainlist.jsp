@@ -17,7 +17,7 @@
 	<div class="itemgoods">
 		<div class="itemwrap">
 			<div class="listalign">
-				<div class="tit_rst"></div>
+				<div class="tit_rst" style="display: none;"></div>
 				<div class="rbox">
 					<div class="cstselect">
 						<a data-toggle="modal" href="#myModal" class="selected"> <span>
