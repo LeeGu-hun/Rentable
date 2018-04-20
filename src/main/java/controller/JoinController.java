@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -70,7 +71,7 @@ public class JoinController {
 		bru.setR_card(join.getR_card());
 		bru.setR_cardnum(join.getR_cardnum());
 		joinService.JoinUser(bru);
-		return "login/loginForm";
+		return "login/loginSuccess";
 	}
 
 	@RequestMapping("/user_modify")
@@ -135,9 +136,21 @@ public class JoinController {
 	@ResponseBody
     @RequestMapping(value = "/checkSignup", method = RequestMethod.POST)
     public String checkSignup(HttpServletRequest request, Model model) {
-        String id = request.getParameter("R_id");
-        System.out.println(id);
-        int rowcount = joinService.checkSignup(id);
+        String R_id = request.getParameter("R_id");
+        int rowcount = joinService.checkSignup(R_id);
+        
+        return String.valueOf(rowcount);
+    }
+	@ResponseBody
+    @RequestMapping(value = "/checkCard", method = RequestMethod.POST)
+    public String checkCard(joinCommand join,HttpServletRequest request, Model model) {
+        String R_cardnum = request.getParameter("R_cardnum");
+        String R_card = request.getParameter("R_card");
+        System.out.println(R_card);
+        System.out.println(R_cardnum);
+        join.setR_cardnum(R_cardnum);
+        join.setR_card(R_card);
+        int rowcount = joinService.checkCard(join);
         
         return String.valueOf(rowcount);
     }

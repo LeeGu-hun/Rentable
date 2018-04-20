@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Rent</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/common.css?version=1.14" />
+	href="${pageContext.request.contextPath}/resources/css/common.css?version=1.34" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/itempay.css?version=1.12" />
 <script type="text/javascript"
@@ -187,6 +187,7 @@
 											value="1"> 동의함</span> <span class="radiobox_span"><input
 											type="radio" name="privacy_agreement" id="privacy_agreement"
 											value="2"> 동의안함</span>
+											<span id="result6" style="font-size:10pt;color:#e22424;">${requestScope.result6 }</span>
 									</div>
 								</td>
 							</tr>
@@ -296,6 +297,7 @@
 			document.getElementById('result3').textContent= '';
 			document.getElementById('result4').textContent= '';
 			document.getElementById('result5').textContent= '';
+			document.getElementById('result6').textContent= '';
 			if (f.order_name.value.length < 1) {
 				document.getElementById('result').textContent = "주문하시는 분을 입력해 주세요.";
 				f.order_name.focus();
@@ -348,7 +350,7 @@
 				return;
 			}
 			if (f.privacy_agreement[0].checked == false) {
-				alert("개인정보 수집 및 이용에 동의 하셔야 합니다.");
+				document.getElementById('result6').textContent = "개인정보 수집 및 이용에 동의 하셔야 합니다.";
 				f.privacy_agreement[0].focus();
 				return;
 			}

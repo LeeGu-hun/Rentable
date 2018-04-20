@@ -10,13 +10,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Responsive Auto Show/Hide Toggle Menu Demo</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css?version=1.15" />
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css?version=1.13" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/main.css?version=1.15" />
+	href="${pageContext.request.contextPath}/resources/css/main.css?version=1.13" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/itemgoods.css?version=1.15" />
+	href="${pageContext.request.contextPath}/resources/css/itemgoods.css?version=1.13" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/category.css?version=1.15" />
+	href="${pageContext.request.contextPath}/resources/css/category.css?version=1.13" />
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <script
@@ -27,7 +27,9 @@
 <body>
 	<div id="wrap">
 		<!-- header -->
-		<div id="rent_head"><a href="${pageContext.request.contextPath}">메인</a></div>
+		<div id="rent_head">
+			<a href="${pageContext.request.contextPath}">메인</a>
+		</div>
 		<!-- body -->
 		<div id="rent_body">
 			<div id="rent_body_contents">

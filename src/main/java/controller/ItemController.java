@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import bean.Bean_Category;
 import bean.ItemCommand;
 import bean.bean_like_items;
 import bean.bean_rent_products;
@@ -31,9 +32,14 @@ public class ItemController {
 
 	private ItemService itemService;
 	private ProdService prodService;
+	private MainService mainService;
 	
 
 
+
+	public void setMainService(MainService mainService) {
+		this.mainService = mainService;
+	}
 
 	public void setProdService(ProdService prodService) {
 		this.prodService = prodService;
@@ -45,8 +51,17 @@ public class ItemController {
 
 	@RequestMapping(value = "/iteminsert", method = RequestMethod.GET)
 	public String itemInsertGet(bean_rent_products pd) {
-		System.out.println("1");
+
 		return "redirect:/main";
+	}
+	public List<Bean_Category> getMainCategory() {
+		return mainService.getCategory();
+	}
+
+	public String getPath(HttpServletRequest request) {
+		String realPath = request.getServletPath();
+		String path = realPath.split("/")[1];
+		return path;
 	}
 
 	@RequestMapping(value = "/itemInsertAction", method = RequestMethod.POST)
@@ -128,8 +143,10 @@ public class ItemController {
 	}
 	
 	@RequestMapping("/ItemModify/{v}")
-	public String insertModify(@PathVariable("v") int pId, Model model, bean_rent_products prodBean) {
+	public String insertModify(@PathVariable("v") int pId, Model model, bean_rent_products prodBean,HttpServletRequest request) {
 		prodBean = prodService.prodView(pId);
+		model.addAttribute("category", getMainCategory());
+		model.addAttribute("path", getPath(request));
 		model.addAttribute("prodBean", prodBean);
 		return "main";
 	}

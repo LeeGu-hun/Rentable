@@ -3,6 +3,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -27,8 +28,7 @@
 					<td width="20%"
 						style="text-align: center; color: white; font-size: 30px;">제품명</td>
 					<td width="20%"
-						style="text-align: center; color: white; font-size: 30px;">남은
-						기간</td>
+						style="text-align: center; color: white; font-size: 30px;">반납일</td>
 					<td width="20%"
 						style="text-align: center; color: white; font-size: 30px;">가격</td>
 					<td width="20%"
@@ -46,9 +46,15 @@
 						href="<c:url value="/ProdDetail/${items.ROI_itemnum}"/>">
 									<em style="font-size: 20px">${items.RP_ITEMNAME}</em></td>
 					<td width="20%"
-						style="text-align: center; color: black; font-size: 20px;">${items.ROI_enddate}</td>
+						style="text-align: center; color: black; font-size: 20px;"><fmt:parseDate
+                                    var="dateString2" value="${items.ROI_enddate}"
+                                    pattern="yyyy-MM-dd HH:mm:ss" />  
+                                  
+                                    <fmt:formatDate
+                                    value="${dateString2}" pattern="yyyy.MM.dd" />        
+                                    </td>
 					<td width="20%"
-						style="text-align: center; color: black; font-size: 20px;">${items.ROI_price}</td>
+						style="text-align: center; color: black; font-size: 20px;">${items.ROI_price} 원</td>
 					<td width="20%"
 						style="text-align: center; color: black; font-size: 20px;">${items.ROI_stat}</td>
 				</tr>

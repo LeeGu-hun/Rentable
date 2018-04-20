@@ -22,7 +22,8 @@ public class bean_rent_products {
 	private String RP_guarantee; // 물품 안심등록
 	private String RP_subCount; // 서브카테고리 별 물품등록 갯수
 	private String keyword; // 검색 키워드
-	private String ROI_stat;
+	private String ROI_stat="대여가능";
+	private int RP_stat;
 
 	public bean_rent_products() {
 
@@ -171,5 +172,15 @@ public class bean_rent_products {
 	public void setROI_stat(String rOI_stat) {
 		ROI_stat = rOI_stat;
 	}
+
+	public int getRP_stat() {
+		return RP_stat;
+	}
+
+	public void setRP_stat(int rP_stat) {
+		RP_stat = rP_stat;
+	}
+
+	
 
 }

@@ -65,6 +65,7 @@ public class MainController {
 		model.addAttribute("maincate", maincate);
 		model.addAttribute("maincatelist", maincatelist);
 		model.addAttribute("subcatelist", subcatelist);
+		model.addAttribute("subcate", subcate);
 		model.addAttribute("path", getPath(request));
 		return "main";
 	}

@@ -42,8 +42,81 @@
 .listalign {
 	position: relative;
 	height: 45px;
-	margin: -8px 0 0;
+	margin-top: 1%;
 	padding-top: 15px;
+}
+
+.listalign .tit_rst {
+	display: inline-block;
+	height: 16px;
+	margin-left: 3px;
+	padding-left: 16px;
+	background:
+		url(https://bunny-cdn.bunjang.co.kr/static/mobile/images/icon/icon_sch.png?ed5e4d768a26)
+		no-repeat 0 0;
+	background-size: 11px 13px;
+}
+
+.listalign .rbox {
+	position: absolute;
+	top: 16px;
+	right: 5px;
+	font-size: 0;
+	color: transparent;
+}
+
+.listalign .rbox .cstselect {
+	float: left;
+}
+
+.cstselect {
+	display: block;
+	position: relative;
+	z-index: 1;
+	height: 15px;
+}
+
+.cstselect a.selected {
+	display: block;
+	padding: 0 8px;
+	text-decoration: none;
+}
+
+.cstselect a.selected span {
+	display: inline-block;
+	height: 15px;
+	padding-right: 12px;
+	padding-top: 1px;
+	background:
+		url(https://bunny-cdn.bunjang.co.kr/static/mobile/images/btn/btn_cstselect_off.png?53c0c6fbc5ab)
+		no-repeat 100% 50%;
+	background-size: 7px 5px;
+	font-size: 14px;
+	line-height: 15px;
+}
+
+.modal-select {
+	display: inline;
+	height: auto;
+}
+
+.modal-select ul {
+	list-style: none;
+	left: 0;
+	width: 100%;
+	background: #fff;
+	position: absolute;
+}
+
+.modal-select ul li {
+	display: inline-block;
+	height: 60px;
+}
+
+.modal-select ul li a {
+	padding-left: 10px;
+	font-size: 1.8em;
+	text-decoration: none;
 }
 
 @media all and (max-width: 768px) {

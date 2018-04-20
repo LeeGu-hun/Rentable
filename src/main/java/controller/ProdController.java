@@ -51,13 +51,13 @@ public class ProdController {
 		return path;
 	}
 
-	@RequestMapping("/ProdDetail/{id}")
-	public String boardDetail(@PathVariable("id") int pId, Model model, HttpSession session,
+	@RequestMapping("/ProdDetail/{id}/{stat}")
+	public String boardDetail(@PathVariable("id") int pId,@PathVariable("stat") String stat1, Model model, HttpSession session,
 			bean_rent_products prodBean, HttpServletRequest request) {
 		prodBean = prodService.prodView(pId);
 		bean_rent_users_info saleUserInfo=new bean_rent_users_info();
 		saleUserInfo=prodService.prodUserSaleInfo(prodBean.getRP_usernum());
-		System.out.println(saleUserInfo.getR_id());
+		model.addAttribute("stat1",stat1);
 		List<bean_rent_review> reviewlist = null;
 		reviewlist = itemService.Reviewlist(prodBean);
 		model.addAttribute("saleUserInfo",saleUserInfo);

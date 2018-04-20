@@ -131,13 +131,7 @@
    
 </head>
 <body>
-   <!-- header -->
-   <div id="rent_head">
-      <%@include file="/category/category.jsp"%>
-   </div>
-   <!-- body -->
-   <div id="rent_body">
-      <div id="rent_body_contentss">
+
          <!-- 게시판 등록 -->
          <form action="../itemModifyAction" name="updateForm"
             enctype="multipart/form-data" method="POST">
@@ -280,7 +274,7 @@
 
                <tr align="center" valign="middle">
 
-                  <a href="javascript:save()" class="button">수정 완료</a>&nbsp;&nbsp;
+                  <a href="javascript:save()" class="button">[수정 완료]</a>&nbsp;&nbsp;
                   <a href="javascript:history.go(-1)">[뒤로]</a>
                   </td>
                </tr>
@@ -289,13 +283,9 @@
 
 
          </form>
-         <!-- 게시판 등록 -->
-      </div>
-   </div>
-   <!-- footer -->
-   <div id="rent_footer">
-      <div id="category_name"></div>
-   </div>
+
+
+
 
 
 

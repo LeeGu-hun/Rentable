@@ -20,7 +20,7 @@
 	<bean class="controller.ItemController">
 		<property ref="itemService" name="itemService" />
 		<property ref="prodService" name="prodService" />
-
+		<property name="mainService" ref="mainService" />
 	</bean>
 
 	<bean class="controller.loginController">

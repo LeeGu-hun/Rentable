@@ -21,37 +21,33 @@
 			<h2>찜 목록</h2>
 			<table
 				style="background: #2980b9; width: 100%; border: 1; border-style: solid; border-color: #D5D5D5;">
-
-
-
 				<tr align="center" valign="middle" bordercolor="#222">
-
-					<td width="80%"style="text-align: center; color: white; font-size: 30px;">제품명</td>
-					<td width="20%"style="text-align: center; color: white; font-size: 30px;">가격</td>
-
-
+					<td width="20%"
+						style="text-align: center; color: white; font-size: 30px;">제품번호</td>
+					<td width="50%"
+						style="text-align: center; color: white; font-size: 30px;">제품명</td>
+					<td width="20%"
+						style="text-align: center; color: white; font-size: 30px;">일일 대여료</td>
+					<td width="10%"
+						style="text-align: center; color: white; font-size: 30px;">삭제</td>
 				</tr>
 			</table>
-			<div id="likelist">
-				
-		<div>
-			<ul  style="list-style:none; border: 1px;" >
+				<table style="width: 100%; border:1; border-style: solid; border-color: #D5D5D5;">
 				<c:forEach var="likelist" items="${likelist}">
-				
-					<li >
-					
-						<em style="color: green;font-size:20px;margin-left:12px; background-color:pink; border: 1;border-radius: 100%">${likelist.RL_itemnum}</em>
-						<a style="margin-left: 450px ;text-decoration:none;color: black; " href="<c:url value="/ProdDetail/${likelist.RL_itemnum}"/>">
-						 <em style="font-size: 20px">${likelist.RL_itemname}</em></a><em style="font-size: 20px;margin-left: 450px ;">${likelist.RL_price}</em>
-						 <em style=""><a href="<c:url value="/likeDelete/${likelist.RL_itemnum}"/>">삭제</a></em> <br> 
-						</li>
-						
-				</c:forEach>
-			</ul>
-		</div>
-	</div>
-			
-			
+				<tr align="center" valign="middle" bordercolor="#222">
+					<td width="20%"
+						style="text-align: center; color: black; font-size: 20px;">${likelist.RL_itemnum}</td>
+					<td width="50%">				
+						<a style="text-align: center; text-decoration: none; color: black; font-size: 20px;" 
+						href="<c:url value="/ProdDetail/${likelist.RL_itemnum}"/>">
+									<em style="font-size: 20px">${likelist.RL_itemname}</em></td>
+					<td width="20%"
+						style="text-align: center; color: black; font-size: 20px;">${likelist.RL_price} 원</td>
+					<td width="10%"
+						style="text-align: center; color: black; font-size: 20px;"><a href="<c:url value="/likeDelete/${likelist.RL_itemnum}"/>">삭제</a></td>
+				</tr>
+				</c:forEach>		
+		</table>
 		</form>
 	</div>
 </body>

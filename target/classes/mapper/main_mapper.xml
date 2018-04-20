@@ -26,19 +26,20 @@
 		select rp.RP_ITEMNUM, rp.RP_ITEMNAME, rp.RP_PRICE,
 		rp.RP_STARTDATE,rp.RP_img1,
 		rp.RP_ENDDATE, gd.grade,
-		roi.ROI_STAT,rp.rp_regdate from RENT_PRODUCTS
+		gd.ROI_STAT,rp.rp_regdate, round((rp.RP_ENDDATE-sysdate),0) rp_stat from RENT_PRODUCTS
 		rp,
-		(select rp.RP_itemnum,
+		(select rp.RP_itemnum,recent.roi_stat,
 		nvl(round(avg(rr.rr_grade),1),'0') grade from
 		rent_review rr,
-		RENT_PRODUCTS rp where rr.RR_ITEMNUM(+) =
-		rp.RP_ITEMNUM
+		RENT_PRODUCTS rp, 
+        (select roi.ROI_ITEMNUM, roi.roi_stat, ro.recent_date from 
+         rent_orders_items roi, (select max(roi_startdate) as recent_date, roi_itemnum from rent_orders_items group by ROI_ITEMNUM) ro 
+        where roi.ROI_STARTDATE = ro.recent_date and ro.roi_itemnum = roi.roi_itemnum) recent 
+        where rr.RR_ITEMNUM(+) =
+		rp.RP_ITEMNUM and recent.roi_itemnum(+) = rp.RP_ITEMNUM
 		group by
-		rp.RP_ITEMNUM order by grade desc) gd, (select rp.RP_itemnum,
-		roi.ROI_STAT from rent_orders_items roi, RENT_PRODUCTS rp where
-		roi.ROI_ITEMNUM(+) = rp.RP_ITEMNUM) roi
-		where rp.RP_itemnum =
-		gd.RP_itemnum and rp.RP_ITEMNUM = roi.RP_itemnum
+		rp.RP_ITEMNUM, recent.roi_stat  order by grade desc) gd
+		where rp.RP_itemnum = gd.RP_itemnum
 		<include refid="category"></include>
 		order by
 		<include refid="orderby"></include>

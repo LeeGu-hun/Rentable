@@ -1,10 +1,13 @@
 package service;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import bean.bean_rent_users;
+import bean.joinCommand;
 
 @Service
 public class JoinService {
@@ -28,5 +31,8 @@ public class JoinService {
 		int result = sqlSession.selectOne("memberSQL.checkSignup",R_id);
 		return result;
 	}
-
+	public int checkCard(joinCommand join) {
+		int result = sqlSession.selectOne("memberSQL.checkCard", join);
+		return result;
+	}
 }
