@@ -6,6 +6,7 @@
 <meta charset="utf-8">
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Responsive Auto Show/Hide Toggle Menu Demo</title>
@@ -21,12 +22,12 @@
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-
 </head>
 
 <body>
 	<div id="wrap">
 		<!-- header -->
+
 		<div id="rent_head">
 			<div class="left-head"
 				style="width: 75%; height: 100%; align: center">
@@ -51,5 +52,6 @@
 			<div id="category_name"></div>
 		</div>
 	</div>
+
 </body>
 </html>

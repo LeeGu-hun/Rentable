@@ -21,31 +21,31 @@
 
 			<h2>빌린 내역</h2>
 			<table
-				style="background: #2980b9; width: 100%; border: 1; border-style: solid; border-color: #D5D5D5;">
+				style="background: #2f3b3f;opacity:0.85; width: 100%; height:50px; border: 1; border-style: solid; border-color: #D5D5D5;">
 				<tr align="center" valign="middle" bordercolor="#222">
-					<td width="20%"
+					<td width="10%"
 						style="text-align: center; color: white; font-size: 30px;">주문번호</td>
-					<td width="20%"
+					<td width="40%"
 						style="text-align: center; color: white; font-size: 30px;">제품명</td>
-					<td width="20%"
+					<td width="18%"
 						style="text-align: center; color: white; font-size: 30px;">반납일</td>
-					<td width="20%"
+					<td width="16%"
 						style="text-align: center; color: white; font-size: 30px;">가격</td>
-					<td width="20%"
+					<td width="16%"
 						style="text-align: center; color: white; font-size: 30px;">제품
 						현황</td>
 				</tr>
 			</table>
-				<table style="width: 100%; border:1; border-style: solid; border-color: #D5D5D5;">
+				<table style="width: 100%; border:1;height:40px; border-style: solid; border-color: #D5D5D5;">
 				<c:forEach var="items" items="${userSale}">
-				<tr align="center" valign="middle" bordercolor="#222">
-					<td width="20%"
+				<tr align="center" valign="middle" bordercolor="#222" height="35px">
+					<td width="10%"
 						style="text-align: center; color: black; font-size: 20px;">${items.ROI_ordernum}</td>
-					<td width="20%">				
+					<td width="40%">				
 						<a style="text-align: center; text-decoration: none; color: black; font-size: 20px;" 
 						href="<c:url value="/ProdDetail/${items.ROI_itemnum}/${items.ROI_stat}"/>">
 									<em style="font-size: 20px">${items.RP_ITEMNAME}</em></a></td>
-					<td width="20%"
+					<td width="18%"
 						style="text-align: center; color: black; font-size: 20px;"><fmt:parseDate
                                     var="dateString2" value="${items.ROI_enddate}"
                                     pattern="yyyy-MM-dd HH:mm:ss" />  
@@ -53,9 +53,9 @@
                                     <fmt:formatDate
                                     value="${dateString2}" pattern="yyyy.MM.dd" />        
                                     </td>
-					<td width="20%"
+					<td width="16%"
 						style="text-align: center; color: black; font-size: 20px;">${items.ROI_price} 원</td>
-					<td width="20%"
+					<td width="16%"
 						style="text-align: center; color: black; font-size: 20px;">${items.ROI_stat}</td>
 				</tr>
 				</c:forEach>		

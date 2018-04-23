@@ -40,6 +40,7 @@ public class AdminController {
 	@RequestMapping("/user_manage")
 	public String userManage(Model model, HttpServletRequest request) {
 		List<bean_rent_users> userlist = adminService.getUserList();
+		adminService.getInvaildList();
 		model.addAttribute("userlist", userlist);
 		model.addAttribute("path",getPath(request));
 		model.addAttribute("category",getMainCategory());

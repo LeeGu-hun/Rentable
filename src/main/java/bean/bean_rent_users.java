@@ -15,6 +15,7 @@ public class bean_rent_users {
 	private String R_stat; // 유저 현황
 	private Date R_regdate; // 가입일
 	private String R_cardnum;// 카드번호
+	private String ROI_buyidnum;
 
 	public bean_rent_users() {
 	}
@@ -121,6 +122,14 @@ public class bean_rent_users {
 
 	public void setR_cardnum(String r_cardnum) {
 		R_cardnum = r_cardnum;
+	}
+
+	public String getROI_buyidnum() {
+		return ROI_buyidnum;
+	}
+
+	public void setROI_buyidnum(String rOI_buyidnum) {
+		ROI_buyidnum = rOI_buyidnum;
 	}
 
 }

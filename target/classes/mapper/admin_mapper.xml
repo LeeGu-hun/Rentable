@@ -4,8 +4,23 @@
 
 <mapper namespace="adminSQL">
 
-	<select id="getUserlists" resultType="bean.bean_rent_users">select r_idnum, r_id,r_name,
-		r_address,r_card,r_cash, r_stat from rent_users where r_stat != 'admin'</select>
-		
+	<select id="getUserlists" resultType="bean.bean_rent_users">select r_idnum,
+		r_id,r_name,
+		r_address,r_card,r_cash, r_stat from rent_users where
+		r_stat != 'admin'
+	</select>
 
+	<select id="getInvaildlist" resultType="bean.bean_rent_users">
+		select roi.roi_buyidnum
+		from RENT_ORDERS_ITEMS roi,RENT_PRODUCTS rp where
+		roi.ROI_ITEMNUM=rp.RP_ITEMNUM and round((sysdate - roi.ROI_ENDDATE),0)
+		> 30 order by
+		roi.ROI_ENDDATE
+	</select>
+	
+	<update id="updateR_stat">
+		update rent_users set r_stat = 'block' where r_idnum = #{block_num} 
+	</update>
+	
+	
 </mapper>

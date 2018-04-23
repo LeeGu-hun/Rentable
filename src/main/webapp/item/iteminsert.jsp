@@ -101,19 +101,20 @@
 </script>
 </head>
 <body>
+
 	<!-- 게시판 등록 -->
 	<form action="${pageContext.request.contextPath}/itemInsertAction"
 		name="insertForm" enctype="multipart/form-data" method="POST">
-		<table>
-			<tr align="center" valign="middle">
-				<th colspan="5"><h3>상품 등록 페이지</h3></th>
+		<table >
+			<tr align="center" valign="middle" style="border-bottom: 1px solid #d7d7d7;">
+				<th colspan="5"><h3>상품 등록 페이지</h3><a href="http://localhost:8080/rent/item/rss.xml">dsa</a></th>
 			</tr>
-			<tr>
-				<td><img id="blah" src="#" alt="이미지를 등록하세요" width="700"
-					height="400" /></td>
+			<tr style="border-bottom: 1px solid #d7d7d7;">
+				<td width="1500px"><img id="blah" src="#" alt="이미지를 등록하세요"
+					width="700" height="400" /></td>
 				<td>
 					<table style="height: 400px; width: 700px;">
-						<tr>
+						<tr style="border-bottom: 1px solid #d7d7d7; border-left:1px solid #d7d7d7; ">
 							<td style="font-family: 돋음; font-size: 12" height="16">
 								<div align="center">
 									<h4>상품명</h4>
@@ -122,8 +123,8 @@
 							</td>
 							<td><input id="RP_itemname" name="RP_itemname" type="text"
 								size="51" maxlength="100" required />
-						</tr>
-						<tr>
+						</tr >
+						<tr style="border-bottom: 1px solid #d7d7d7;border-left:1px solid #d7d7d7;">
 							<td style="font-family: 돋음; font-size: 12" height="16">
 								<div align="center">
 									<h4>카테고리</h4>
@@ -152,7 +153,7 @@
 
 							</select></td>
 						</tr>
-						<tr>
+						<tr style="border-bottom: 1px solid #d7d7d7;border-left:1px solid #d7d7d7;">
 							<td style="font-family: 돋음; font-size: 12" height="16">
 								<div align="center">
 									<h4>대여 가능기간</h4>
@@ -163,7 +164,7 @@
 								name="RP_enddate" type="date"
 								style="width: 175px; height: 20px;" required /></td>
 						</tr>
-						<tr>
+						<tr style="border-left:1px solid #d7d7d7;">
 							<td style="font-family: 돋음; font-size: 12" height="16">
 								<div align="center">
 									<h4>일일 대여료</h4>
@@ -179,18 +180,16 @@
 				</td>
 
 			</tr>
-
 			<tr>
+				<td width="20px"><input id="imgInp" name="RP_img1" type="file"
+					style="border-radius: 5px; width: 75px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; cursor: pointer;" />
+					<input id="imgInp2" name="RP_img2" type="file"
+					style="border-radius: 5px; width: 75px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; cursor: pointer;" />
+					<input id="imgInp3" name="RP_img3" type="file"
+					style="border-radius: 5px; width: 75px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; cursor: pointer;" />
 
-
-				<td style="font-family: 돋음; font-size: 12">
-					<div align="left">
-						<input id="imgInp" name="RP_img1" type="file" /> <input
-							id="imgInp2" name="RP_img2" type="file" /> <input id="imgInp3"
-							name="RP_img3" type="file" />
-					</div>
 				</td>
-
+				
 			</tr>
 
 			<tr align="center" valign="middle">
@@ -251,13 +250,16 @@
 			<tr>
 				<td colspan="2">&nbsp;<span id="result"
 					style="font-size: 10pt; color: #e22424;">${requestScope.result}</span></td>
+		
 			</tr>
 
 
 			<tr align="center" valign="middle">
-
-				<a href="javascript:save()" class="button">등록</a>&nbsp;&nbsp;
-				<a href="javascript:history.go(-1)">[뒤로]</a>
+	
+				<td><a href="javascript:save()"
+					style="border-radius: 5px; width: 80px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; cursor: pointer;">등록</a>&nbsp;&nbsp;
+					<a href="javascript:history.go(-1)"
+					style="border-radius: 5px; width: 80px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; cursor: pointer;">뒤로</a>
 				</td>
 			</tr>
 		</table>

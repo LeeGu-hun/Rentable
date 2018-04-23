@@ -43,7 +43,7 @@
 
 		<a href="#search_box" class="btn" id="search">&#9740;</a>
 
-		<nav id="menu" class="menu" >
+		<nav id="menu" class="menu">
 
 			<ul class="dropdown">
 
@@ -119,6 +119,7 @@
 							</ul></li>
 
 					</c:when>
+
 
 					<c:otherwise>
 

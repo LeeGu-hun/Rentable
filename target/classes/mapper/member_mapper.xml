@@ -4,32 +4,53 @@
 
 <mapper namespace="memberSQL">
 
-	<insert parameterType="bean.bean_rent_users" id="joinUser"> 
-		insert into RENT_USERS values((select nvl(max(R_idnum),0)+1 from rent_users),
+	<insert parameterType="bean.bean_rent_users" id="joinUser">
+		insert into
+		RENT_USERS values((select nvl(max(R_idnum),0)+1 from
+		rent_users),
 		#{R_id},#{R_password},#{R_name},#{R_address},#{R_phone},#{R_card},#{R_cardnum}
-		,0,'normal',sysdate) 
+		,0,'normal',sysdate)
 	</insert>
 
-	<select id="checkSignup" parameterType = "String" resultType = "int" >
-		select count(*) from rent_users where R_id = #{R_id} 
-	</select>
-	
-	<select id="checkCard" parameterType = "String" resultType = "int" >
-		select count(*) from rent_card where RC_cardnum = #{R_cardnum} and RC_cardname = #{R_card}
-	</select>
-	
-	<select id="loginCheck" resultType="bean.bean_rent_users">
-		select * from rent_users where R_id = #{R_id} 
+	<select id="checkSignup" parameterType="String" resultType="int">
+		select count(*) from rent_users where R_id = #{R_id}
 	</select>
 
-	<update parameterType="bean.bean_rent_users" id="userModify"> 
-		update rent_users set R_password = #{R_password},
-		R_name = #{R_name}, R_address = #{R_address}, R_phone = #{R_phone}, R_card = #{R_card}, R_cardnum = #{R_cardnum} 
-		where R_id = #{R_id} 
+	<select id="checkCard" parameterType="String" resultType="int">
+		select
+		count(*) from rent_card where RC_cardnum = #{R_cardnum} and
+		RC_cardname = #{R_card}
+	</select>
+
+	<select id="loginCheck" resultType="bean.bean_rent_users">
+		select * from rent_users
+		where R_id = #{R_id}
+	</select>
+
+	<update parameterType="bean.bean_rent_users" id="userModify">
+		update
+		rent_users set R_password = #{R_password},
+		R_name = #{R_name},
+		R_address = #{R_address}, R_phone = #{R_phone}, R_card = #{R_card},
+		R_cardnum = #{R_cardnum}
+		where R_id = #{R_id}
 	</update>
-	
-	<delete parameterType="bean.bean_rent_users"  id="user_delete">
-		delete rent_users where R_id = #{R_id} and R_password = #{R_password}
+
+	<delete parameterType="bean.bean_rent_users" id="user_delete">
+		delete
+		rent_users where R_id = #{R_id} and R_password = #{R_password}
 	</delete>
-	
+
+	<select id="delayCheck" resultType="bean.DelayCommand">
+	<![CDATA[
+		select
+		rp.RP_ITEMNAME,roi.ROI_STARTDATE,roi.ROI_ENDDATE,rp.rp_price,trunc(sysdate - roi.ROI_ENDDATE,0) as delay_date,
+		trunc(sysdate - roi.ROI_ENDDATE,0)*rp.RP_PRICE as invalid_price
+		from RENT_ORDERS_ITEMS roi,RENT_PRODUCTS rp where
+		roi.ROI_ITEMNUM=rp.RP_ITEMNUM and
+		roi.ROI_BUYIDNUM=#{R_idnum} and (round((sysdate - roi.ROI_ENDDATE),0)-1) > 30 order by
+		roi.ROI_ENDDATE
+		]]>
+	</select>
+
 </mapper>

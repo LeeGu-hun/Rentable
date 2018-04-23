@@ -1,5 +1,7 @@
 package service;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,4 +24,13 @@ public class AdminService {
 		return userlist;
 	}
 
+	public List<bean_rent_users> getInvaildList() {
+		List<bean_rent_users> userlist = sqlSession.selectList("adminSQL.getInvaildlist");
+		for(int i = 0; i < userlist.size() ; i++) {
+			String str = userlist.get(i).getROI_buyidnum();
+			int block_num = Integer.parseInt(str);
+			sqlSession.update("adminSQL.updateR_stat",block_num);
+		}
+		return userlist;
+	}
 }

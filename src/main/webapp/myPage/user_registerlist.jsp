@@ -21,37 +21,32 @@
 
 			<h2>등록 내역</h2>
 			<table
-				style="background: #2980b9; width: 100%; border: 1; border-style: solid; border-color: #D5D5D5;">
+				style="background: #2f3b3f;opacity:0.85; width: 100%; height:50px; border: 1; border-style: solid; border-color: #D5D5D5;">
 
 				<tr>
-					<td width="3%"
-						style="text-align: center; color: white; font-size: 30px;">No.</td>
+					<td width="20%"
+						style="text-align: center; color: white; font-size: 30px;">제품번호</td>
 
 
-					<td width="97"
+					<td width="80"
 						style="text-align: center; color: white; font-size: 30px;">제품명</td>
 
 
 				</tr>
 
 			</table>
-			<div id="itemlist">
-
-				<div>
-					<ul style="list-style: none; border: 1px;">
-						<c:forEach var="itemlist" items="${itemlist}">
-							<li><em
-								style="color: green; font-size: 20px; margin-left: 12px; background-color: pink; border: 1; border-radius: 100%">${itemlist.RP_itemnum}</em>
-								<a
-								style="margin-left: 650px; text-decoration: none; color: black;"
-								href="<c:url value="/ProdDetail/${itemlist.RP_itemnum}/${itemlist.ROI_stat}"/>">
-									<em style="font-size: 20px">${itemlist.RP_itemname}</em>
-							</a> <br></li>
-
-						</c:forEach>
-					</ul>
-				</div>
-			</div>
+			<table style="width: 100%; border:1;height:40px; border-style: solid; border-color: #D5D5D5;">
+				<c:forEach var="itemlist" items="${itemlist}">
+				<tr align="center" valign="middle" bordercolor="#222" height="35px">
+					<td width="20%"
+						style="text-align: center; color: black; font-size: 20px;">${itemlist.RP_itemnum}</td>
+					<td width="80%">				
+						<a style="text-align: center; text-decoration: none; color: black; font-size: 20px;" 
+						href="<c:url value="/ProdDetail/${itemlist.RP_itemnum}/${itemlist.ROI_stat}"/>">
+									<em style="font-size: 20px">${itemlist.RP_itemname}</em></a></td>
+				</tr>
+				</c:forEach>		
+		</table>
 
 		</form>
 

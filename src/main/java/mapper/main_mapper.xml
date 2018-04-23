@@ -48,7 +48,7 @@
 		rp.RP_ITEMNUM and
 		recent.roi_itemnum(+) =
 		rp.RP_ITEMNUM
-		group by
+		group by 
 		rp.RP_ITEMNUM,
 		recent.roi_stat order by grade
 		desc) gd
