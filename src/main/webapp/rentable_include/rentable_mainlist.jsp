@@ -123,13 +123,14 @@ body {
 	}
 }
 </style>
-
 </head>
+
+
 <body>
 	<div class="itemgoods">
 		<div class="itemwrap">
 			<div class="listalign">
-				<div class="tit_rst" style="display: none;"></div>
+				<div class="tit_rst"></div>
 				<div class="rbox">
 					<div class="cstselect">
 						<a data-toggle="modal" href="#myModal" class="selected"> <span>
@@ -146,7 +147,7 @@ body {
 								<div style="position: relative; height: 100%;">
 									<a
 										href="<c:url value="/ProdDetail/${items.RP_itemnum}/${items.RP_stat}"/>">
-										<div style="height: 70%">
+										<div style="height: 70%; border-radius: 7px 2px 15px 5px">
 											<c:if test="${items.ROI_stat == '대여중'}">
 												<img alt=""
 													src="${pageContext.request.contextPath}/upload_products/${items.RP_img1}"
@@ -166,17 +167,28 @@ body {
 													style="width: 100%; height: 70%; position: absolute;">
 											</c:if>
 										</div>
-										<div style="height: 30%">
-											<p class="itemsinfo">
-												<em>${items.RP_itemname}</em><br> <em> <fmt:parseDate
-														var="dateString1" value="${items.RP_startdate}"
+
+
+
+										<div style="height: 30%; color: black; margin-left: 2px;">
+											<div style="font-size: 16px; height: 35%; margin: 5px 0 0 0">
+												<span>${items.RP_itemname}</span><br>
+											</div>
+											<div style="font-size: 14px; font-weight: bold; height: 25%;">
+												<span>&nbsp>&nbsp<fmt:parseDate var="dateString1"
+														value="${items.RP_startdate}"
 														pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
 														value="${dateString1}" pattern="yyyy.MM.dd" /> ~ <fmt:parseDate
 														var="dateString2" value="${items.RP_enddate}"
 														pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
 														value="${dateString2}" pattern="yyyy.MM.dd" />
-												</em> <br> <strong>${items.RP_price}</strong>
-											</p>
+												</span> <br>
+											</div>
+											<div align="right"
+												style="font-size: 20px; height: 40%; margin-right: 4px;">
+												<span margin=" 5px 3px;" style="color: #ff8040;">${items.RP_price}</span>
+												<span style="font-size: 14px;">원 / 일</span>
+											</div>
 										</div>
 									</a>
 								</div>
@@ -280,6 +292,8 @@ body {
 
 		</div>
 	</div>
+
+
 
 </body>
 </html>

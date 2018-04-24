@@ -1,12 +1,13 @@
 nav {
 	width: 100%;
+	
 }
 
 .nav_wrapper {
+	height:100px;
 	position: relatvie;
 	margin:auto;
-	transition: top .5s ease-out;
-	background: #2f3b3f;
+	background: #2E393D;
 	padding: 0;
 }
 
@@ -63,26 +64,28 @@ main p { 1.2em;
 .search_box {
 	clear: both;
 	width: 100%;
-	background: #e8ebf0;
+	background: #2E393D;
 	padding: 0;
 	margin: 0;
 	height: 0;
-	overflow: hidden;
+	overflow: visible;
 	transition: all 0.1s ease-in-out;
 }
 
 .search_box.active {
 	height: auto;
-	padding: 15px 0;
+	background: #2E393D;
 }
 
 .search_box input {
-	width: 80%;
+	width: 71%;
+	height: auto;
 	font-size: 13px;
 	margin: 0 0 0 15px;
-	padding: 10px;
+	padding: 5px;
 	border: none;
-	background: #fff;
+	background: white;
+	color: black;
 }
 
 .search_box input:focus {
@@ -93,9 +96,7 @@ main p { 1.2em;
 	clear: both;
 	width: 10%;
 	height: auto;
-	padding: 10px;
 	margin: 0;
-	margin-left: -5px;
 	border: none;
 	color: #fff;
 	cursor: pointer;
@@ -122,8 +123,8 @@ main p { 1.2em;
 
 .menu {
 	width: 100%;
-	height: auto;
-	background: #2f3b3f;
+	height: 50%;
+	background: #2E393D;
 	transition: all 0.3s ease;
 }
 

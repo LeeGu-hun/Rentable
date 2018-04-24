@@ -9,7 +9,7 @@
 	width: 95%;
 	height: auto;
 	margin: auto;
-	background: #e8e8e8;
+	background: #FFFFFF;
 }
 
 .itemlist_row {
@@ -20,8 +20,8 @@
 }
 
 .itemlist_row li {
+	box-shadow:5px 5px 10px #cccccc;
 	width: 18%;
-	box-shadow: 0px 0px 5px 0px rgba(102, 186, 255, 0.4);
 	margin: 1%;
 	float: left;
 	background: white;
@@ -51,10 +51,7 @@
 	height: 16px;
 	margin-left: 3px;
 	padding-left: 16px;
-	background:
-		url(https://bunny-cdn.bunjang.co.kr/static/mobile/images/icon/icon_sch.png?ed5e4d768a26)
-		no-repeat 0 0;
-	background-size: 11px 13px;
+	
 }
 
 .listalign .rbox {
@@ -128,7 +125,7 @@
 		width: 95%;
 		height: auto;
 		margin: auto;
-		background: #e8e8e8;
+		background: #FFFFFF;
 	}
 	.itemlist_row {
 		list-style: none;
@@ -138,7 +135,7 @@
 	}
 	.itemlist_row li {
 		width: 48%;
-		box-shadow: 0px 0px 5px 0px rgba(102, 186, 255, 0.4);
+		box-shadow: 0px 0px 5px 0px rgba(26, 33, 32, 0.7);
 		margin: 1%;
 		float: left;
 		background: white;

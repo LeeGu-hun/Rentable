@@ -7,7 +7,12 @@
 <html lang="ko-KR">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style type="text/css">
 .RR_grade>.input, .RR_grade>.input>label:hover, .RR_grade>.input>input:focus+label,
 	.RR_grade>.input>input:checked+label {
@@ -175,14 +180,28 @@
 				var logid = document.getElementById("logid");
 				var thisrent = document.getElementById("thisrent");
 				var stat1 = document.getElementById("stat1").value;
+				var thisnum = document.getElementById("thisnum").value;
 				if (logid.value == '' || logid.value == null) {
-					zzim.href = "#"
+					document.getElementById('result5').textContent = "로그인을 해주세요";
+					 $("#myModal").modal();
 				} else if (stat1 == "대여중") {
-					alert("대여중인 물품입니다");
-					zzim.href = "#"
-				} else {
+					document.getElementById('result5').textContent = "대여 중입니다";
+					 $("#myModal").modal();
+				}else if (thisnum == logid.value) {
+					document.getElementById('result5').textContent = "자기 물품입니다";
+					 $("#myModal").modal();
+				}else {
 					thisrent.type = "submit"
 				}
+			}
+			
+			function sessions() {
+				var logid = document.getElementById("logid");
+				var thisrent = document.getElementById("thisrent");
+				var stat1 = document.getElementById("stat1").value;
+				if (logid.value == '' || logid.value == null) {
+					location.href="${pageContext.request.contextPath}/loginForm";
+				} 
 			}
 			  function myFunction() {
 		             var date1 = document.getElementById("stdate").value;
@@ -199,17 +218,24 @@
 		            	} 
 		             var saledate1=year + '-' + month + '-' + day;
 		             var saledate2 = document.getElementById("saleeddate").value;
+		             var saledate3 = document.getElementById("salestdate").value;
 		            date1 = date1.split('-');
 		            date2 = date2.split('-');
+		            
 		            saledate1 = saledate1.split('-');
 		            saledate2 = saledate2.split('-');
-		            alert("date1" + saledate1 + "/" + "date2" + saledate2);
-		        	if (date1 <saledate1 || date1 > saledate2 || date2 <saledate1 || date2 > saledate2 ||date2<date1 ) {
-		        		alert("기간을 다시 설정하세요");
+		            saledate3 = saledate3.split('-');
+		            saledate3 = new Date(saledate3[0], saledate3[1], saledate3[2]);
+		        	if (date1 <saledate1 || date1 > saledate2 || date2 <saledate1 || date2 > saledate2 ||date2<date1||date2<saledate3 
+		        			||date1<saledate3) {
+		        		if(date1!=saledate3){
+		        		document.getElementById('result5').textContent = "기간을 다시 설정하세요";
+						 $("#myModal").modal();
 		        		  document.getElementById("allPrice").value="";
 						  document.getElementById("stdate").value="";
 						  document.getElementById("eddate").value="";
 						return;
+		        		}
 					}
 		        	else{
 		            date1 = new Date(date1[0], date1[1], date1[2]);
@@ -247,6 +273,7 @@
 					<div class="goods_info_top_left">
 						<div class="goods_image">
 							<input type="hidden" id="stat1" name="stat1" value="${stat1}">
+
 							<img
 								src="${pageContext.request.contextPath}/upload_products/${prodBean.RP_img1}"
 								id='goods_big_img'
@@ -319,8 +346,7 @@
 						<div></div>
 						<div class="goods_btn_area">
 							<input type="button" value=" 대여하기 " id="thisrent"
-								onclick="logsession()" class="order_btn_buy" data-toggle="modal"
-								data-target="#myModal"> <a
+								onclick="logsession()" class="order_btn_buy"> <a
 								href="javascript:submitlike()" class="heart"
 								onclick="logsession()" id="zzim" style="">찜</a>
 						</div>
@@ -658,7 +684,7 @@
 							<td></td>
 							<td></td>
 							<td align="right"><input onclick="display1()" type="button"
-								style="border-radius: 5px; margin: 1px; border: 1px solid #999; width: 120px; height: 35px; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom;"
+								style="border-radius: 5px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom;"
 								value="한줄평/댓글 등록"></td>
 						</tr>
 					</tbody>
@@ -928,106 +954,107 @@
 				}
 			</script>
 			<script>
-			// submit 폼체크
-			function fregisterform_submit2(f) {
-				if (f.name.value.length < 1) {
-					alert("이름을 입력해 주세요.");
-					f.name.focus();
-					return false;
-				}
-				if (f.password.value.length < 1) {
-					alert("비밀번호를 입력해 주세요.");
-					f.password.focus();
-					return false;
-				}
-				if (f.category.value.length < 1) {
-					alert("구분을 선택해 주세요.");
-					f.category.focus();
-					return false;
-				}
-				if (f.subject.value.length < 1) {
-					alert("제목을 입력해 주세요.");
-					f.subject.focus();
-					return false;
-				}
-				if (f.content.value.length < 1) {
-					alert("내용을 입력해 주세요.");
-					f.content.focus();
-					return false;
-				}
-				if (f.privacy_agreement[0].checked == false) {
-					alert("개인정보 수집 및 이용에 동의 하셔야 문의글을 등록 할 수 있습니다.");
-					f.privacy_agreement[0].focus();
-					return false;
-				}
-				var form = document.getElementById("fregisterform2");
-				form.action = './goods_review_qna_proc.php';
-				form.target = "ifm_proc";
-				form.method = 'post';
-				form.submit();
-				return true;
-			}
-			function goods_qna_reg() {
-				if ($("#qanda_form_div").css("display") == 'none') {
-					$("#qanda_form_div").fadeIn("slow");
-				} else {
-					$("#qanda_form_div").fadeOut("slow");
-				}
-			}
-			function qanda_contents_shop(id, no, goods_no, option) {
-				var admin_session = '';
-				if ($("#qanda_id_" + id).css("display") == 'block') {
-					$("#qanda_id_" + id).fadeOut("slow");
-					return;
-				}
-				if (option == "secret") {
-					if (!admin_session) {
-						qanda_password_check_form(id, no, goods_no);
-					} else {
-						var obj2 = document.getElementById("div_popup_ifm");
-						obj2.src = "./goods_qanda_pass.php?no=" + no
-							+ "&goods_no=" + goods_no + "&id=" + id;
+				// submit 폼체크
+				function fregisterform_submit2(f) {
+					if (f.name.value.length < 1) {
+						alert("이름을 입력해 주세요.");
+						f.name.focus();
+						return false;
 					}
-					return;
-				} else {
-					$("#qanda_pass_check_div").css("display", "none");
-					if ($("#qanda_id_" + id).css("display") == 'none') {
-						$("#qanda_id_" + id).fadeIn("slow");
+					if (f.password.value.length < 1) {
+						alert("비밀번호를 입력해 주세요.");
+						f.password.focus();
+						return false;
+					}
+					if (f.category.value.length < 1) {
+						alert("구분을 선택해 주세요.");
+						f.category.focus();
+						return false;
+					}
+					if (f.subject.value.length < 1) {
+						alert("제목을 입력해 주세요.");
+						f.subject.focus();
+						return false;
+					}
+					if (f.content.value.length < 1) {
+						alert("내용을 입력해 주세요.");
+						f.content.focus();
+						return false;
+					}
+					if (f.privacy_agreement[0].checked == false) {
+						alert("개인정보 수집 및 이용에 동의 하셔야 문의글을 등록 할 수 있습니다.");
+						f.privacy_agreement[0].focus();
+						return false;
+					}
+					var form = document.getElementById("fregisterform2");
+					form.action = './goods_review_qna_proc.php';
+					form.target = "ifm_proc";
+					form.method = 'post';
+					form.submit();
+					return true;
+				}
+				function goods_qna_reg() {
+					if ($("#qanda_form_div").css("display") == 'none') {
+						$("#qanda_form_div").fadeIn("slow");
 					} else {
+						$("#qanda_form_div").fadeOut("slow");
+					}
+				}
+				function qanda_contents_shop(id, no, goods_no, option) {
+					var admin_session = '';
+					if ($("#qanda_id_" + id).css("display") == 'block') {
 						$("#qanda_id_" + id).fadeOut("slow");
+						return;
+					}
+					if (option == "secret") {
+						if (!admin_session) {
+							qanda_password_check_form(id, no, goods_no);
+						} else {
+							var obj2 = document.getElementById("div_popup_ifm");
+							obj2.src = "./goods_qanda_pass.php?no=" + no
+								+ "&goods_no=" + goods_no + "&id=" + id;
+						}
+						return;
+					} else {
+						$("#qanda_pass_check_div").css("display", "none");
+						if ($("#qanda_id_" + id).css("display") == 'none') {
+							$("#qanda_id_" + id).fadeIn("slow");
+						} else {
+							$("#qanda_id_" + id).fadeOut("slow");
+						}
 					}
 				}
-			}
-			function qanda_password_check_form(id, no, goods_no) {
-				var obj2 = document.getElementById("div_popup_ifm");
-				obj2.src = "./goods_qanda_pass.php?no=" + no + "&goods_no="
-					+ goods_no + "&id=" + id;
-				div_block_popup(380, 300, "");
-			}
-		</script>
+				function qanda_password_check_form(id, no, goods_no) {
+					var obj2 = document.getElementById("div_popup_ifm");
+					obj2.src = "./goods_qanda_pass.php?no=" + no + "&goods_no="
+						+ goods_no + "&id=" + id;
+					div_block_popup(380, 300, "");
+				}
+			</script>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal" id="myModal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Rentable</h4>
+				</div>
+				<div class="modal-body">
+					<span id="result5" style="font-size: 10pt; color: #e22424;">${requestScope.result5 }</span>
+				</div>
+				<div class="modal-footer">
+					<input type="submit" class="btn btn-default" id="sessBtn"
+						data-dismiss="modal" onclick="sessions()" value="닫기" />
+				</div>
+			</div>
 		</div>
 	</div>
 	<div id="back-top" style="display: block;">
 		<a href="#TOP"><img
 			src='${pageContext.request.contextPath}/resources/images/top_btn.png'></a>
-	</div>
-
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog">
-
-			<!-- Modal content-->
-			<div class="modal-content" style="z-index: 11;">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">선택 옵션</h4>
-				</div>
-				<div class="modal-body">
-					<div class="modal-select"></div>
-				</div>
-			</div>
-
-		</div>
 	</div>
 </body>
 </html>

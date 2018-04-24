@@ -16,11 +16,13 @@
 	</insert>
 
 	<select id="orderNum" resultType="int">
-		select max(RO_ORDERNUM) from RENT_ORDERS
+		select max(RO_ORDERNUM) from
+		RENT_ORDERS
 	</select>
 
 	<insert id="orderItemInsert" parameterType="bean.bean_rent_order_items">
-		insert into RENT_ORDERS_ITEMS
+		insert into
+		RENT_ORDERS_ITEMS
 		values((select nvl(max(ROI_ITEMID),0)+1 from
 		RENT_ORDERS_ITEMS),#{ROI_ordernum},#{ROI_itemnum},#{ROI_price},
 		#{ROI_startdate},#{ROI_enddate},#{ROI_buyidnum},#{ROI_saleidnum},#{ROI_stat},#{ROI_buyername},#{ROI_buyeraddress},
@@ -28,24 +30,37 @@
 	</insert>
 
 	<select id="userSaleBuy" parameterType="int" resultType="bean.bean_rent_user_slae">
-		select
-		RENT_ORDERS_ITEMS.ROI_ORDERNUM,RENT_PRODUCTS.RP_ITEMNAME,ROI_ENDDATE,ROI_PRICE,RENT_ORDERS_ITEMS.ROI_STAT,
-		RENT_ORDERS_ITEMS.ROI_ITEMNUM from RENT_ORDERS_ITEMS,RENT_PRODUCTS where
-		RENT_ORDERS_ITEMS.ROI_ITEMNUM=RENT_PRODUCTS.RP_ITEMNUM and
-		RENT_ORDERS_ITEMS.ROI_BUYIDNUM=#{ROI_buyidnum} order by
-		RENT_ORDERS_ITEMS.ROI_ENDDATE
+	<![CDATA[
+	select
+      roi.ROI_ORDERNUM,rp.RP_ITEMNAME,roi.ROI_ENDDATE,roi.ROI_PRICE,roi.ROI_STAT,
+      roi.ROI_ITEMNUM,
+        case when roi.ROI_STAT = '대여중' and round((sysdate - roi.ROI_ENDDATE),0) > 30 then '고연체'  
+        when roi.ROI_STAT = '대여중' and round((sysdate - roi.ROI_ENDDATE),0) > 0 then '연체중' 
+        when round((sysdate - roi.ROI_ENDDATE),0) < 0 then roi.ROI_STAT
+        else roi.ROI_STAT end as stat, 
+        case when (round((sysdate - roi.ROI_ENDDATE),0)-1)*rp.RP_PRICE > 0 then (round((sysdate - roi.ROI_ENDDATE),0)-1)*rp.RP_PRICE
+        else 0 end as rent_invaild_price
+        from RENT_ORDERS_ITEMS roi,RENT_PRODUCTS rp where
+      roi.ROI_ITEMNUM=rp.RP_ITEMNUM  and
+      roi.ROI_BUYIDNUM=#{ROI_buyidnum}  order by
+      roi.ROI_ENDDATE
+      
+	]]>
 	</select>
-	
-	<select id="userSaleSell" parameterType="int" resultType="bean.bean_rent_user_slae">
+	<select id="userSaleSell" parameterType="int"
+		resultType="bean.bean_rent_user_slae">
 		select
 		RENT_ORDERS_ITEMS.ROI_ORDERNUM,RENT_PRODUCTS.RP_ITEMNAME,ROI_ENDDATE,ROI_PRICE,RENT_ORDERS_ITEMS.ROI_STAT,
-		RENT_ORDERS_ITEMS.ROI_ITEMNUM from RENT_ORDERS_ITEMS,RENT_PRODUCTS where
+		RENT_ORDERS_ITEMS.ROI_ITEMNUM from RENT_ORDERS_ITEMS,RENT_PRODUCTS
+		where
 		RENT_ORDERS_ITEMS.ROI_ITEMNUM=RENT_PRODUCTS.RP_ITEMNUM and
 		RENT_ORDERS_ITEMS.ROI_SALEIDNUM=#{ROI_saleidnum} order by
 		RENT_ORDERS_ITEMS.ROI_ENDDATE
 	</select>
-	<select id="userSaleInfo" parameterType="int" resultType="bean.bean_rent_users_info">
-	select R_ID,R_NAME,R_ADDRESS,R_PHONE from RENT_USERS where R_IDNUM=2
+	<select id="userSaleInfo" parameterType="int"
+		resultType="bean.bean_rent_users_info">
+		select R_ID,R_NAME,R_ADDRESS,R_PHONE from RENT_USERS where
+		R_IDNUM=#{R_IDNUM}
 	</select>
 </mapper>
 
