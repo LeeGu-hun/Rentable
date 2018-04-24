@@ -138,7 +138,6 @@ public class JoinController {
     public String checkSignup(HttpServletRequest request, Model model) {
         String R_id = request.getParameter("R_id");
         int rowcount = joinService.checkSignup(R_id);
-        
         return String.valueOf(rowcount);
     }
 	@ResponseBody

@@ -8,8 +8,11 @@ public class bean_rent_user_slae {
 	private int ROI_price; // 1개 물품의 대여료
 	private String ROI_stat;//현황
 	private int ROI_itemnum; // 1개 물품의 대여료
+	private String stat;
+	private int rent_invaild_price;
+	
 	public bean_rent_user_slae(int rOI_ordernum, String rP_ITEMNAME, String rOI_enddate, int rOI_price, String rOI_stat,
-			int rOI_itemnum) {
+			int rOI_itemnum, String stat, int rent_invaild_price) {
 		super();
 		ROI_ordernum = rOI_ordernum;
 		RP_ITEMNAME = rP_ITEMNAME;
@@ -17,11 +20,15 @@ public class bean_rent_user_slae {
 		ROI_price = rOI_price;
 		ROI_stat = rOI_stat;
 		ROI_itemnum = rOI_itemnum;
+		this.stat = stat;
+		this.rent_invaild_price = rent_invaild_price;
 	}
+	
 	public bean_rent_user_slae() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	public int getROI_ordernum() {
 		return ROI_ordernum;
 	}
@@ -58,5 +65,18 @@ public class bean_rent_user_slae {
 	public void setROI_itemnum(int rOI_itemnum) {
 		ROI_itemnum = rOI_itemnum;
 	}
+	public String getStat() {
+		return stat;
+	}
+	public void setStat(String stat) {
+		this.stat = stat;
+	}
+	public int getRent_invaild_price() {
+		return rent_invaild_price;
+	}
+	public void setRent_invaild_price(int rent_invaild_price) {
+		this.rent_invaild_price = rent_invaild_price;
+	}
+	
 	
 }

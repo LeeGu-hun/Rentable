@@ -132,7 +132,8 @@
 										
 										
 										<div style="height: 30%; color:black; margin-left: 2px;">
-											<div style="font-size:16px; height:35%; margin: 5px 0 0 0">
+											<div style="font-size:15px; height:35%; margin: 5px 0 0 0; overflow: hidden; 
+ 												 text-overflow: ellipsis; white-space: nowrap; ">
 												<span>${items.RP_itemname}</span><br>
 											</div>	 
 											<div style="font-size:14px; font-weight:bold; height:25%;">	 
@@ -145,7 +146,9 @@
 												</span> <br> 
 											</div>	
 											<div align="right" style="font-size:20px; height:40%; margin-right: 4px;">	
-												<span margin=" 5px 3px;" style="color:#ff8040;">${items.RP_price}</span>
+												<span margin=" 5px 3px;" style="color:#ae0000;font-family: Tahoma,sans-serif;">
+													${items.RP_price}
+												</span>
 												<span style="font-size:14px;">원 / 일</span>
 											</div>												
 										</div>

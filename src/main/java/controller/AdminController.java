@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import bean.Bean_Category;
 import bean.bean_rent_users;
@@ -26,7 +28,7 @@ public class AdminController {
 	public void setMainService(MainService mainService) {
 		this.mainService = mainService;
 	}
-	
+
 	public List<Bean_Category> getMainCategory() {
 		return mainService.getCategory();
 	}
@@ -42,9 +44,19 @@ public class AdminController {
 		List<bean_rent_users> userlist = adminService.getUserList();
 		adminService.getInvaildList();
 		model.addAttribute("userlist", userlist);
-		model.addAttribute("path",getPath(request));
-		model.addAttribute("category",getMainCategory());
+		model.addAttribute("path", getPath(request));
+		model.addAttribute("category", getMainCategory());
 		return "main";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/invalid_user", method = RequestMethod.POST)
+	public String inavalid_user(HttpServletRequest request) {
+		String number = request.getParameter("user_num");
+		String price = request.getParameter("invalid_price");
+		System.out.println(number);
+		System.out.println(price);
+		return "success";
 	}
 
 }

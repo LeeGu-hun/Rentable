@@ -41,9 +41,8 @@
 
 		</div>
 
-		<a href="#search_box" class="btn" id="search">&#9740;</a>
 
-		<nav id="menu" class="menu">
+		<nav id="menu" class="menu" >
 
 			<ul class="dropdown">
 
@@ -75,8 +74,6 @@
 
 							<ul>
 
-								<li><a
-									href="${pageContext.request.contextPath}/user_modify">개인정보수정</a></li>
 
 								<li><a
 									href="${pageContext.request.contextPath}/user_interlist">찜
@@ -93,6 +90,8 @@
 								<li><a
 									href="${pageContext.request.contextPath}/user_rentlist">빌린
 										내역</a></li>
+								<li><a
+									href="${pageContext.request.contextPath}/user_modify">개인정보수정</a></li>
 
 								<li><a
 									href="${pageContext.request.contextPath}/user_delete">회원탈퇴</a></li>
@@ -117,9 +116,8 @@
 								<li><a href="#">카테고리 관리</a></li>
 
 							</ul></li>
-
+						<li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
 					</c:when>
-
 
 					<c:otherwise>
 
@@ -136,13 +134,9 @@
 
 		<form class="search_box" id="search_box"
 			action="${pageContext.request.contextPath}/category">
-
 			<input name="keyword" id="keyword" placeholder="Search here" value=""
 				type="text"> <input class="search_icon" value="Search"
 				type="submit">
-
-
-
 		</form>
 
 	</div>

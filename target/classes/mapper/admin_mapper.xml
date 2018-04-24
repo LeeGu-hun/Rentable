@@ -22,5 +22,9 @@
 		update rent_users set r_stat = 'block' where r_idnum = #{block_num} 
 	</update>
 	
+	<update id="invalid_price">
+		update rent_order_items set roi_enddate = sysdate where roi_buynum=#{r_idnum} and roi_
+	</update>
+	
 	
 </mapper>

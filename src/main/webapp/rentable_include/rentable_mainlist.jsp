@@ -7,125 +7,12 @@
 <head>
 <script type="text/javascript">
 	$(document).ready(function() {
-		var user_stat = '<c:out value='${sessionScope.userInfo.r_stat}'/>';
-
-		if (user_stat == 'block') {
-			$('#myModal1').modal({
-				backdrop : 'static',
-				keyboard : false
-			});
-		}
-
 		$("#myBtn").click(function() {
 			$("#myModal").modal();
 		});
 	});
 </script>
-
-<style>
-body {
-	font-family: "Helvetica Neue", Helvetica, Arial;
-	font-size: 14px;
-	line-height: 20px;
-	font-weight: 400;
-	color: #3b3b3b;
-	-webkit-font-smoothing: antialiased;
-	font-smoothing: antialiased;
-	background: #2b2b2b;
-}
-
-@media screen and (max-width: 580px) {
-	body {
-		font-size: 16px;
-		line-height: 22px;
-	}
-}
-
-.wrapper {
-	margin: 0 auto;
-	padding: 40px;
-	max-width: 800px;
-}
-
-.table {
-	margin: 0 0 40px 0;
-	width: 100%;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-	display: table;
-}
-
-@media screen and (max-width: 580px) {
-	.table {
-		display: block;
-	}
-}
-
-.row {
-	display: table-row;
-	background: #f6f6f6;
-}
-
-.row:nth-of-type(odd) {
-	background: #e9e9e9;
-}
-
-.row.header {
-	font-weight: 900;
-	color: #ffffff;
-	background: #ea6153;
-}
-
-.row.green {
-	background: #27ae60;
-}
-
-.row.blue {
-	background: #2980b9;
-}
-
-@media screen and (max-width: 580px) {
-	.row {
-		padding: 14px 0 7px;
-		display: block;
-	}
-	.row.header {
-		padding: 0;
-		height: 6px;
-	}
-	.row.header .cell {
-		display: none;
-	}
-	.row .cell {
-		margin-bottom: 10px;
-	}
-	.row .cell:before {
-		margin-bottom: 3px;
-		content: attr(data-title);
-		min-width: 98px;
-		font-size: 10px;
-		line-height: 10px;
-		font-weight: bold;
-		text-transform: uppercase;
-		color: #969696;
-		display: block;
-	}
-}
-
-.cell {
-	padding: 6px 12px;
-	display: table-cell;
-}
-
-@media screen and (max-width: 580px) {
-	.cell {
-		padding: 2px 16px;
-		display: block;
-	}
-}
-</style>
 </head>
-
-
 <body>
 	<div class="itemgoods">
 		<div class="itemwrap">
@@ -133,8 +20,8 @@ body {
 				<div class="tit_rst"></div>
 				<div class="rbox">
 					<div class="cstselect">
-						<a data-toggle="modal" href="#myModal" class="selected"> <span>
-								최신순 </span></a>
+						<a data-toggle="modal" href="#myModal" class="selected"> 
+						<span> 최신순 </span></a>
 					</div>
 				</div>
 			</div>
@@ -144,9 +31,8 @@ body {
 					<c:choose>
 						<c:when test="${items.RP_stat > 0 }">
 							<li>
-								<div style="position: relative; height: 100%;">
-									<a
-										href="<c:url value="/ProdDetail/${items.RP_itemnum}/${items.RP_stat}"/>">
+								<div style="position: relative; height: 100%; " >
+									<a href="<c:url value="/ProdDetail/${items.RP_itemnum}/${items.RP_stat}"/>" >
 										<div style="height: 70%; border-radius: 7px 2px 15px 5px">
 											<c:if test="${items.ROI_stat == '대여중'}">
 												<img alt=""
@@ -165,30 +51,31 @@ body {
 												<img alt=""
 													src="${pageContext.request.contextPath}/upload_products/${items.RP_img1}"
 													style="width: 100%; height: 70%; position: absolute;">
-											</c:if>
+											</c:if>	
 										</div>
-
-
-
-										<div style="height: 30%; color: black; margin-left: 2px;">
-											<div style="font-size: 16px; height: 35%; margin: 5px 0 0 0">
+										
+										
+										
+										<div style="height: 30%; color:black; margin-left: 2px;">
+											<div style="font-size:15px; height:35%; margin: 5px 0 0 0; overflow: hidden; 
+ 												 text-overflow: ellipsis; white-space: nowrap; ">
 												<span>${items.RP_itemname}</span><br>
-											</div>
-											<div style="font-size: 14px; font-weight: bold; height: 25%;">
-												<span>&nbsp>&nbsp<fmt:parseDate var="dateString1"
-														value="${items.RP_startdate}"
-														pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
-														value="${dateString1}" pattern="yyyy.MM.dd" /> ~ <fmt:parseDate
-														var="dateString2" value="${items.RP_enddate}"
-														pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
-														value="${dateString2}" pattern="yyyy.MM.dd" />
-												</span> <br>
-											</div>
-											<div align="right"
-												style="font-size: 20px; height: 40%; margin-right: 4px;">
-												<span margin=" 5px 3px;" style="color: #ff8040;">${items.RP_price}</span>
-												<span style="font-size: 14px;">원 / 일</span>
-											</div>
+											</div>	 
+											<div style="font-size:14px; font-weight:bold; height:25%;">	 
+												<span>&nbsp>&nbsp<fmt:parseDate var="dateString1" value="${items.RP_startdate}"
+														pattern="yyyy-MM-dd HH:mm:ss" /> 
+													<fmt:formatDate value="${dateString1}" pattern="yyyy.MM.dd" /> ~ 
+													<fmt:parseDate var="dateString2" value="${items.RP_enddate}"
+														pattern="yyyy-MM-dd HH:mm:ss" /> 
+													<fmt:formatDate value="${dateString2}" pattern="yyyy.MM.dd" />
+												</span> <br> 
+											</div>	
+											<div align="right" style="font-size:20px; height:40%; margin-right: 4px;">	
+												<span margin=" 5px 3px;" style="color:#ae0000;font-family: Tahoma,sans-serif;">
+													${items.RP_price}
+												</span>
+												<span style="font-size:14px;">원 / 일</span>
+											</div>												
 										</div>
 									</a>
 								</div>
@@ -252,48 +139,6 @@ body {
 
 		</div>
 	</div>
-
-	<!-- Modal -->
-	<div class="modal fade" id="myModal1" role="dialog">
-		<div class="modal-dialog">
-
-			<!-- Modal content-->
-			<div class="modal-content" style="z-index: 11;">
-				<div class="modal-header">
-					<h4 class="modal-title">아이디 정지 (연체료를 납부하세요)</h4>
-				</div>
-				<div class="modal-body">
-					<div class="modal-select">
-						<div class="wrapper">
-							<div class="table">
-								<div class="row header">
-									<div class="cell">물품명</div>
-									<div class="cell">빌린날짜</div>
-									<div class="cell">반납일</div>
-									<div class="cell">1일 대여료</div>
-									<div class="cell">연체일</div>
-									<div class="cell">연체료</div>
-								</div>
-								<c:forEach items="${delayInfo}" var="delay">
-									<div class="row">
-										<div class="cell" data-title="Name">${delay.RP_itemname }</div>
-										<div class="cell" data-title="Age">${delay.ROI_startdate }</div>
-										<div class="cell" data-title="Occupation">${delay.ROI_enddate }</div>
-										<div class="cell" data-title="Occupation">${delay.RP_price }</div>
-										<div class="cell" data-title="Occupation">${delay.delay_date }</div>
-										<div class="cell" data-title="Occupation">${delay.invalid_price }</div>
-									</div>
-								</c:forEach>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-
 
 </body>
 </html>

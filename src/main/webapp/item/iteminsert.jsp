@@ -101,8 +101,7 @@
 </script>
 </head>
 <body>
-
-	<!-- 게시판 등록 -->
+	<div style="margin: 0 auto; width:92%;" align="left">
 	<form action="${pageContext.request.contextPath}/itemInsertAction"
 		name="insertForm" enctype="multipart/form-data" method="POST">
 		<table >
@@ -264,8 +263,7 @@
 			</tr>
 		</table>
 	</form>
-	<!-- 게시판 등록 -->
-
+	</div>
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
