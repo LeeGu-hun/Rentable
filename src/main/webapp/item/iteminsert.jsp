@@ -10,6 +10,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
 <title>MVC 게시판</title>
 <script language="javascript">
 	function addboard() {
@@ -99,14 +100,15 @@
 		}
 	}
 </script>
+
 </head>
 <body>
-	<div style="margin: 0 auto; width:92%;" align="left">
+	<!-- 게시판 등록 -->
 	<form action="${pageContext.request.contextPath}/itemInsertAction"
 		name="insertForm" enctype="multipart/form-data" method="POST">
 		<table >
 			<tr align="center" valign="middle" style="border-bottom: 1px solid #d7d7d7;">
-				<th colspan="5"><h3>상품 등록 페이지</h3><a href="http://localhost:8080/rent/item/rss.xml">dsa</a></th>
+				<th colspan="5"><h3>상품 등록 페이지</h3></th>
 			</tr>
 			<tr style="border-bottom: 1px solid #d7d7d7;">
 				<td width="1500px"><img id="blah" src="#" alt="이미지를 등록하세요"
@@ -171,29 +173,35 @@
 							</td>
 							<td><input name="RP_price" type="number" maxlength="10"
 								required />
-								<button type="button" class="btn btn-info btn-lg"
-									data-toggle="modal" data-target="#myModal">합리적인 대여료 계산</button></td>
+								<button type="button" class="btn btn-info btn-lg" style="background: #2f3b3f;opacity:0.85;"
+									data-toggle="modal" data-target="#myModal">안심보장 서비스</button></td>
 
 						</tr>
+								
 					</table>
+						<tr>
+				<td width="20px"><label><input id="imgInp" name="RP_img1" type="file"
+					style="border-radius: 5px; width: 75px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; cursor: pointer;" /></label>
+				<label><input id="imgInp2" name="RP_img2" type="file"
+					style="border-radius: 5px; width: 75px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; cursor: pointer;" /></label>	
+				<label><input id="imgInp3" name="RP_img3" type="file"
+					style="border-radius: 5px; width: 75px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; cursor: pointer;" /></label>	
+
+				</td>
+			
+	
+			</tr>
+
 				</td>
 
 			</tr>
-			<tr>
-				<td width="20px"><input id="imgInp" name="RP_img1" type="file"
-					style="border-radius: 5px; width: 75px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; cursor: pointer;" />
-					<input id="imgInp2" name="RP_img2" type="file"
-					style="border-radius: 5px; width: 75px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; cursor: pointer;" />
-					<input id="imgInp3" name="RP_img3" type="file"
-					style="border-radius: 5px; width: 75px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; cursor: pointer;" />
-
-				</td>
-				
-			</tr>
+			
+			
 
 			<tr align="center" valign="middle">
 				<td colspan="5" style="padding-right: 15px"><h4>상품 상세 정보</h4></td>
 			</tr>
+
 
 		</table>
 
@@ -204,37 +212,72 @@
 					<br></td>
 			</tr>
 		</table>
-		<table style="margin: 5px auto; border-style: groove;">
+		
 
-			<tr align="center" valign="middle">
+
+		<table style="width:100%;">
+
+
+
+			<tr>
+			<td width="92%"></td>
+	
+				<td width="8%"><a href="javascript:save()"
+					style="border-radius: 5px; width: 80px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; cursor: pointer;">등록</a>&nbsp;&nbsp;
+					<a href="javascript:history.go(-1)"
+					style="border-radius: 5px; width: 80px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; cursor: pointer;">뒤로</a>
+				</td>
+			</tr>
+						<tr>
+				<td colspan="2">&nbsp;<span id="result"
+					style="font-size: 10pt; color: #e22424;">${requestScope.result}</span></td>
+					
+					
+		
+			</tr>
+		</table>
+		<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title" align="center">※안심보장 서비스</h4>
+				</div>
+				<div class="modal-body">
+					<table style="width: 100%">
+
+			<tr align="center" valign="middle" >
 				<td colspan="5" style="font-family: 돋음; font-size: 12">
-					<h4>※안심보장 서비스</h4> <br>
+					 <br>
 
-					<div class="RP_guarantee">
+					<div class="RP_guarantee" >
 						<label style="font-weight: bold;">사 용</label> <input type="radio"
 							onClick="display1()" name="RP_guarantee" checked="checked" /> <label
 							style="font-weight: bold;">사용 안함</label> <input
-							name="RP_guarantee" value="0" type="radio" onclick="display2()" />
+							 name="RP_guarantee" value="0" type="radio" onclick="display2()" />
 					</div>
 				</td>
 
 			</tr>
 
 			<tr id="indivisual1">
-				<td style="color: red;">안심보장 서비스란?<br> 자신의 물건을 빌려주는 것에
-					부담이있는 공급자를 위해<br> 수익의 일부를 수수료로 내고 미반납시 제품금액의 일정한 부분을 보장 <br>
+				<td style="color: red; width: 60%">안심보장 서비스란?<br> 자신의 물건을 빌려주는 것에
+					부담이있는 공급자를 위해 수익의 일부를 수수료로 내고 미반납시 제품금액의 일정한 부분을 보장 <br>
 
 
 				</td>
-				<td>
-					<div class="RP_guarantee">
+				<td width="40%">
+					<div class="RP_guarantee"   >
 
 						<label style="color: #FFD700; font-weight: bold;">-5.4%:물품가격의
-							최대 60% 보장</label> <input name="RP_guarantee" value="60" type="radio" /><br>
+							최대 60% 보장</label> <input name="RP_guarantee" value="60" type="radio"/><br>
 						<label style="color: #c0c0c0; font-weight: bold;">-3.9%:물품가격의
-							최대 45% 보장</label> <input name="RP_guarantee" type="radio" value="45" /><br>
+							최대 45% 보장</label> <input  name="RP_guarantee" type="radio" value="45" /><br>
 						<label style="color: #a0522d; font-weight: bold;">-2.5%:물품가격의
-							최대 30% 보장</label> <input name="RP_guarantee" type="radio" value="30" />
+							최대 30% 보장</label> <input   name="RP_guarantee" type="radio" value="30" />
+							
 					</div>
 				</td>
 			</tr>
@@ -243,49 +286,15 @@
 			</tr>
 		</table>
 
-
-
-		<table>
-			<tr>
-				<td colspan="2">&nbsp;<span id="result"
-					style="font-size: 10pt; color: #e22424;">${requestScope.result}</span></td>
-		
-			</tr>
-
-
-			<tr align="center" valign="middle">
-	
-				<td><a href="javascript:save()"
-					style="border-radius: 5px; width: 80px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; cursor: pointer;">등록</a>&nbsp;&nbsp;
-					<a href="javascript:history.go(-1)"
-					style="border-radius: 5px; width: 80px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; cursor: pointer;">뒤로</a>
-				</td>
-			</tr>
-		</table>
-	</form>
-	</div>
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog">
-
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Modal Header</h4>
-				</div>
-				<div class="modal-body">
-					<p>Some text in the modal.</p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
 				</div>
 			</div>
 
 		</div>
 	</div>
-
-
+	</form>
 </body>
 
 </html>
