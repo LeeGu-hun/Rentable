@@ -47,7 +47,7 @@
 		</div>
 		<!-- footer -->
 		<div id="rent_footer">
-			<div id="category_name"></div>
+			<div id="category_name">푸터</div>
 		</div>
 	</div>
 
