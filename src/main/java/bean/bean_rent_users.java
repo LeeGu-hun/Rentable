@@ -13,27 +13,11 @@ public class bean_rent_users {
 	private String R_card; // 카드명
 	private int R_cash; // 잔여 금액
 	private String R_stat; // 유저 현황
-	private Date R_regdate; // 가입일
+	private String R_regdate; // 가입일
 	private String R_cardnum;// 카드번호
 	private String ROI_buyidnum;
 
 	public bean_rent_users() {
-	}
-
-	public bean_rent_users(int r_idnum, String r_id, String r_password, String r_name, String r_address, String r_phone,
-			String r_card, int r_cash, String r_stat, Date r_regdate, String r_cardnum) {
-		super();
-		R_idnum = r_idnum;
-		R_id = r_id;
-		R_password = r_password;
-		R_name = r_name;
-		R_address = r_address;
-		R_phone = r_phone;
-		R_card = r_card;
-		R_cash = r_cash;
-		R_stat = r_stat;
-		R_regdate = r_regdate;
-		R_cardnum = r_cardnum;
 	}
 
 	public int getR_idnum() {
@@ -108,11 +92,11 @@ public class bean_rent_users {
 		R_stat = r_stat;
 	}
 
-	public Date getR_regdate() {
+	public String getR_regdate() {
 		return R_regdate;
 	}
 
-	public void setR_regdate(Date r_regdate) {
+	public void setR_regdate(String r_regdate) {
 		R_regdate = r_regdate;
 	}
 

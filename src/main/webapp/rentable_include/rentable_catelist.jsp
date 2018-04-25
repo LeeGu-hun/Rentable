@@ -46,6 +46,15 @@
 	border-color: #ededed;
 }
 
+.ctglist>ul>li:nth-child(2n) {
+	float: left;
+	width: 49.6%;
+	height: 41px;
+	border-width: 0 0 1px 0;
+	border-style: solid;
+	border-color: #ededed;
+}
+
 .ctglist ul li a {
 	display: block;
 	overflow: hidden;

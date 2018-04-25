@@ -19,11 +19,15 @@
 	</select>
 	
 	<update id="updateR_stat">
-		update rent_users set r_stat = 'block' where r_idnum = #{block_num} 
+		update rent_users set r_stat = 'block' where r_idnum = #{R_idnum} 
 	</update>
 	
-	<update id="invalid_price">
-		update rent_order_items set roi_enddate = sysdate where roi_buynum=#{r_idnum} and roi_
+	<update id="invalid_price1">
+		update rent_orders_items set roi_enddate = sysdate where roi_buyidnum=#{R_idnum} and roi_itemnum = #{RP_itemnum}
+	</update>
+	
+	<update id="invalid_price2">
+		update rent_users set R_stat = 'normal' , R_cash = -#{invalid_price} where R_idnum = #{R_idnum}
 	</update>
 	
 	

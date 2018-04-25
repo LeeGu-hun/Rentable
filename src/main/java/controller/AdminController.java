@@ -1,16 +1,21 @@
 package controller;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import bean.Bean_Category;
+import bean.DelayCommand;
 import bean.bean_rent_users;
 import service.AdminService;
 import service.MainService;
@@ -50,12 +55,16 @@ public class AdminController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/invalid_user", method = RequestMethod.POST)
-	public String inavalid_user(HttpServletRequest request) {
-		String number = request.getParameter("user_num");
-		String price = request.getParameter("invalid_price");
-		System.out.println(number);
-		System.out.println(price);
+	@RequestMapping("/invalid_user")
+	public String inavalid_user(HttpSession session, @RequestParam int invalid_price, @RequestParam int item_num, Model model) {
+		DelayCommand delay = new DelayCommand();
+		bean_rent_users usersInfo = (bean_rent_users) session.getAttribute("userInfo");
+		int user_num = usersInfo.getR_idnum();
+		delay.setR_idnum(user_num);
+		delay.setRP_itemnum(item_num);
+		delay.setInvalid_price(invalid_price);
+		adminService.update_userstat(delay);
+		usersInfo.setR_stat("normal");
 		return "success";
 	}
 

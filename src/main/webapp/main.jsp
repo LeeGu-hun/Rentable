@@ -11,13 +11,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Responsive Auto Show/Hide Toggle Menu Demo</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css?version=1.16" />
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css?version=1.17" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/main.css?version=1.16" />
+	href="${pageContext.request.contextPath}/resources/css/main.css?version=1.17" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/itemgoods.css?version=1.16" />
+	href="${pageContext.request.contextPath}/resources/css/itemgoods.css?version=1.17" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/category.css?version=1.18" />
+	href="${pageContext.request.contextPath}/resources/css/category.css?version=1.17" />
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <script
@@ -27,8 +27,7 @@
 <body>
 	<div id="wrap">
 		<!-- header -->
-		<!-- body -->
-		<div id="rent_body">
+		<div id="rent_head">
 			<div style="float: left; width: 15%; height: 100px;">
 				<a href="${pageContext.request.contextPath}"
 					style="width: 100%; height: 100%;"> <img alt=""
@@ -39,6 +38,10 @@
 			<div style="float: left; width: 85%; height: 100px;">
 				<%@include file="/category/category.jsp"%>
 			</div>
+
+		</div>
+		<!-- body -->
+		<div id="rent_body">
 			<div id="rent_body_contents">
 				<div id="container">
 					<%@include file="/rentable_contents/rentable_body_contents.jsp"%>

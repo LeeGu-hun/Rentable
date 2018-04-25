@@ -4,7 +4,7 @@ nav {
 
 .nav_wrapper {
 	position: relatvie;
-	margin:auto;
+	margin: auto;
 	transition: top .5s ease-out;
 	background: #2f3b3f;
 	padding: 0;
@@ -116,7 +116,7 @@ main p { 1.2em;
 	display: none;
 }
 
-.spinner-master > label {
+.spinner-master>label {
 	display: none;
 }
 
@@ -230,10 +230,11 @@ footer a {
 }
 
 @media all and (max-width: 768px) {
-	.nav_wrapper{
-	background-color: #2f3b3f;
+	.nav_wrapper {
+		background-color: #2f3b3f;
+		position: relative;
+		z-index: 9;
 	}
-	
 	.example-header .container {
 		width: 100%;
 	}
@@ -252,7 +253,7 @@ footer a {
 		float: left;
 	}
 	.spinner-master label {
-		display:block;
+		display: block;
 		cursor: pointer;
 		position: absolute;
 		z-index: 99;

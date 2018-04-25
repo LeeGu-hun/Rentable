@@ -44,7 +44,7 @@
 	<select id="delayCheck" resultType="bean.DelayCommand">
 	<![CDATA[
 		select
-		rp.RP_ITEMNAME,roi.ROI_STARTDATE,roi.ROI_ENDDATE,rp.rp_price,trunc(sysdate - roi.ROI_ENDDATE,0) as delay_date,
+		rp.RP_ITEMNUM,rp.RP_ITEMNAME,roi.ROI_STARTDATE,roi.ROI_ENDDATE,rp.rp_price,trunc(sysdate - roi.ROI_ENDDATE,0) as delay_date,
 		trunc(sysdate - roi.ROI_ENDDATE,0)*rp.RP_PRICE as invalid_price
 		from RENT_ORDERS_ITEMS roi,RENT_PRODUCTS rp where
 		roi.ROI_ITEMNUM=rp.RP_ITEMNUM and

@@ -2,6 +2,7 @@ package bean;
 
 public class DelayCommand {
 	private int R_idnum;
+	private int RP_itemnum;
 	private String RP_itemname;
 	private String ROI_startdate;
 	private String ROI_enddate;
@@ -67,6 +68,14 @@ public class DelayCommand {
 
 	public void setR_idnum(int r_idnum) {
 		R_idnum = r_idnum;
+	}
+
+	public int getRP_itemnum() {
+		return RP_itemnum;
+	}
+
+	public void setRP_itemnum(int rP_itemnum) {
+		RP_itemnum = rP_itemnum;
 	}
 
 }
