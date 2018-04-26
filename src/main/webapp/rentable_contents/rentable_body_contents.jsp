@@ -53,6 +53,9 @@
 		<c:when test="${path eq 'user_rentlist'}">
 			<%@include file="../myPage/user_rentlist.jsp"%>
 		</c:when>
+		<c:when test="${path eq 'sale_manage'}">
+			<%@include file="../admin/manage_products.jsp"%>
+		</c:when>
 		<c:otherwise>
 			<%@include file="../rentable_include/rentable_mainlist.jsp"%>
 		</c:otherwise>

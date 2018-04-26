@@ -16,6 +16,8 @@ public class bean_rent_users {
 	private String R_regdate; // 가입일
 	private String R_cardnum;// 카드번호
 	private String ROI_buyidnum;
+	private String renting;
+	private String borrow;
 
 	public bean_rent_users() {
 	}
@@ -114,6 +116,22 @@ public class bean_rent_users {
 
 	public void setROI_buyidnum(String rOI_buyidnum) {
 		ROI_buyidnum = rOI_buyidnum;
+	}
+
+	public String getRenting() {
+		return renting;
+	}
+
+	public void setRenting(String renting) {
+		this.renting = renting;
+	}
+
+	public String getBorrow() {
+		return borrow;
+	}
+
+	public void setBorrow(String borrow) {
+		this.borrow = borrow;
 	}
 
 }

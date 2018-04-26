@@ -4,10 +4,19 @@
 
 <mapper namespace="adminSQL">
 
-	<select id="getUserlists" resultType="bean.bean_rent_users">select r_idnum,
-		r_id,r_name,
-		r_address,r_card,r_cash, r_stat from rent_users where
-		r_stat != 'admin'
+	<select id="getUserlists" resultType="bean.bean_rent_users">
+		select ru.R_id,
+		ru.R_name,ru.R_Address,ru.R_card,ru.R_cash,b.borrow,r.renting,ru.R_stat
+		from
+		rent_users ru,
+		(select nvl(count(roi.ROI_BUYIDNUM),'0') borrow, ru.R_idnum as bnum from
+		rent_users ru, rent_orders_items roi where roi.ROI_BUYIDNUM(+) =
+		ru.R_IDNUM group by ru.R_IDNUM) b,
+		(select nvl(count(rp.RP_usernum),'0') renting, ru.R_idnum as brnum from
+		rent_users ru, rent_products rp where ru.R_IDNUM = rp.rp_usernum(+)
+		group by ru.R_idnum) r
+		where b.bnum = r.brnum and r.brnum = ru.R_idnum and ru.R_stat != 'admin'
+		order by R_name desc
 	</select>
 
 	<select id="getInvaildlist" resultType="bean.bean_rent_users">
@@ -17,18 +26,21 @@
 		> 30 order by
 		roi.ROI_ENDDATE
 	</select>
-	
+
 	<update id="updateR_stat">
-		update rent_users set r_stat = 'block' where r_idnum = #{R_idnum} 
+		update rent_users set r_stat = 'block' where r_idnum
+		= #{R_idnum}
 	</update>
-	
+
 	<update id="invalid_price1">
-		update rent_orders_items set roi_enddate = sysdate where roi_buyidnum=#{R_idnum} and roi_itemnum = #{RP_itemnum}
+		update rent_orders_items set roi_enddate = sysdate
+		where roi_buyidnum=#{R_idnum} and roi_itemnum = #{RP_itemnum}
 	</update>
-	
+
 	<update id="invalid_price2">
-		update rent_users set R_stat = 'normal' , R_cash = -#{invalid_price} where R_idnum = #{R_idnum}
+		update rent_users set R_stat = 'normal' , R_cash =
+		-#{invalid_price} where R_idnum = #{R_idnum}
 	</update>
-	
-	
+
+
 </mapper>

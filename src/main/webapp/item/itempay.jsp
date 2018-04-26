@@ -5,6 +5,7 @@
 <html lang="ko-KR">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rent</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/common.css?version=1.34" />
@@ -12,11 +13,70 @@
 	href="${pageContext.request.contextPath}/resources/css/itempay.css?version=1.12" />
 <script type="text/javascript"
 	src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<style type="text/css">
+#shop_wrap {
+	width: 1200px;
+	margin: 0 auto;
+	padding-top: 10px;
+}
+
+.order_list-tb {
+	width: 100%;
+}
+
+#order_list {
+	width: 1200px;
+	margin: 0 auto;
+	padding-top: 10px;
+}
+
+.order_title {
+	padding: 20px 0 20px 5px;
+	width: 99.4%;
+	text-align: left;
+	border: 1px solid #cbcdce;
+	font-family: 'Jeju Gothic', 'dotum', serif;
+	font-size: 1.2em;
+	color: #3e3e3e;
+}
+
+.form_div {
+	width: 100%;
+	padding-top: 10px;
+}
+
+#order_form {
+	width: 1200px;
+	margin: 0 auto;;
+	padding-top: 10px;
+}
+
+@media screen and (max-width:768px) {
+	#shop_wrap {
+		width: auto;
+	}
+	#order_list {
+		width: auto;
+	}
+	.order_title {
+		width: auto;
+	}
+	.form_div {
+		width: auto;
+	}
+	#order_form {
+		width: auto;
+		margin: 0 auto;;
+		padding-top: 10px;
+	}
+}
+</style>
 </head>
 <body>
 	<div id="shop_wrap">
 		<div class="line_1px"></div>
-		<form id="order_list_frm" name="order_list_frm" action="" method="POST">
+		<form id="order_list_frm" name="order_list_frm" action=""
+			method="POST">
 			<div id="order_list">
 				<div class="order_title">| SHOPPING ORDER</div>
 				<div id="goods_order_list">
@@ -76,7 +136,7 @@
 									style="color: #FF3366;"> * </span></th>
 								<td><input type="text" id="order_name" name="order_name"
 									required class="input_box" value="${usersInfo.getR_name()}">
-									<span id="result" style="font-size:10pt;color:#e22424;">${requestScope.result }</span>
+									<span id="result" style="font-size: 10pt; color: #e22424;">${requestScope.result }</span>
 								</td>
 							</tr>
 							<tr>
@@ -97,7 +157,7 @@
 									value="${phone2}" required class="input_box50" maxlength="4">-
 									<input type="text" name="order_hp3" id="order_hp3"
 									value="${phone3}" required class="input_box50" maxlength="4">
-										<span id="result1" style="font-size:10pt;color:#e22424;">${requestScope.result1 }</span>
+									<span id="result1" style="font-size: 10pt; color: #e22424;">${requestScope.result1 }</span>
 								</td>
 							</tr>
 							<tr>
@@ -105,7 +165,8 @@
 									style="color: #FF3366;"> * </span></th>
 								<td><input type="text" name="order_addr1" id="order_addr1"
 									value="${usersInfo.getR_address()}" required class="input_box"
-									size="60">	<span id="result2" style="font-size:10pt;color:#e22424;">${requestScope.result2 }</span></td>
+									size="60"> <span id="result2"
+									style="font-size: 10pt; color: #e22424;">${requestScope.result2 }</span></td>
 							</tr>
 						</tbody>
 					</table>
@@ -127,7 +188,7 @@
 									style="color: #FF3366;"> * </span></th>
 								<td><input type="text" id="delivery_name"
 									name="delivery_name" required class="input_box" value="">
-										<span id="result3" style="font-size:10pt;color:#e22424;">${requestScope.result3 }</span>
+									<span id="result3" style="font-size: 10pt; color: #e22424;">${requestScope.result3 }</span>
 								</td>
 							</tr>
 							<tr>
@@ -148,18 +209,17 @@
 									id="delivery_hp2" value="" required class="input_box50"
 									maxlength="4">- <input type="text" name="delivery_hp3"
 									id="delivery_hp3" value="" required class="input_box50"
-									maxlength="4">
-										<span id="result4" style="font-size:10pt;color:#e22424;">${requestScope.result4 }</span></td>
+									maxlength="4"> <span id="result4"
+									style="font-size: 10pt; color: #e22424;">${requestScope.result4 }</span></td>
 							</tr>
 							<tr>
 								<th scope="row"><label for="delivery_addr1">주소</label><span
 									style="color: #FF3366;"> * </span></th>
-								<td>
-									<input type="button" name="btn1" class="button_small"
-										onclick="execDaumPostcode();" readonly value="주소검색"><br>
+								<td><input type="button" name="btn1" class="button_small"
+									onclick="execDaumPostcode();" readonly value="주소검색"><br>
 									<input type="text" name="delivery_addr1" id="delivery_addr1"
-									value="" required class="input_box" size="60">
-										<span id="result5" style="font-size:10pt;color:#e22424;">${requestScope.result5 }</span></td>
+									value="" required class="input_box" size="60"> <span
+									id="result5" style="font-size: 10pt; color: #e22424;">${requestScope.result5 }</span></td>
 							</tr>
 							<tr>
 								<th scope="row"><label for="order_contents">요구 사항</label></th>
@@ -186,8 +246,8 @@
 											type="radio" name="privacy_agreement" id="privacy_agreement"
 											value="1"> 동의함</span> <span class="radiobox_span"><input
 											type="radio" name="privacy_agreement" id="privacy_agreement"
-											value="2"> 동의안함</span>
-											<span id="result6" style="font-size:10pt;color:#e22424;">${requestScope.result6 }</span>
+											value="2"> 동의안함</span> <span id="result6"
+											style="font-size: 10pt; color: #e22424;">${requestScope.result6 }</span>
 									</div>
 								</td>
 							</tr>
@@ -253,7 +313,7 @@
 						}
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
 						document.getElementById('delivery_addr1').value = fullAddr;
-						// 커서를 상세주소 필드로 이동한다.
+					// 커서를 상세주소 필드로 이동한다.
 					}
 				}).open();
 		}
@@ -291,13 +351,13 @@
 		// submit 폼체크
 		function submit_buy(f) {
 			f = document.order_list_frm;
-			document.getElementById('result').textContent= '';
-			document.getElementById('result1').textContent= '';
-			document.getElementById('result2').textContent= '';
-			document.getElementById('result3').textContent= '';
-			document.getElementById('result4').textContent= '';
-			document.getElementById('result5').textContent= '';
-			document.getElementById('result6').textContent= '';
+			document.getElementById('result').textContent = '';
+			document.getElementById('result1').textContent = '';
+			document.getElementById('result2').textContent = '';
+			document.getElementById('result3').textContent = '';
+			document.getElementById('result4').textContent = '';
+			document.getElementById('result5').textContent = '';
+			document.getElementById('result6').textContent = '';
 			if (f.order_name.value.length < 1) {
 				document.getElementById('result').textContent = "주문하시는 분을 입력해 주세요.";
 				f.order_name.focus();
@@ -305,7 +365,7 @@
 			}
 			if (f.order_hp1.value.length < 1) {
 				document.getElementById('result1').textContent = "핸드폰을 입력해 주세요.";
-				
+	
 				f.order_hp1.focus();
 				return;
 			}

@@ -53,6 +53,16 @@ public class AdminController {
 		model.addAttribute("category", getMainCategory());
 		return "main";
 	}
+	
+	@RequestMapping("/sale_manage")
+	public String saleManage(Model model, HttpServletRequest request) {
+		List<bean_rent_users> userlist = adminService.getUserList();
+		adminService.getInvaildList();
+		model.addAttribute("userlist", userlist);
+		model.addAttribute("path", getPath(request));
+		model.addAttribute("category", getMainCategory());
+		return "main";
+	}
 
 	@ResponseBody
 	@RequestMapping("/invalid_user")

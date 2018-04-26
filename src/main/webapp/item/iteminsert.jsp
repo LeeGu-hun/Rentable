@@ -12,6 +12,64 @@
 
 
 <title>MVC 게시판</title>
+<style>
+
+#iteminsertDiv {
+   width: 1200px;
+   margin: 0 auto;
+   padding-top: 10px;
+}
+@media screen and ( max-width : 768px ) {
+   #iteminsertDiv {
+      width: auto;
+   }
+  
+}
+#iteminsertDiv2 {
+   width: 1200px;
+   margin: 0 auto;
+   padding-top: 10px;
+}
+@media screen and ( max-width : 768px ) {
+   #iteminsertDiv2 {
+      width: auto;
+   }
+  
+}
+#iteminsertDiv3 {
+   width: 1200px;
+   margin: 0 auto;
+   padding-top: 10px;
+}
+@media screen and ( max-width : 768px ) {
+   #iteminsertDiv3 {
+      width: auto;
+   }
+  
+}
+#iteminsertDiv4 {
+   width: 1200px;
+   margin: 0 auto;
+   padding-top: 10px;
+}
+@media screen and ( max-width : 768px ) {
+   #iteminsertDiv4 {
+      width: auto;
+   }
+  
+}
+#iteminsertDiv5 {
+   width: 1200px;
+   margin: 0 auto;
+   padding-top: 10px;
+}
+@media screen and ( max-width : 768px ) {
+   #iteminsertDiv5 {
+      width: auto;
+   }
+  
+}
+</style>
 <script language="javascript">
 	function addboard() {
 		boardform.submit();
@@ -103,35 +161,37 @@
 
 </head>
 <body>
-	<!-- 게시판 등록 -->
-	<form action="${pageContext.request.contextPath}/itemInsertAction"
-		name="insertForm" enctype="multipart/form-data" method="POST">
-		<table >
-			<tr align="center" valign="middle" style="border-bottom: 1px solid #d7d7d7;">
-				<th colspan="5"><h3>상품 등록 페이지</h3></th>
-			</tr>
-			<tr style="border-bottom: 1px solid #d7d7d7;">
-				<td width="1500px"><img id="blah" src="#" alt="이미지를 등록하세요"
-					width="700" height="400" /></td>
-				<td>
-					<table style="height: 400px; width: 700px;">
-						<tr style="border-bottom: 1px solid #d7d7d7; border-left:1px solid #d7d7d7; ">
-							<td style="font-family: 돋음; font-size: 12" height="16">
-								<div align="center">
-									<h4>상품명</h4>
-								</div>
+	<div  id="iteminsertDiv" style="margin: 0 auto; width:93%;" align="left"  >
 
-							</td>
-							<td><input id="RP_itemname" name="RP_itemname" type="text"
-								size="51" maxlength="100" required />
-						</tr >
-						<tr style="border-bottom: 1px solid #d7d7d7;border-left:1px solid #d7d7d7;">
-							<td style="font-family: 돋음; font-size: 12" height="16">
-								<div align="center">
-									<h4>카테고리</h4>
-								</div>
-							</td>
-							<td><select id="RP_catemain" name="RP_catemain"
+	<form action="${pageContext.request.contextPath}/itemInsertAction" name="insertForm" enctype="multipart/form-data" method="POST">
+			<div align="center" valign="middle" style="border-bottom: 1px solid #d7d7d7;"><h3>상품 등록 페이지</h3></div>
+		<div id="iteminsertDiv2">
+
+			<div  style="border-bottom: 1px solid #d7d7d7; width:50%; height:400px; float: left; " >
+			<div ><img id="blah" src="#" alt="이미지를 등록하세요"
+					width="87%" height="100%" /></div></div>
+	
+			
+				<div style="float: left;   ">
+					<div style="border-bottom: 1px solid #d7d7d7; border-left:1px solid #d7d7d7; height:90px; ">
+
+								<h4  align="center">상품명</h4>
+
+						
+						<div  align="center"><input  id="RP_itemname" name="RP_itemname" type="text"
+								style="width:70%; height: 25px;"  maxlength="100" required /> </div>	
+					
+					</div>
+					
+						
+						
+								
+							<div style="border-bottom: 1px solid #d7d7d7; border-left:1px solid #d7d7d7;height:90px; ">
+
+									<h4  align="center">카테고리</h4>
+
+						
+					<div  align="center">		<select id="RP_catemain" name="RP_catemain"
 								onchange="itemChange()" style="width: 190px; height: 25px;"
 								required>
 									<option>대분류</option>
@@ -141,160 +201,139 @@
 									<option value="digital">디지털&가전</option>
 									<option value="sports">스포츠&레저</option>
 									<option value="book">도서&음반</option>
-
-
 									<fmt:formatDate value="${myDate}" pattern="yyyy-MM-dd" />
-
-
-
-
 							</select>&nbsp; <select id="RP_catesub" name="RP_catesub"
 								style="width: 190px; height: 25px;">
 									<option>소분류</option>
+							</select>
+							</div>
+					
+					</div>
+					
+								<div style="border-bottom: 1px solid #d7d7d7; border-left:1px solid #d7d7d7;height:90px; ">
+	
+									<h4  align="center">대여 가능기간</h4>
 
-							</select></td>
-						</tr>
-						<tr style="border-bottom: 1px solid #d7d7d7;border-left:1px solid #d7d7d7;">
-							<td style="font-family: 돋음; font-size: 12" height="16">
-								<div align="center">
-									<h4>대여 가능기간</h4>
-								</div>
-							</td>
-							<td><input type="date" name="RP_startdate" required
+						
+						<div  align="center">	<input type="date" name="RP_startdate" required
 								style="width: 175px; height: 20px;" /> &nbsp;~&nbsp; <input
 								name="RP_enddate" type="date"
-								style="width: 175px; height: 20px;" required /></td>
-						</tr>
-						<tr style="border-left:1px solid #d7d7d7;">
-							<td style="font-family: 돋음; font-size: 12" height="16">
-								<div align="center">
-									<h4>일일 대여료</h4>
-								</div>
-							</td>
-							<td><input name="RP_price" type="number" maxlength="10"
+								style="width: 175px; height: 20px;" required /></div>
+					</div>
+						
+										<div style="border-bottom: 1px solid #d7d7d7; border-left:1px solid #d7d7d7;height:90px; ">
+
+									<h4  align="center">일일 대여료</h4>
+
+						
+						<div  align="center">	<input name="RP_price" type="number" maxlength="10"
 								required />
-								<button type="button" class="btn btn-info btn-lg" style="background: #2f3b3f;opacity:0.85;"
-									data-toggle="modal" data-target="#myModal">안심보장 서비스</button></td>
+								<button type="button" class="btn btn-info btn-lg" style="background: #2f3b3f;opacity:0.85;width:40%;height:10% "
+									data-toggle="modal" data-target="#myModal">안심보장 서비스</button></div>
+					</div>
+					</div>
 
-						</tr>
-								
-					</table>
-						<tr>
-				<td width="20px"><label><input id="imgInp" name="RP_img1" type="file"
-					style="border-radius: 5px; width: 75px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; cursor: pointer;" /></label>
+			</div>
+			
+			<div style="margin-top: 400px">
+							<label><input id="imgInp" name="RP_img1" type="file"
+					style="border-radius: 5px; width: 75px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; 
+					background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; 
+					cursor: pointer;" /></label>
 				<label><input id="imgInp2" name="RP_img2" type="file"
-					style="border-radius: 5px; width: 75px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; cursor: pointer;" /></label>	
+					style="border-radius: 5px; width: 75px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; 
+					background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; 
+					cursor: pointer;" /></label>	
 				<label><input id="imgInp3" name="RP_img3" type="file"
-					style="border-radius: 5px; width: 75px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; cursor: pointer;" /></label>	
-
-				</td>
+					style="border-radius: 5px; width: 75px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; 
+					background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; 
+					cursor: pointer;" /></label>	
+			</div>
+			
+			<div align="center" ><h4>상품 상세 정보</h4> </div>
 			
 	
-			</tr>
-
-				</td>
-
-			</tr>
-			
-			
-
-			<tr align="center" valign="middle">
-				<td colspan="5" style="padding-right: 15px"><h4>상품 상세 정보</h4></td>
-			</tr>
-
-
-		</table>
-
-
-		<table>
-			<tr>
-				<td>&nbsp;<textarea name="RP_detail" cols="200" rows="15"></textarea><br>
-					<br></td>
-			</tr>
-		</table>
 		
-
-
-		<table style="width:100%;">
-
-
-
-			<tr>
-			<td width="92%"></td>
+		
+				<div id="#iteminsertDiv5"><textarea name="RP_detail" style="width: 100%;" rows="15" ></textarea></div>
+					
 	
-				<td width="8%"><a href="javascript:save()"
-					style="border-radius: 5px; width: 80px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; cursor: pointer;">등록</a>&nbsp;&nbsp;
+
+
+
+
+				
+        <div>  <a href="javascript:save()"
+					style="border-radius: 5px; width: 80px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; 
+					background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; 
+					cursor: pointer;">등록</a>&nbsp;&nbsp;
 					<a href="javascript:history.go(-1)"
-					style="border-radius: 5px; width: 80px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; cursor: pointer;">뒤로</a>
-				</td>
-			</tr>
-						<tr>
-				<td colspan="2">&nbsp;<span id="result"
-					style="font-size: 10pt; color: #e22424;">${requestScope.result}</span></td>
-					
-					
+					style="border-radius: 5px; width: 80px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; 
+					background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom; 
+					cursor: pointer;">뒤로</a>
+			
 		
-			</tr>
-		</table>
+
+			<span id="result" style="font-size: 10pt; color: #e22424;">${requestScope.result}</span>
+		
+		</div>
 		<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
+		
+		
+		
 
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title" align="center">※안심보장 서비스</h4>
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h3 class="modal-title" align="center">&nbsp안심보장 서비스&nbsp</h3><br>
+				<div style="margin-left: 10px;">
+					<span style="color: red; font-size: 17px">안심보장 서비스란?</span><br><br> 
+					<span style="font-size: 13px">
+					→ 수익의 일부를 수수료로 내고 미 반납사고 시에 제품 금액의 일정 부분을 보상해주는 제도 <br>
+					</span>
 				</div>
-				<div class="modal-body">
-					<table style="width: 100%">
-
-			<tr align="center" valign="middle" >
-				<td colspan="5" style="font-family: 돋음; font-size: 12">
-					 <br>
-
+					
+			</div>			
+			
+			<div class="modal-body">
+				<div align="center" valign="middle" >
 					<div class="RP_guarantee" >
-						<label style="font-weight: bold;">사 용</label> <input type="radio"
-							onClick="display1()" name="RP_guarantee" checked="checked" /> <label
-							style="font-weight: bold;">사용 안함</label> <input
-							 name="RP_guarantee" value="0" type="radio" onclick="display2()" />
-					</div>
-				</td>
-
-			</tr>
-
-			<tr id="indivisual1">
-				<td style="color: red; width: 60%">안심보장 서비스란?<br> 자신의 물건을 빌려주는 것에
-					부담이있는 공급자를 위해 수익의 일부를 수수료로 내고 미반납시 제품금액의 일정한 부분을 보장 <br>
-
-
-				</td>
-				<td width="40%">
-					<div class="RP_guarantee"   >
-
-						<label style="color: #FFD700; font-weight: bold;">-5.4%:물품가격의
-							최대 60% 보장</label> <input name="RP_guarantee" value="60" type="radio"/><br>
-						<label style="color: #c0c0c0; font-weight: bold;">-3.9%:물품가격의
-							최대 45% 보장</label> <input  name="RP_guarantee" type="radio" value="45" /><br>
-						<label style="color: #a0522d; font-weight: bold;">-2.5%:물품가격의
-							최대 30% 보장</label> <input   name="RP_guarantee" type="radio" value="30" />
-							
-					</div>
-				</td>
-			</tr>
-			<tr id="company1" style="display: none">
-				<td>'사용안함' 을 선택하셨습니다.</td>
-			</tr>
-		</table>
-
+						<label style="font-weight: bold;">사용</label> 
+						<input type="radio" onClick="display1()" name="RP_guarantee" checked="checked" /> 
+						<label style="font-weight: bold;">&nbsp 미사용</label> 
+						<input name="RP_guarantee" value="0" type="radio" onclick="display2()" />
+					</div>		
 				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
-				</div>
+		
+				<div id="indivisual1">
+					
+					<div class="RP_guarantee" style="margin-left: 10px;">
+						<label style="font-weight: bold;">●&nbsp<span style="color: #FFD700;">7.2%</span> : 최대  60% 보상</label> 
+						<input name="RP_guarantee" value="60" type="radio"/><br>
+						<label style="font-weight: bold;">●&nbsp<span style="color: #c0c0c0;">5.9%</span> : 최대  45% 보상</label> 
+						<input name="RP_guarantee" type="radio" value="45" /><br>
+						<label style="font-weight: bold;">●&nbsp<span style="color: #a0522d;">4.6%</span> : 최대  30% 보상</label> 
+						<input name="RP_guarantee" type="radio" value="30" />				
+					</div>
+						
+					
+					<div id="company1" style="display: none">
+						<span>'사용안함' 을 선택하셨습니다.</span>
+					</div>
+				</div>			
+			</div>
+			
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" style="color: black;">확인</button>
 			</div>
 
 		</div>
 	</div>
 	</form>
+	</div>
+
 </body>
 
 </html>

@@ -111,7 +111,7 @@
 								<li><a
 									href="${pageContext.request.contextPath}/user_manage">회원관리</a></li>
 
-								<li><a href="#">물품관리</a></li>
+								<li><a href="${pageContext.request.contextPath}/sale_manage">물품관리</a></li>
 
 								<li><a href="#">카테고리 관리</a></li>
 

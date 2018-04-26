@@ -29,31 +29,33 @@
 		<table style="width: 100%">
 			<tr align="center" valign="middle"
 				style="text-align: center; color: white; font-size: 17px; background: #324044; opacity: 0.85; width: 100%; height: 50px; border: 1; border-style: solid; border-color: white;">
-				<td width="20%">회원ID</td>
+				<td width="15%">회원ID</td>
 				<td width="15%">이름</td>
-				<td width="10%">카드</td>
-				<td width="25%">가입일</td>
-				<td width="15%">상태</td>
-				<td width="20%">보기</td>
+				<td width="10%">카드사</td>
+				<td width="20%">잔여금액</td>
+				<td width="12%">빌린갯수</td>
+				<td width="12%">등록갯수</td>
+				<td width="16%">아이디상태</td>
 			</tr>
 			<c:forEach var="items" items="${userlist}">
 				<tr align="center" valign="middle" height="60px"
 					style="text-align: center; color: black; font-size: 16px; border-bottom: 0.2px solid black;">
-					<td width="20%">${items.r_id}</td>
+					<td width="15%">${items.r_id}</td>
 					<td width="15%"><span style="color: black;">${items.r_name}</span></td>
 					<td width="10%">${items.r_card}</td>
-					<td width="25%"
+					<td width="20%"
 						style="padding-left: 20px; color: #ae0000; font-family: Tahoma, sans-serif;">
-						${items.r_regdate}</td>
+						${items.r_cash}</td>
+					<td width="12%">${items.borrow}</td>
+					<td width="12%">${items.renting}</td>	
 					<c:choose>
 						<c:when test="${items.r_stat == 'block'}">
-							<td width="15%"><font color="red">정지</font></td>
+							<td width="14%"><font color="red">정지</font></td>
 						</c:when>
 						<c:otherwise>
-							<td width="15%">정상</td>
+							<td width="14%">정상</td>
 						</c:otherwise>
 					</c:choose>
-					<td width="15%">보기</td>
 				</tr>
 			</c:forEach>
 		</table>

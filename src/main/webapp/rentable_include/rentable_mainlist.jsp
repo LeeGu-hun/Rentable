@@ -6,42 +6,34 @@
 <html lang="ko">
 <head>
 <script type="text/javascript">
-$(document).ready(function() {
-    var user_stat = '<c:out value='${sessionScope.userInfo.r_stat}'/>';
-    if (user_stat == 'block') {
-        $('#myModal1').modal({
-            backdrop: 'static',
-            keyboard: false
-        });
-    }
+	$(document).ready(function() {
+		var user_stat = '<c:out value='${sessionScope.userInfo.r_stat}'/>';
 
-    $("#myBtn").click(function() {
-        $("#myModal").modal();
-    });
-    
-	$("#checkbtn").click(function(){
-		var item_num = document.getElementById('item_num').innerHTML;
-        var invalid_price = document.getElementById('invalid_price').innerHTML;
-                 $.ajax({
-                      type: 'POST',
-                      url: '${pageContext.request.contextPath}/invalid_user',
-                      data: {
-                             "item_num": item_num,
-                             "invalid_price": invalid_price
-                            },
-                      success: function(data) {
-                      if ($.trim(data) == 'success') {
-                    	  location.reload();
-                       }
+		if (user_stat == 'block') {
+			$('#myModal1').modal({
+				backdrop : 'static',
+				keyboard : false
+			});
+		}
 
-                            }
-                        });
-                });
-});
-
+		$("#myBtn").click(function() {
+			$("#myModal").modal();
+		});
+	});
 </script>
 
 <style>
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial;
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 400;
+	color: #3b3b3b;
+	-webkit-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+	background: #2b2b2b;
+}
+
 @media screen and (max-width: 580px) {
 	body {
 		font-size: 16px;
@@ -154,7 +146,7 @@ $(document).ready(function() {
 							<li>
 								<div style="position: relative; height: 100%;">
 									<a
-										href="<c:url value="/ProdDetail/${items.RP_itemnum}/${items.RP_stat}"/>">
+										href="<c:url value="/ProdDetail/${items.RP_itemnum}/${items.ROI_stat}"/>">
 										<div style="height: 70%; border-radius: 7px 2px 15px 5px">
 											<c:if test="${items.ROI_stat == '대여중'}">
 												<img alt=""
@@ -175,9 +167,7 @@ $(document).ready(function() {
 													style="width: 100%; height: 70%; position: absolute;">
 											</c:if>
 										</div>
-
-
-
+										
 										<div style="height: 30%; color: black; margin-left: 2px;">
 											<div style="font-size: 16px; height: 35%; margin: 5px 0 0 0">
 												<span>${items.RP_itemname}</span><br>
@@ -266,7 +256,7 @@ $(document).ready(function() {
 		<div class="modal-dialog">
 
 			<!-- Modal content-->
-			<div class="modal-content">
+			<div class="modal-content" style="z-index: 11;">
 				<div class="modal-header">
 					<h4 class="modal-title">아이디 정지 (연체료를 납부하세요)</h4>
 				</div>
@@ -275,39 +265,26 @@ $(document).ready(function() {
 						<div class="wrapper">
 							<div class="table">
 								<div class="row header">
-									<div class="cell">번호</div>
 									<div class="cell">물품명</div>
 									<div class="cell">빌린날짜</div>
 									<div class="cell">반납일</div>
-									<div class="cell">대여료/일</div>
+									<div class="cell">1일 대여료</div>
 									<div class="cell">연체일</div>
 									<div class="cell">연체료</div>
 								</div>
 								<c:forEach items="${delayInfo}" var="delay">
 									<div class="row">
-										<div class="cell" id="item_num" data-title="Name">${delay.RP_itemnum }</div>
 										<div class="cell" data-title="Name">${delay.RP_itemname }</div>
-										<div class="cell" data-title="Age">
-											<fmt:parseDate var="dateString"
-												value="${delay.ROI_startdate}" pattern="yyyy-MM-dd HH:mm:ss" />
-											<fmt:formatDate value="${dateString}" pattern="yyyy.MM.dd" />
-										</div>
-										<div class="cell" data-title="Occupation">
-											<fmt:parseDate var="dateString2" value="${delay.ROI_enddate}"
-												pattern="yyyy-MM-dd HH:mm:ss" />
-											<fmt:formatDate value="${dateString2}" pattern="yyyy.MM.dd" />
-										</div>
+										<div class="cell" data-title="Age">${delay.ROI_startdate }</div>
+										<div class="cell" data-title="Occupation">${delay.ROI_enddate }</div>
 										<div class="cell" data-title="Occupation">${delay.RP_price }</div>
 										<div class="cell" data-title="Occupation">${delay.delay_date }</div>
-										<div class="cell" id="invalid_price" data-title="Occupation">${delay.invalid_price }</div>
+										<div class="cell" data-title="Occupation">${delay.invalid_price }</div>
 									</div>
 								</c:forEach>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" id="checkbtn">납부하기</button>
 				</div>
 			</div>
 
