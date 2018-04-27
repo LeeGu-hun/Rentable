@@ -4,7 +4,7 @@
 <html>
 <head>
 <link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/css/loginform.css?version=1.2" />
+   href="${pageContext.request.contextPath}/resources/css/loginform.css?version=1.4" />
 <meta charset="UTF-8">
 <title>Rentable</title>
 <style>

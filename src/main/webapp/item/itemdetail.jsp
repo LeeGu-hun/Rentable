@@ -169,14 +169,14 @@
 }
 
 #goods_qan_box {
-	width: 1200px;
+	width: auto;
 	margin: 0 auto;
 	padding-top: 10px;
 }
 
 .goods_info_top_left {
 	float: left;
-	width: 40%;
+	width: auto;
 	padding: 0px;
 	text-align: left;
 }
@@ -189,8 +189,8 @@
 }
 
 .goods_name {
-	width: 500px;
-	min-height: 40px;
+	width: auto;
+	min-height: auto;
 	padding: 1px;
 	color: #5f5f5f;
 	font-weight: bold;
@@ -198,7 +198,7 @@
 }
 
 .goods-tb {
-	width: 500px;
+	width: auto;
 	border-bottom: 1px solid #dddddd;
 	border-top: 1px solid #dddddd;
 	border-collapse: collapse;
@@ -207,7 +207,7 @@
 }
 
 .goods-tb th {
-	width: 100px;
+	width: auto;
 	border-right: 1px solid #dddddd;
 	text-align: left;
 	padding-left: 35px;
@@ -233,8 +233,8 @@
 
 .order_btn_buy {
 	border-radius: 2px;
-	width: 165px;
-	height: 35px;
+	width: auto;
+	height: auto;
 	border: 1px solid #FF3945;
 	background: #FF444F;
 	font-family: 'Jeju Gothic', 'dotum', serif;
@@ -250,44 +250,31 @@
 }
 
 #RR_content {
-	width: 1000px;
+	width: auto;
 	line-height: 50px;
 }
 
-@media screen and ( max-width : 768px ) {
+.goods_info_top_box {
+	width: auto;
+}
+
+@media screen and ( max-width : 1200px ) {
 	#goods_detail {
 		width: auto;
 	}
-	#goods_qan_box {
-		width: auto;
-	}
-	.goods_info_top_left {
-		width: auto;
-	}
-	.goods_name {
-		width: auto;
-		min-height: auto;
-	}
 	.goods-tb {
-		width: auto;
 		white-space: pre-wrap;
 	}
-	.goods-tb th {
-		width: auto;
-	}
-	.goods-tb th {
-		height: auto;
+	.goods_info_top_left {
+		float: none;
 	}
 	.goods_info_top_right {
 		overflow: visible;
 		float: none;
+		padding: 0px;
 	}
-	.order_btn_buy {
-		width: auto;
-		height: auto;
-	}
-	#RR_content {
-		width: auto;
+	#rent_body_contents {
+		width: 99%;
 	}
 }
 </style>
@@ -338,7 +325,7 @@
 		            	if(month<10) {
 		            		month='0'+month
 		            	} 
-		             var saledate1=year + '-' + month + '-' + day;
+		             var saledate1 = year + '-' + month + '-' + day;
 		             var saledate2 = document.getElementById("saleeddate").value;
 		             var saledate3 = document.getElementById("salestdate").value;
 
@@ -523,7 +510,7 @@
 					<div class="goods_image">
 						<input type="hidden" id="stat1" name="stat1" value="${stat1}">
 						<img
-							src="${pageContext.request.contextPath}/resources/images/a1845ccd-1118-43cd-b2c4-99fdcacd2173.jpg"
+							src="${pageContext.request.contextPath}/upload_products/${prodBean.RP_img1}"
 							id='goods_big_img'
 							style="width: 100%; max-width: 760px; vertical-align: middle"
 							onerror="this.style.display='none'">
@@ -554,6 +541,9 @@
 					<div class="goods_name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${prodBean.RP_itemname}</div>
 					<table class="goods-tb">
 						<tbody>
+							<tr>
+
+							</tr>
 							<tr>
 								<th scope="row">일별단위금액</th>
 								<td class="goods_sale_price" id="RP_price">${prodBean.RP_price}</td>
@@ -895,7 +885,8 @@
 		<div class="goods_contents" id="goods_review">
 			<ul class="link">
 				<li id="tab_review_01"><a href="#goods_detail">상품상세정보</a></li>
-				<li id="tab_review_02"><a href="#goods_delivery">판매자/반품/교환정보</a></li>
+				<li id="tab_review_02"><a href="#goods_delivery">판매자/반품/교환정보
+				</a></li>
 				<li id="tab_review_03" class="selected"><a href="#goods_review">한줄평/댓글</a></li>
 				<li id="tab_review_04"><a href="#goods_qan">상품문의</a></li>
 			</ul>
@@ -926,39 +917,46 @@
 
 			<form action="${pageContext.request.contextPath}/itemReview"
 				name="reviewform" method="post">
-				<table id="invisi">
-					<tr>
-						<td>별점<span class="RR_grade"> <span class="input">
-									<input type="radio" name="RR_grade" id="p1" value="1"><label
-									for="p1">1</label> <input type="radio" name="RR_grade" id="p2"
-									value="2"><label for="p2">2</label> <input type="radio"
-									name="RR_grade" id="p3" value="3"><label for="p3">3</label>
-									<input type="radio" name="RR_grade" id="p4" value="4"><label
-									for="p4">4</label> <input type="radio" name="RR_grade" id="p5"
-									value="5"><label for="p5">5</label> <input type="radio"
-									name="RR_grade" id="p6" value="6"><label for="p6">6</label>
-									<input type="radio" name="RR_grade" id="p7" value="7"><label
-									for="p7">7</label> <input type="radio" name="RR_grade" id="p8"
-									value="8"><label for="p8">8</label> <input type="radio"
-									name="RR_grade" id="p9" value="9"><label for="p9">9</label>
-									<input type="radio" name="RR_grade" id="p10" value="10"><label
-									for="p10">10</label>
+
+				<table id="invisi" class="person-tb">
+					<caption></caption>
+					<tbody>
+						<tr>
+							<td>별점<span class="RR_grade"> <span class="input">
+										<input type="radio" name="RR_grade" id="p1" value="1"><label
+										for="p1">1</label> <input type="radio" name="RR_grade" id="p2"
+										value="2"><label for="p2">2</label> <input
+										type="radio" name="RR_grade" id="p3" value="3"><label
+										for="p3">3</label> <input type="radio" name="RR_grade" id="p4"
+										value="4"><label for="p4">4</label> <input
+										type="radio" name="RR_grade" id="p5" value="5"><label
+										for="p5">5</label> <input type="radio" name="RR_grade" id="p6"
+										value="6"><label for="p6">6</label> <input
+										type="radio" name="RR_grade" id="p7" value="7"><label
+										for="p7">7</label> <input type="radio" name="RR_grade" id="p8"
+										value="8"><label for="p8">8</label> <input
+										type="radio" name="RR_grade" id="p9" value="9"><label
+										for="p9">9</label> <input type="radio" name="RR_grade"
+										id="p10" value="10"><label for="p10">10</label>
+								</span>
 							</span>
-						</span>
-						</td>
-						<td>내용</td>
-						<td><textarea id="RR_content" name="RR_content"></textarea></td>
-						<td align="right"><a href="javascript:submitreview()"
-							class="button"
-							style="border-radius: 2px; border-radius: 5px; width: 80px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom;">등록</a></td>
-					</tr>
-					<tr>
-						<td><input type="hidden" id="logid" name="R_idnum"
-							value="${sessionScope.userInfo.r_idnum}"> <input
-							type="hidden" name="R_id" value="${sessionScope.userInfo.r_id}">
-							<input type="hidden" name="RR_itemnum"
-							value="${prodBean.RP_itemnum}"></td>
-					</tr>
+							</td>
+							<th scope="row"><label for="content">내용</label></th>
+							<td><TEXTAREA name="RR_content" id="RR_content"
+									class="smarteditor2" style="width: 99%; height: 200px;"></TEXTAREA>
+							</td>
+							<td align="right"><a href="javascript:submitreview()"
+								class="button"
+								style="border-radius: 2px; border-radius: 5px; width: 80px; height: 30px; padding: 3px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom;">등록</a></td>
+						</tr>
+						<tr>
+							<td><input type="hidden" id="logid" name="R_idnum"
+								value="${sessionScope.userInfo.r_idnum}"> <input
+								type="hidden" name="R_id" value="${sessionScope.userInfo.r_id}">
+								<input type="hidden" name="RR_itemnum"
+								value="${prodBean.RP_itemnum}"></td>
+						</tr>
+					</tbody>
 				</table>
 			</form>
 			<div class="list_bottom_center">
@@ -1034,83 +1032,14 @@
 						value="[POLHAM]남녀공용 웨이브블럭긴팔티셔츠(PU5H931)"> <input
 						type="hidden" name="qna_type" value="goods">
 					<div class="location_title">상품문의</div>
-					<div>
-						<span style="color: #FF3366;"> * </span>표시가 있는 부분은 필수 입력 사항입니다.
-					</div>
 
 					<table class="person-tb">
 						<caption></caption>
 						<tbody>
 							<tr>
-								<th scope="row"><label for="name">이름</label><span
-									style="color: #FF3366;"> * </span></th>
-								<td><input type="text" id="name" name="name" required
-									class="input_box" value=""></td>
-							</tr>
-							<tr>
-								<th scope="row"><label for="password">비밀번호</label><span
-									style="color: #FF3366;"> * </span></th>
-								<td><input type="password" id="password" name="password"
-									value="" required class="input_box"></td>
-							</tr>
-							<tr>
-								<th scope="row"><label for="options">비밀글</label></th>
-								<td><input type="checkbox" name="options" id="options"
-									value="secret"> 비밀글</td>
-							</tr>
-							<tr>
-								<th scope="row"><label for="email">이메일</label></th>
-								<td><input type="text" id="email" name="email" value=""
-									class="input_box300"></td>
-							</tr>
-							<tr>
-								<th scope="row"><label for="category">구분</label><span
-									style="color: #FF3366;"> * </span></th>
-								<td><select name="category" id="category" required
-									class="selectbox">
-										<option value="">구분 선택</option>
-										<option value="상품">상품</option>
-										<option value="배송">배송</option>
-										<option value="주문/결제">주문/결제</option>
-										<option value="반품/교환">반품/교환</option>
-										<option value="주문취소">주문취소</option>
-										<option value="기타">기타</option>
-								</select></td>
-							</tr>
-							<tr>
-								<th scope="row"><label for="subject">제목</label><span
-									style="color: #FF3366;"> * </span></th>
-								<td><input type="text" id="subject" name="subject" value=""
-									required class="input_box99percent"></td>
-							</tr>
-							<tr>
-								<th scope="row"><label for="content">내용</label><span
-									style="color: #FF3366;"> * </span></th>
+								<th scope="row"><label for="content">내용</label></th>
 								<td><TEXTAREA name="content" id="content"
 										class="smarteditor2" style="width: 99%; height: 200px;"></TEXTAREA>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row"><label for="raview_img">이미지</label></th>
-								<td><input type="file" name="upfiles[]" id="raview_img"
-									class="input_box"></td>
-							</tr>
-							<tr>
-								<th scope="row"><label for="raview_img">개인정보 수집 및<br>
-										이용 동의
-								</label></th>
-								<td>
-									<div class="qna_subject">
-										■ 개인정보의 수집·이용 목적<br> &nbsp; 서비스 제공 및 계약의 이행, 구매 및 대금결제,
-										물품배송 또는 청구지 발송, 회원관리 등을 위한 목적 <br> ■ 수집하려는 개인정보의 항목<br>
-										&nbsp; 이름, 주소, 연락처, 이메일 등 <br> ■ 개인정보의 보유 및 이용 기간<br>
-										&nbsp; 회사는 개인정보 수집 및 이용목적이 달성된 후에는 예외없이 해당정보를 파기합니다.<br>
-										<br> 개인정보 수집 및 이용에 동의하십니까? <span class="radiobox_span"><input
-											type="radio" name="privacy_agreement" id="privacy_agreement"
-											value="1"> 동의함</span> <span class="radiobox_span"><input
-											type="radio" name="privacy_agreement" id="privacy_agreement"
-											value="2"> 동의안함</span>
-									</div>
 								</td>
 							</tr>
 						</tbody>

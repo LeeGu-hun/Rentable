@@ -15,7 +15,7 @@
 	src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <style type="text/css">
 #shop_wrap {
-	width: 1200px;
+	width: auto;
 	margin: 0 auto;
 	padding-top: 10px;
 }
@@ -25,14 +25,14 @@
 }
 
 #order_list {
-	width: 1200px;
+	width: auto;
 	margin: 0 auto;
 	padding-top: 10px;
 }
 
 .order_title {
 	padding: 20px 0 20px 5px;
-	width: 99.4%;
+	width: auto;
 	text-align: left;
 	border: 1px solid #cbcdce;
 	font-family: 'Jeju Gothic', 'dotum', serif;
@@ -41,33 +41,19 @@
 }
 
 .form_div {
-	width: 100%;
+	width: auto;
 	padding-top: 10px;
 }
 
 #order_form {
-	width: 1200px;
-	margin: 0 auto;;
+	width: auto;
+	margin: 0 auto;
 	padding-top: 10px;
 }
 
-@media screen and (max-width:768px) {
-	#shop_wrap {
-		width: auto;
-	}
-	#order_list {
-		width: auto;
-	}
-	.order_title {
-		width: auto;
-	}
-	.form_div {
-		width: auto;
-	}
-	#order_form {
-		width: auto;
-		margin: 0 auto;;
-		padding-top: 10px;
+@media screen and (max-width:1200px) {
+	#rent_body_contents {
+		width: 99%;
 	}
 }
 </style>
@@ -237,9 +223,8 @@
 										<TEXTAREA name="" id="" readonly="readonly"
 											class="smarteditor2" style="width: 99%; height: 100px;">
 ■ 하루 연체 시 결제되는 금액:${prodBean.RP_price}원
- 
-■ 반납일 이후 자동 1일 이상 연체 시 연체금액: ${prodBean.RP_price}원이 카드에서 매일 빠져 나갑니다.
 
+■ 반납일 이후 자동 1일 이상 연체 시 연체금액: ${prodBean.RP_price}원이 카드에서 매일 빠져 나갑니다.
 </TEXTAREA>
 										<p></p>
 										동의 동의하십니까? <span class="radiobox_span"><input

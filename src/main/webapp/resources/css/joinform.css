@@ -18,7 +18,7 @@ body {
 	width: 100%;
 	height: 100%;
 	font-family: 'Open Sans', sans-serif;
-	background: #2f3b3f;
+	background: #2C373B;
 	
 }
 
@@ -45,14 +45,13 @@ h1 {
 }
 
 html {
-	background-color: #ffffff;
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
 }
 
 .joinBox {
-	margin: 0 auto;
+	margin: 2% auto;
 	width: 380px;
 	height: 850px;
 	-webkit-border-radius: 8px/7px;

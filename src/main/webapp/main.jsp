@@ -11,19 +11,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Responsive Auto Show/Hide Toggle Menu Demo</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css?version=1.17" />
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css?version=1.13" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/main.css?version=1.17" />
+	href="${pageContext.request.contextPath}/resources/css/main.css?version=1.13" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/itemgoods.css?version=1.17" />
+	href="${pageContext.request.contextPath}/resources/css/itemgoods.css?version=1.13" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/category.css?version=1.17" />
+	href="${pageContext.request.contextPath}/resources/css/category.css?version=1.13" />
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 </head>
-
+<style>
+@media screen and ( max-width : 1200px ) {
+	#rent_body_contents {
+		width: 99%;
+	}
+}
+</style>
 <body>
 	<div id="wrap">
 		<!-- header -->

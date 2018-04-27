@@ -13,6 +13,11 @@
 
 <title>MVC 게시판</title>
 <style>
+@media screen and ( max-width : 1200px ) {
+   #rent_body_contents {
+      width: 75%;
+   }
+}
 
 #iteminsertDiv {
    width: 1200px;
@@ -141,7 +146,7 @@
 </script>
 <script type="text/javascript">
 	$(function() {
-		$("#imgInp,#imgInp2,#imgInp3").on('change', function() {
+		$("#imgInp").on('change', function() {
 			readURL(this);
 		});
 	});
@@ -157,6 +162,40 @@
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
+	$(function() {
+		$("#imgInp2").on('change', function() {
+			readURL2(this);
+		});
+	});
+
+	function readURL2(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function(e) {
+				$('#blah2').attr('src', e.target.result);
+			}
+
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+	$(function() {
+		$("#imgInp3").on('change', function() {
+			readURL3(this);
+		});
+	});
+
+	function readURL3(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function(e) {
+				$('#blah3').attr('src', e.target.result);
+			}
+
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
 </script>
 
 </head>
@@ -167,13 +206,22 @@
 			<div align="center" valign="middle" style="border-bottom: 1px solid #d7d7d7;"><h3>상품 등록 페이지</h3></div>
 		<div id="iteminsertDiv2">
 
-			<div  style="border-bottom: 1px solid #d7d7d7; width:50%; height:400px; float: left; " >
-			<div ><img id="blah" src="#" alt="이미지를 등록하세요"
-					width="87%" height="100%" /></div></div>
+			<div  style="border-bottom: 1px solid #d7d7d7; width:65%; height:400px; float: left; " >
+			<div style="float:left; width:80%"><img id="blah" src="#" alt="이미지를 등록하세요"
+					width="100%" height="410px" style="margin-top: -10px;"  /></div>
+					
+					<div style="float:right;width:20%;">
+					<div  ><img id="blah2" alt=""
+					width="100%" height="205px" style="margin-top: -10px" /></div>
+					<div ><img id="blah3"  alt="이미지를 등록하세요"
+					width="100%" height="205px" /></div></div>
+					
+					
+					</div>
 	
 			
 				<div style="float: left;   ">
-					<div style="border-bottom: 1px solid #d7d7d7; border-left:1px solid #d7d7d7; height:90px; ">
+					<div style="border-bottom: 1px solid #d7d7d7; border-left:1px solid #d7d7d7; height:90px;">
 
 								<h4  align="center">상품명</h4>
 

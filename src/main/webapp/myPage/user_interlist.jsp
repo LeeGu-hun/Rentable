@@ -81,7 +81,7 @@
 						<a style=" text-decoration: none;" href="<c:url value="/ProdDetail/${likelist.RL_itemnum}/${likelist.RL_stat}"/>">
 						<span style="color:black;">${likelist.RL_itemname}</span>
 						</a></td>
-					<td width="25%" style="padding-left:30px; color:#ae0000;font-family: Tahoma,sans-serif;" >${likelist.RL_price} 
+					<td width="25%" style="padding-left:30px; color:#ae0000;font-family: Tahoma,serif;" >${likelist.RL_price} 
 					<span style="font-size: 12px;">원</span></td>
 					<td width="10%" >
 						<a href="<c:url value="/likeDelete/${likelist.RL_itemnum}"/>" class="del">삭제</a></td>

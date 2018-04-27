@@ -7,12 +7,6 @@
 	text-align: center;
 }
 
-/* 메뉴 네비 */
-
-
-
-
-
 .goods_sale_price {
 	color: #ff8040;
 	font-weight: bold;
@@ -91,9 +85,9 @@
 #back-top {
 	position: fixed;
 	bottom: 0px;
-	right: 30px;
-	width: 46px;
-	height: 70px;
+	right: 20px;
+	width: auto;
+	height: 100px;
 	z-index: 99;
 	cursor: pointer;
 	display: none;

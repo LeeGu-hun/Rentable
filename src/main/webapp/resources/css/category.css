@@ -37,8 +37,8 @@ main {
 	margin: 0 auto;
 }
 
-main p { 1.2em;
-	
+main p {
+	font-size: 1.2em;
 }
 
 #search {
@@ -63,12 +63,12 @@ main p { 1.2em;
 .search_box {
 	clear: both;
 	width: 100%;
-	background: #e8ebf0;
+	background: #2E393D;
 	padding: 0;
 	margin: 0;
-	height: 0;
-	overflow: visible;
+	height: 49.5px;
 	transition: all 0.1s ease-in-out;
+	overflow: visible;
 }
 
 .search_box.active {
@@ -93,7 +93,6 @@ main p { 1.2em;
 	clear: both;
 	width: 10%;
 	height: auto;
-	padding: 10px;
 	margin: 0;
 	margin-left: -5px;
 	border: none;
@@ -240,6 +239,16 @@ footer a {
 	}
 	#search {
 		padding: 10px;
+	}
+	.search_box {
+		clear: both;
+		width: 100%;
+		background: #2E393D;
+		padding: 0;
+		margin: 0;
+		height: 40px;
+		overflow: visible;
+		transition: all 0.1s ease-in-out;
 	}
 	.spinner-master * {
 		transition: all 0.3s;

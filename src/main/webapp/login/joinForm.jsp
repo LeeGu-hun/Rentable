@@ -196,7 +196,7 @@
 	href="http://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css"
 	rel="stylesheet">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/joinform.css?version=1.2" />
+	href="${pageContext.request.contextPath}/resources/css/joinform.css?version=1.4" />
 </head>
 <style>
 </style>

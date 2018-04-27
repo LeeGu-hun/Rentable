@@ -31,7 +31,6 @@ body {
 	color: #3b3b3b;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
-	background: #2b2b2b;
 }
 
 @media screen and (max-width: 580px) {
@@ -146,7 +145,7 @@ body {
 							<li>
 								<div style="position: relative; height: 100%;">
 									<a
-										href="<c:url value="/ProdDetail/${items.RP_itemnum}/${items.ROI_stat}"/>">
+										href="<c:url value="/ProdDetail/${items.RP_itemnum}/${items.RP_stat}"/>">
 										<div style="height: 70%; border-radius: 7px 2px 15px 5px">
 											<c:if test="${items.ROI_stat == '대여중'}">
 												<img alt=""
@@ -167,12 +166,16 @@ body {
 													style="width: 100%; height: 70%; position: absolute;">
 											</c:if>
 										</div>
-										
+
+
+
 										<div style="height: 30%; color: black; margin-left: 2px;">
-											<div style="font-size: 16px; height: 35%; margin: 5px 0 0 0">
+											<div
+												style="font-size: 0.95em; height: 30%; margin: 5px 0 0 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
 												<span>${items.RP_itemname}</span><br>
 											</div>
-											<div style="font-size: 14px; font-weight: bold; height: 25%;">
+											<div
+												style="font-size: 0.85em; font-weight: bold; height: 30%;">
 												<span>&nbsp>&nbsp<fmt:parseDate var="dateString1"
 														value="${items.RP_startdate}"
 														pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
@@ -180,12 +183,14 @@ body {
 														var="dateString2" value="${items.RP_enddate}"
 														pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
 														value="${dateString2}" pattern="yyyy.MM.dd" />
-												</span> <br>
+												</span> <br> <br>
 											</div>
 											<div align="right"
-												style="font-size: 20px; height: 40%; margin-right: 4px;">
-												<span margin=" 5px 3px;" style="color: #ff8040;">${items.RP_price}</span>
-												<span style="font-size: 14px;">원 / 일</span>
+												style="font-size: 1.25em; height: 35%; margin-right: 4px;">
+												<span margin=" 5px 3px;"
+													style="color: #ae0000; font-family: Tahoma, sans-serif;">
+													${items.RP_price} </span> <span style="font-size: 0.85em;">원
+													/ 일</span>
 											</div>
 										</div>
 									</a>
