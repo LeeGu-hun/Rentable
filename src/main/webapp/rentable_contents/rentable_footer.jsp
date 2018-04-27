@@ -32,9 +32,6 @@
 				name : 'New User',
 				value : 'new'
 			} ];
-			setTimeout(function() {
-				generate_message(msg, 'user');
-			}, 1000)
 		})
 
 		function sendMessage() {
@@ -44,7 +41,13 @@
 
 		function onMessage(evt) {
 			var msg = evt.data;
-			generate_message(msg, 'self');
+			var sessionuser = '${sessionScope.userInfo.r_name}';
+			var loguser = msg.split(':')[0].trim();
+			if(loguser == sessionuser) {
+				generate_message(msg, 'self');
+			} else {
+				generate_message(msg, 'user');
+			}
 			//sock.close();
 		}
 

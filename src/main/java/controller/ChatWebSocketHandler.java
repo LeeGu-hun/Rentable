@@ -32,7 +32,6 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		sessionList.add(session);
-		System.out.println("연결됨 밑에 로거 시작");
 		logger.info("{} 연결됨", session.getId());
 	}
 
@@ -43,13 +42,11 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 
 		Map<String, Object> map = session.getAttributes();
 		bean_rent_users user = (bean_rent_users) map.get("userInfo");
-		System.out.println("로그인 한 아이디 : " + user.getR_name());
 
 		logger.info("{} 로 부터 {} 받음", session.getId(), message.getPayload());
 		for (WebSocketSession sess : sessionList) {
-			sess.sendMessage(new TextMessage(message.getPayload()));
+			sess.sendMessage(new TextMessage(user.getR_name() + " : " + message.getPayload()));
 		}
-		System.out.println(message.getPayload());
 	}
 
 }
