@@ -113,8 +113,6 @@
 
 								<li><a href="${pageContext.request.contextPath}/sale_manage">물품관리</a></li>
 
-								<li><a href="#">카테고리 관리</a></li>
-
 							</ul></li>
 						<li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
 					</c:when>

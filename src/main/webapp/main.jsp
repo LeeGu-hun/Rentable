@@ -11,17 +11,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Responsive Auto Show/Hide Toggle Menu Demo</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css?version=1.13" />
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css?version=1.14" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/main.css?version=1.13" />
+	href="${pageContext.request.contextPath}/resources/css/main.css?version=1.14" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/itemgoods.css?version=1.13" />
+	href="${pageContext.request.contextPath}/resources/css/itemgoods.css?version=1.14" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/category.css?version=1.13" />
+	href="${pageContext.request.contextPath}/resources/css/category.css?version=1.14" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/chat.css?version=1.14" />
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/sockjs-0.3.4.js"></script>	
 </head>
 <style>
 @media screen and ( max-width : 1200px ) {
@@ -56,7 +60,7 @@
 		</div>
 		<!-- footer -->
 		<div id="rent_footer">
-			<div id="category_name">푸터</div>
+			<%@include file="/rentable_contents/rentable_footer.jsp"%>
 		</div>
 	</div>
 

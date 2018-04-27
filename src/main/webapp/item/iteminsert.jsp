@@ -211,9 +211,9 @@
 					width="100%" height="410px" style="margin-top: -10px;"  /></div>
 					
 					<div style="float:right;width:20%;">
-					<div  ><img id="blah2" alt=""
+					<div  ><img id="blah2" 
 					width="100%" height="205px" style="margin-top: -10px" /></div>
-					<div ><img id="blah3"  alt="이미지를 등록하세요"
+					<div ><img id="blah3"  
 					width="100%" height="205px" /></div></div>
 					
 					

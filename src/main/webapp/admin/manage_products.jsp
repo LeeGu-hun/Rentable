@@ -68,7 +68,7 @@
 					<div class="card p-30">
 						<div class="media">
 							<div class="media-left meida media-middle">
-								<span><i class="fa fa-usd f-s-40 color-primary"></i></span>
+								<span><i class="fa fa-archive f-s-40 color-primary"></i></span>
 							</div>
 							<div class="media-body media-text-right">
 								<h2>568120</h2>
@@ -94,7 +94,7 @@
 					<div class="card p-30">
 						<div class="media">
 							<div class="media-left meida media-middle">
-								<span><i class="fa fa-archive f-s-40 color-warning"></i></span>
+								<span><i class="fa fa-handshake-o f-s-40 color-warning"></i></span>
 							</div>
 							<div class="media-body media-text-right">
 								<h2>25</h2>
@@ -107,7 +107,7 @@
 					<div class="card p-30">
 						<div class="media">
 							<div class="media-left meida media-middle">
-								<span><i class="fa fa-user f-s-40 color-danger"></i></span>
+								<span><i class="fa fa-calendar-plus-o f-s-40 color-danger"></i></span>
 							</div>
 							<div class="media-body media-text-right">
 								<h2>847</h2>
