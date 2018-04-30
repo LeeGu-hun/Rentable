@@ -77,5 +77,12 @@ public class AdminController {
 		usersInfo.setR_stat("normal");
 		return "success";
 	}
+	
+	@ResponseBody
+	@RequestMapping("/userProd")
+	public String userProd(HttpSession session, @RequestParam String R_id, @RequestParam String R_name, Model model) {
+		System.out.println(R_id + "/" + R_name);
+		return "success";
+	}
 
 }

@@ -5,22 +5,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<script type="text/javascript">
-	$(document).ready(function() {
-		var user_stat = '<c:out value='${sessionScope.userInfo.r_stat}'/>';
-
-		if (user_stat == 'block') {
-			$('#myModal1').modal({
-				backdrop : 'static',
-				keyboard : false
-			});
-		}
-
-		$("#myBtn").click(function() {
-			$("#myModal").modal();
-		});
-	});
-</script>
 
 <style>
 body {

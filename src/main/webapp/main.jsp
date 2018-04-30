@@ -25,7 +25,7 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 <script
-	src="${pageContext.request.contextPath}/resources/js/sockjs-0.3.4.js"></script>	
+	src="${pageContext.request.contextPath}/resources/js/sockjs-0.3.4.js"></script>
 </head>
 <style>
 @media screen and ( max-width : 1200px ) {
@@ -34,6 +34,7 @@
 	}
 }
 </style>
+
 <body>
 	<div id="wrap">
 		<!-- header -->
@@ -60,7 +61,34 @@
 		</div>
 		<!-- footer -->
 		<div id="rent_footer">
-			<%@include file="/rentable_contents/rentable_footer.jsp"%>
+			<div id="body">
+
+				<div id="chat-circle" class="btn btn-raised">
+					<div id="chat-overlay"></div>
+					<i class="fa fa-commenting" aria-hidden="true"></i>
+				</div>
+
+				<div class="chat-box">
+					<div class="chat-box-header">
+						ChatBot <span class="chat-box-toggle"><i
+							class="material-icons">close</i></span>
+					</div>
+					<div class="chat-box-body">
+						<div class="chat-box-overlay"></div>
+						<div class="chat-logs"></div>
+						<!--chat-log -->
+					</div>
+					<div class="chat-input">
+						<form>
+							<input type="text" id="chat-input"
+								placeholder="Send a message..." />
+							<button type="submit" class="chat-submit" id="chat-submit">
+								<i class="material-icons">send</i>
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
