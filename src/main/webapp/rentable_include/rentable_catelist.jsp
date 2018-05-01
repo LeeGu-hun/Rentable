@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <style>
-
 .hdbox {
 	width: 93%;
 	margin-top: 2%;
@@ -78,10 +77,19 @@
 	float: right;
 }
 </style>
-
 <body>
 	<div class="itemgoods">
-		<div class="hdbox">${maincate}</div>
+		<div class="hdbox">
+			<c:choose>
+				<c:when test="${subcate == 'all'}">
+					${maincate}
+				</c:when>
+				<c:when test="${keyword ne 'all'}">
+					${keyword}
+				</c:when>
+				<c:otherwise>${subcate}</c:otherwise>
+			</c:choose>
+		</div>
 		<div class="ctglist">
 			<ul>
 				<c:forEach var="subcate" items="${subcatelist}">
@@ -95,10 +103,15 @@
 
 		<div class="listalign">
 			<div class="tit_rst">
-				<c:if test="${subcate == 'all'}">
-					<strong>${maincate}</strong>
-				</c:if>
-				<strong>${subcate}</strong>
+				<c:choose>
+					<c:when test="${subcate == 'all'}">
+						<strong>${maincate}</strong>
+					</c:when>
+					<c:when test="${keyword != 'all'}">
+						<strong>${keyword}</strong>
+					</c:when>
+					<c:otherwise>${subcate}</c:otherwise>
+				</c:choose>
 			</div>
 			<div class="rbox">
 				<div class="cstselect">
@@ -110,13 +123,14 @@
 		</div>
 
 		<div class="itemwrap">
-						<ul class="itemlist_row">
+			<ul class="itemlist_row">
 				<c:forEach var="items" items="${maincatelist}">
 					<c:choose>
 						<c:when test="${items.RP_stat > 0 }">
 							<li>
-								<div style="position: relative; height: 100%; " >
-									<a href="<c:url value="/ProdDetail/${items.RP_itemnum}/${items.RP_stat}"/>" >
+								<div style="position: relative; height: 100%;">
+									<a
+										href="<c:url value="/ProdDetail/${items.RP_itemnum}/${items.RP_stat}"/>">
 										<div style="height: 70%; border-radius: 7px 2px 15px 5px">
 											<c:if test="${items.ROI_stat == '대여중'}">
 												<img alt=""
@@ -135,31 +149,36 @@
 												<img alt=""
 													src="${pageContext.request.contextPath}/upload_products/${items.RP_img1}"
 													style="width: 100%; height: 70%; position: absolute;">
-											</c:if>	
+											</c:if>
 										</div>
-										
-										
-										
-										<div style="height: 30%; color:black; margin-left: 2px;">
-											<div style="font-size:15px; height:35%; margin: 5px 0 0 0; overflow: hidden; 
- 												 text-overflow: ellipsis; white-space: nowrap; ">
+
+
+
+										<div style="height: 30%; color: black; margin-left: 2px;">
+											<div
+												style="font-size: 15px; height: 35%; margin: 5px 0 0 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
 												<span>${items.RP_itemname}</span><br>
-											</div>	 
-											<div style="font-size:14px; font-weight:bold; height:25%;">	 
-												<span>&nbsp>&nbsp<fmt:parseDate var="dateString1" value="${items.RP_startdate}"
-														pattern="yyyy-MM-dd HH:mm:ss" /> 
-													<fmt:formatDate value="${dateString1}" pattern="yyyy.MM.dd" /> ~ 
-													<fmt:parseDate var="dateString2" value="${items.RP_enddate}"
-														pattern="yyyy-MM-dd HH:mm:ss" /> 
-													<fmt:formatDate value="${dateString2}" pattern="yyyy.MM.dd" />
-												</span> <br> 
-											</div>	
-											<div align="right" style="font-size:20px; height:40%; margin-right: 4px;">	
-												<span margin=" 5px 3px;" style="color:#ae0000;font-family: Tahoma,sans-serif;">
-													${items.RP_price}
-												</span>
-												<span style="font-size:14px;">원 / 일</span>
-											</div>												
+											</div>
+											<div style="font-size: 14px; font-weight: bold; height: 25%;">
+												<span>&nbsp>&nbsp<fmt:parseDate var="dateString1"
+														value="${items.RP_startdate}"
+														pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
+														value="${dateString1}" pattern="yyyy.MM.dd" /> ~ <fmt:parseDate
+														var="dateString2" value="${items.RP_enddate}"
+														pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
+														value="${dateString2}" pattern="yyyy.MM.dd" />
+												</span> <br>
+											</div>
+											<div
+												style="font-size: 1.25em; height: 35%; margin-right: 4px;">
+												<div align="left" style="width: 49%; float: left;">평점:${items.grade}</div>
+												<div align="right" style="width: 49%; float: left;">
+													<span
+														style="color: #ae0000; font-family: Tahoma, sans-serif;">
+														${items.RP_price} </span><span style="font-size: 0.85em;">원
+														/ 일</span>
+												</div>
+											</div>
 										</div>
 									</a>
 								</div>
@@ -169,20 +188,21 @@
 
 						<c:otherwise>
 							<li style="display: none;">
-								<div style="position: relative; height: 100%; ">
+								<div style="position: relative; height: 100%;">
 									<div style="height: 70%">
-										<img alt="" src="${pageContext.request.contextPath}/upload_products/${items.RP_img1}">
+										<img alt=""
+											src="${pageContext.request.contextPath}/upload_products/${items.RP_img1}">
 									</div>
 									<div style="heigth: 30%">
 										<p class="itemsinfo">
-											<em>${items.RP_itemname}</em><br> 
-											<em>
-											<fmt:parseDate var="dateString1" value="${items.RP_startdate}" pattern="yyyy-MM-dd HH:mm:ss" /> 
-											<fmt:formatDate value="${dateString1}" pattern="yyyy.MM.dd" /> ~ 
-											<fmt:parseDate var="dateString2" value="${items.RP_enddate}" pattern="yyyy-MM-dd HH:mm:ss" />  
-											<fmt:formatDate value="${dateString2}" pattern="yyyy.MM.dd" />
-											</em> <br> 
-											<strong>${items.RP_price}</strong>
+											<em>${items.RP_itemname}</em><br> <em> <fmt:parseDate
+													var="dateString1" value="${items.RP_startdate}"
+													pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
+													value="${dateString1}" pattern="yyyy.MM.dd" /> ~ <fmt:parseDate
+													var="dateString2" value="${items.RP_enddate}"
+													pattern="yyyy-MM-dd HH:mm:ss" /> <fmt:formatDate
+													value="${dateString2}" pattern="yyyy.MM.dd" />
+											</em> <br> <strong>${items.RP_price}</strong>
 										</p>
 									</div>
 								</div>
@@ -208,13 +228,13 @@
 					<div class="modal-select">
 						<ul>
 							<li><a
-								href="${pageContext.request.contextPath}/category?maincate=${maincate}&subcate=${subcate}">최신순</a></li>
+								href="${pageContext.request.contextPath}/category?maincate=${maincate}&subcate=${subcate}&keyword=${keyword}">최신순</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/category?maincate=${maincate}&subcate=${subcate}&orderby=prod_popular">인기순</a></li>
+								href="${pageContext.request.contextPath}/category?maincate=${maincate}&subcate=${subcate}&keyword=${keyword}&orderby=prod_popular">인기순</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/category?maincate=${maincate}&subcate=${subcate}&orderby=price_asc">저가순</a></li>
+								href="${pageContext.request.contextPath}/category?maincate=${maincate}&subcate=${subcate}&keyword=${keyword}&orderby=price_asc">저가순</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/category?maincate=${maincate}&subcate=${subcate}&orderby=price_desc">고가순</a></li>
+								href="${pageContext.request.contextPath}/category?maincate=${maincate}&subcate=${subcate}&keyword=${keyword}&orderby=price_desc">고가순</a></li>
 						</ul>
 					</div>
 				</div>

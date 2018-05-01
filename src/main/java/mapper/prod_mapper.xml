@@ -29,7 +29,8 @@
 		#{ROI_buyerphone},#{ROI_comment})
 	</insert>
 
-	<select id="userSaleBuy" parameterType="int" resultType="bean.bean_rent_user_slae">
+	<select id="userSaleBuy" parameterType="int"
+		resultType="bean.bean_rent_user_slae">
 	<![CDATA[
 	select
       roi.ROI_ORDERNUM,rp.RP_ITEMNAME,roi.ROI_ENDDATE,roi.ROI_PRICE,roi.ROI_STAT,
@@ -61,6 +62,12 @@
 		resultType="bean.bean_rent_users_info">
 		select R_ID,R_NAME,R_ADDRESS,R_PHONE from RENT_USERS where
 		R_IDNUM=#{R_IDNUM}
+	</select>
+	<insert id="prodQue" parameterType="bean.bean_rent_question">
+		insert into RENT_CALL values(#{RC_SENDER},#{RC_RECEIVER},#{RC_CONTENT},sysdate,sysdate,#{RC_USERNUM},#{RC_PRODNUM})
+	</insert>
+		<select id="prodQueSel" parameterType="int" resultType="bean.bean_rent_question">
+		select * from RENT_CALL where RC_PRODNUM=#{RC_PRODNUM}
 	</select>
 </mapper>
 

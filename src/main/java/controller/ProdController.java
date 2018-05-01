@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,7 @@ import bean.Bean_Category;
 import bean.bean_rent_order_items;
 import bean.bean_rent_orders;
 import bean.bean_rent_products;
+import bean.bean_rent_question;
 import bean.bean_rent_review;
 import bean.bean_rent_user_slae;
 import bean.bean_rent_users;
@@ -61,6 +64,9 @@ public class ProdController {
 		session.setAttribute("stat1",stat1);
 		List<bean_rent_review> reviewlist = null;
 		reviewlist = itemService.Reviewlist(prodBean);
+		List<bean_rent_question> prodQue=null;
+		prodQue=prodService.prodAnswer(prodBean.getRP_itemnum());
+		model.addAttribute("prodQue", prodQue);
 		model.addAttribute("saleUserInfo",saleUserInfo);
 		model.addAttribute("reviewlist", reviewlist);
 		model.addAttribute("category", getMainCategory());
@@ -147,5 +153,32 @@ public class ProdController {
 		model.addAttribute("path", getPath(request));
 		return "main";
 	}
+	@RequestMapping(value = "/prodQue", method = RequestMethod.POST)
+	public String prodQue(HttpServletRequest request, Model model, HttpSession session, bean_rent_orders orders) throws UnsupportedEncodingException {
+		bean_rent_users usersInfo = (bean_rent_users) session.getAttribute("userInfo");
+		bean_rent_question prodQuest=new bean_rent_question();
+		if(usersInfo.getR_id()!=null) {
+		String content=request.getParameter("content");	
+		bean_rent_products prodBean = (bean_rent_products) session.getAttribute("prodBean");
 
+		prodQuest.setRC_PRODNUM(prodBean.getRP_itemnum());
+		prodQuest.setRC_CONTENT(content);
+		prodQuest.setRC_RECEIVER(prodBean.getRP_usernum());
+		prodQuest.setRC_SENDER(usersInfo.getR_id());
+		prodQuest.setRC_USERNUM(usersInfo.getR_idnum()); 
+		prodService.prodQuestion(prodQuest);
+		String value = URLEncoder.encode(prodBean.getROI_stat(), "euc-kr");
+		return "redirect:/ProdDetail/"+prodBean.getRP_itemnum()+"/"+value;
+		}else {
+			System.out.println("에러다");
+		return "main";
+		}
+	}
 }
+
+
+
+
+
+
+

@@ -22,8 +22,9 @@ public class bean_rent_products {
 	private String RP_guarantee; // 물품 안심등록
 	private String RP_subCount; // 서브카테고리 별 물품등록 갯수
 	private String keyword; // 검색 키워드
-	private String ROI_stat="대여가능";
+	private String ROI_stat = "대여가능";
 	private int RP_stat;
+	private int grade = 0;
 
 	public bean_rent_products() {
 
@@ -181,6 +182,12 @@ public class bean_rent_products {
 		RP_stat = rP_stat;
 	}
 
-	
+	public int getGrade() {
+		return grade;
+	}
+
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
 
 }

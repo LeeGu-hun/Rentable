@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import bean.bean_rent_order_items;
 import bean.bean_rent_orders;
 import bean.bean_rent_products;
+import bean.bean_rent_question;
 import bean.bean_rent_user_slae;
 import bean.bean_rent_users;
 import bean.bean_rent_users_info;
@@ -50,6 +51,15 @@ public class ProdService {
 	public bean_rent_users_info prodUserSaleInfo(int rp_usernum) {
 		bean_rent_users_info userSaleInfo=sqlSession.selectOne("prodSQL.userSaleInfo",rp_usernum);
 		return userSaleInfo;
+	}
+
+	public void prodQuestion(bean_rent_question prodQuest) {
+		sqlSession.insert("prodSQL.prodQue",prodQuest);
+	}
+	
+	public List<bean_rent_question> prodAnswer(int prodAnswer) {
+		List<bean_rent_question> prodQue=sqlSession.selectList("prodSQL.prodQueSel",prodAnswer);
+		return prodQue;
 	}
 
 }

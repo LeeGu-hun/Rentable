@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -43,7 +44,7 @@
 			var msg = evt.data;
 			var sessionuser = '${sessionScope.userInfo.r_name}';
 			var loguser = msg.split(':')[0].trim();
-			if(loguser == sessionuser) {
+			if (loguser == sessionuser) {
 				generate_message(msg, 'self');
 			} else {
 				generate_message(msg, 'user');
@@ -131,12 +132,15 @@
 </head>
 <body>
 	<div id="body">
-
-		<div id="chat-circle" class="btn btn-raised">
-			<div id="chat-overlay"></div>
-			<i class="fa fa-commenting" aria-hidden="true"></i>
-		</div>
-
+		<c:choose>
+			<c:when test="${sessionScope.userInfo.r_id ne null }">
+				<div id="chat-circle" class="btn btn-raised">
+					<div id="chat-overlay"></div>
+					<i class="fa fa-commenting" aria-hidden="true"></i>
+				</div>
+			</c:when>
+			<c:otherwise></c:otherwise>
+		</c:choose>
 		<div class="chat-box">
 			<div class="chat-box-header">
 				ChatBot <span class="chat-box-toggle"><i

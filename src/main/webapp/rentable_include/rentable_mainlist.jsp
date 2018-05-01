@@ -5,7 +5,32 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var user_stat = '<c:out value='${sessionScope.userInfo.r_stat}'/>';
 
+		if (user_stat == 'block') {
+			$('#myModal1').modal({
+				backdrop : 'static',
+				keyboard : false
+			});
+		}
+	});
+
+	function invalidPay(num, price) {
+		$.ajax({
+			type : 'POST',
+			url : '${pageContext.request.contextPath}/invalid_user',
+			data : {
+				"item_num" : num,
+				"invalid_price" : price,
+			},
+			success : function(data1) {
+				$('#myModal1').modal('hide');
+			}
+		});
+	}
+</script>
 <style>
 body {
 	font-family: "Helvetica Neue", Helvetica, Arial;
@@ -106,6 +131,7 @@ body {
 	}
 }
 </style>
+
 </head>
 
 
@@ -129,7 +155,7 @@ body {
 							<li>
 								<div style="position: relative; height: 100%;">
 									<a
-										href="<c:url value="/ProdDetail/${items.RP_itemnum}/${items.RP_stat}"/>">
+										href="<c:url value="/ProdDetail/${items.RP_itemnum}/${items.ROI_stat}"/>">
 										<div style="height: 70%; border-radius: 7px 2px 15px 5px">
 											<c:if test="${items.ROI_stat == '대여중'}">
 												<img alt=""
@@ -169,12 +195,15 @@ body {
 														value="${dateString2}" pattern="yyyy.MM.dd" />
 												</span> <br> <br>
 											</div>
-											<div align="right"
+											<div
 												style="font-size: 1.25em; height: 35%; margin-right: 4px;">
-												<span margin=" 5px 3px;"
-													style="color: #ae0000; font-family: Tahoma, sans-serif;">
-													${items.RP_price} </span> <span style="font-size: 0.85em;">원
-													/ 일</span>
+												<div align="left" style="width: 49%; float: left;">평점:${items.grade}</div>
+												<div align="right" style="width: 49%; float: left;">
+													<span
+														style="color: #ae0000; font-family: Tahoma, sans-serif;">
+														${items.RP_price} </span><span style="font-size: 0.85em;">원
+														/ 일</span>
+												</div>
 											</div>
 										</div>
 									</a>
@@ -215,7 +244,6 @@ body {
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
-
 			<!-- Modal content-->
 			<div class="modal-content" style="z-index: 11;">
 				<div class="modal-header">
@@ -242,7 +270,7 @@ body {
 
 	<!-- Modal -->
 	<div class="modal fade" id="myModal1" role="dialog">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 
 			<!-- Modal content-->
 			<div class="modal-content" style="z-index: 11;">
@@ -257,18 +285,32 @@ body {
 									<div class="cell">물품명</div>
 									<div class="cell">빌린날짜</div>
 									<div class="cell">반납일</div>
-									<div class="cell">1일 대여료</div>
+									<div class="cell">대여료/일</div>
 									<div class="cell">연체일</div>
 									<div class="cell">연체료</div>
+									<div class="cell">납부하기</div>
 								</div>
 								<c:forEach items="${delayInfo}" var="delay">
 									<div class="row">
-										<div class="cell" data-title="Name">${delay.RP_itemname }</div>
-										<div class="cell" data-title="Age">${delay.ROI_startdate }</div>
-										<div class="cell" data-title="Occupation">${delay.ROI_enddate }</div>
+										<div class="cell" data-title="Occupation">${delay.RP_itemname}</div>
+										<div class="cell" data-title="Occupation">
+											<fmt:parseDate var="dateString1"
+												value="${delay.ROI_startdate}" pattern="yyyy-MM-dd HH:mm:ss" />
+											<fmt:formatDate value="${dateString1}" pattern="yyyy.MM.dd" />
+										</div>
+										<div class="cell" data-title="Occupation">
+											<fmt:parseDate var="dateString2" value="${delay.ROI_enddate}"
+												pattern="yyyy-MM-dd HH:mm:ss" />
+											<fmt:formatDate value="${dateString2}" pattern="yyyy.MM.dd" />
+										</div>
 										<div class="cell" data-title="Occupation">${delay.RP_price }</div>
 										<div class="cell" data-title="Occupation">${delay.delay_date }</div>
-										<div class="cell" data-title="Occupation">${delay.invalid_price }</div>
+										<div class="cell" data-title="Occupation">${delay.invalid_price}</div>
+										<div class="cell" data-title="Occupation">
+											<button
+												onclick="javascript:invalidPay('${delay.RP_itemnum}','${delay.invalid_price}');"
+												class="btn btn-primary">연체료납부</button>
+										</div>
 									</div>
 								</c:forEach>
 							</div>

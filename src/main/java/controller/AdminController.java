@@ -80,8 +80,11 @@ public class AdminController {
 	
 	@ResponseBody
 	@RequestMapping("/userProd")
-	public String userProd(HttpSession session, @RequestParam String R_id, @RequestParam String R_name, Model model) {
-		System.out.println(R_id + "/" + R_name);
+	public String userProd(HttpSession session, @RequestParam String R_id, @RequestParam String R_stat, Model model) {
+		bean_rent_users stat = new bean_rent_users();
+		stat.setR_id(R_id);
+		stat.setR_stat(R_stat);
+		adminService.update_userstat1(stat);
 		return "success";
 	}
 

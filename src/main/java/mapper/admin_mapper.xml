@@ -9,13 +9,17 @@
 		ru.R_name,ru.R_Address,ru.R_card,ru.R_cash,b.borrow,r.renting,ru.R_stat
 		from
 		rent_users ru,
-		(select nvl(count(roi.ROI_BUYIDNUM),'0') borrow, ru.R_idnum as bnum from
-		rent_users ru, rent_orders_items roi where roi.ROI_BUYIDNUM(+) =
+		(select nvl(count(roi.ROI_BUYIDNUM),'0') borrow,
+		ru.R_idnum as bnum from
+		rent_users ru, rent_orders_items roi where
+		roi.ROI_BUYIDNUM(+) =
 		ru.R_IDNUM group by ru.R_IDNUM) b,
-		(select nvl(count(rp.RP_usernum),'0') renting, ru.R_idnum as brnum from
+		(select
+		nvl(count(rp.RP_usernum),'0') renting, ru.R_idnum as brnum from
 		rent_users ru, rent_products rp where ru.R_IDNUM = rp.rp_usernum(+)
 		group by ru.R_idnum) r
-		where b.bnum = r.brnum and r.brnum = ru.R_idnum and ru.R_stat != 'admin'
+		where b.bnum = r.brnum and r.brnum = ru.R_idnum
+		and ru.R_stat != 'admin'
 		order by R_name desc
 	</select>
 
@@ -30,6 +34,11 @@
 	<update id="updateR_stat">
 		update rent_users set r_stat = 'block' where r_idnum
 		= #{R_idnum}
+	</update>
+
+	<update id="updateUser_stat">
+		update rent_users set r_stat = #{R_stat} where r_id
+		= #{R_id}
 	</update>
 
 	<update id="invalid_price1">

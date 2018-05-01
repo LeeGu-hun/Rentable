@@ -16,18 +16,42 @@
 }
 </style>
 <script>
-	function myFunction(data,name) {
-	      $.ajax({
-              type: 'POST',
-              url: '${pageContext.request.contextPath}/userProd',
-              data: {
-                  "R_id" : data,
-                  "R_name" : name,
-              },
-              success: function(data1){
-              	alert(data1);
-              }
-          });
+	function myFunction(data, stat) {
+		$('#myModal').modal();
+		$(".modal-body").empty();
+		if (stat == 'normal') {
+			$(".modal-body").append(
+					"<span>" + data + " 님을 정지 하시겠습니까?" + "</span>");
+			$('#userStat').on('click', function() {
+				$.ajax({
+					type : 'POST',
+					url : '${pageContext.request.contextPath}/userProd',
+					data : {
+						"R_id" : data,
+						"R_name" : stat,
+					},
+					success : function(data1) {
+
+					}
+				});
+			});
+		} else {
+			$(".modal-body").append(
+					"<span>" + data + " 님을 정지 해제 하시겠습니까?" + "</span>");
+			$('#userStat').on('click', function() {
+				$.ajax({
+					type : 'POST',
+					url : '${pageContext.request.contextPath}/userProd',
+					data : {
+						"R_id" : data,
+						"R_name" : stat,
+					},
+					success : function(data1) {
+
+					}
+				});
+			});
+		}
 	}
 </script>
 <head>
@@ -55,9 +79,8 @@
 			<c:forEach var="items" items="${userlist}" varStatus="count">
 				<tr align="center" valign="middle" height="60px"
 					style="text-align: center; color: black; font-size: 16px; border-bottom: 0.2px solid black;">
-					<td width="15%"><input type="button"
-						onclick="javascript:myFunction('${items.r_id}','${items.r_name}')"
-						value="${items.r_id}"></td>
+					<td width="15%"><a
+						onclick="javascript:myFunction('${items.r_id}','${items.r_stat}');">${items.r_id}</a></td>
 					<td width="15%"><span style="color: black;">${items.r_name}</span></td>
 					<td width="10%">${items.r_card}</td>
 					<td width="20%"
@@ -76,6 +99,22 @@
 				</tr>
 			</c:forEach>
 		</table>
+	</div>
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content" style="z-index: 11;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">선택 옵션</h4>
+				</div>
+				<div class="modal-body"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="userStat">승인</button>
+				</div>
+			</div>
+
+		</div>
 	</div>
 </body>
 </html>

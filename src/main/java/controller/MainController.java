@@ -79,6 +79,7 @@ public class MainController {
 		model.addAttribute("maincatelist", maincatelist);
 		model.addAttribute("subcatelist", subcatelist);
 		model.addAttribute("subcate", subcate);
+		model.addAttribute("keyword", keyword);
 		model.addAttribute("path", getPath(request));
 		return "main";
 	}
@@ -102,13 +103,14 @@ public class MainController {
 	}
 
 	@RequestMapping("/search")
-	public String searchProd(HttpServletRequest request, Model model, @RequestParam(defaultValue = "") String keyword) {
+	public String searchProd(HttpServletRequest request, Model model, @RequestParam(defaultValue = "all") String keyword) {
 		bean_rent_products catebean = new bean_rent_products();
 		List<bean_rent_products> maincatelist = null;
 		maincatelist = mainService.getSearchitems(keyword);
 		model.addAttribute("maincatelist", maincatelist);
 		model.addAttribute("category", getMainCategory());
 		model.addAttribute("path", getPath(request));
+		model.addAttribute("keyword", keyword);
 		return "main";
 	}
 
@@ -118,41 +120,6 @@ public class MainController {
 	// model.addAttribute("path", path);
 	// return "index";
 	// }
-
-	@RequestMapping(value = "/json", produces = "application/json")
-	public @ResponseBody String json(HttpServletRequest request, Model model,
-			@RequestParam(defaultValue = "all") String maincate, @RequestParam(defaultValue = "all") String subcate,
-			@RequestParam(defaultValue = "") String orderby, @RequestParam(defaultValue = "all") String keyword) {
-		// json-simple 라이브러리 추가 필요(JSON 객체 생성)
-		Bean_Category catebean = new Bean_Category();
-		catebean.setMaincate_value(maincate);
-		catebean.setSubcate_value(subcate);
-		catebean.setKeyword(keyword);
-		catebean.setOrderby(orderby);
-		JSONObject jsonMain = new JSONObject(); // json 객체
-		// {변수명:값, 변수명:값}
-		// {sendData:[{변수명:값},{변수명:값},...]}
-		List<bean_rent_products> items = mainService.getMainCateitems(catebean);
-		JSONArray jArray = new JSONArray(); // json배열
-		for (int i = 0; i < items.size(); i++) {
-			bean_rent_products dto = items.get(i);
-			JSONObject row = new JSONObject();
-			// json객체.put("변수명",값)
-			row.put("rp_image1", dto.getRP_img1());
-			row.put("rp_itemname", dto.getRP_itemname());
-			row.put("rp_startdate", dto.getRP_startdate());
-			row.put("rp_enddate", dto.getRP_enddate());
-			row.put("rp_price", dto.getRP_price());
-			// 배열에 추가
-			// json배열.add(인덱스,json객체)
-			jArray.add(i, row);
-		}
-
-		System.out.println("dyd");
-		// json객체에 배열을 넣음
-		jsonMain.put("sendData", jArray);
-		return "Aa";
-	}
 
 	@RequestMapping(value = "/json1", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String getJson(HttpServletRequest request, Model model,

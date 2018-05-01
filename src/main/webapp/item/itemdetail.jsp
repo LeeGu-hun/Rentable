@@ -176,13 +176,13 @@
 
 .goods_info_top_left {
 	float: left;
-	width: auto;
+	width: 50%;
 	padding: 0px;
 	text-align: left;
 }
 
 .goods_info_top_right {
-	float: right;
+
 	padding: 50px;
 	overflow: hidden;
 	text-align: left;
@@ -250,7 +250,7 @@
 }
 
 #RR_content {
-	width: auto;
+	width: 1000px;
 	line-height: 50px;
 }
 
@@ -266,12 +266,16 @@
 		white-space: pre-wrap;
 	}
 	.goods_info_top_left {
+	width: 100%;
 		float: none;
 	}
 	.goods_info_top_right {
 		overflow: visible;
 		float: none;
 		padding: 0px;
+	}
+	#RR_content {
+		width: auto;
 	}
 	#rent_body_contents {
 		width: 99%;
@@ -418,42 +422,17 @@
 					}
 						// submit 폼체크
 						function fregisterform_submit2(f) {
-							if (f.name.value.length < 1) {
-								alert("이름을 입력해 주세요.");
-								f.name.focus();
-								return false;
-							}
-							if (f.password.value.length < 1) {
-								alert("비밀번호를 입력해 주세요.");
-								f.password.focus();
-								return false;
-							}
-							if (f.category.value.length < 1) {
-								alert("구분을 선택해 주세요.");
-								f.category.focus();
-								return false;
-							}
-							if (f.subject.value.length < 1) {
-								alert("제목을 입력해 주세요.");
-								f.subject.focus();
-								return false;
-							}
 							if (f.content.value.length < 1) {
 								alert("내용을 입력해 주세요.");
 								f.content.focus();
-								return false;
-							}
-							if (f.privacy_agreement[0].checked == false) {
-								alert("개인정보 수집 및 이용에 동의 하셔야 문의글을 등록 할 수 있습니다.");
-								f.privacy_agreement[0].focus();
-								return false;
+								return;
 							}
 							var form = document.getElementById("fregisterform2");
-							form.action = './goods_review_qna_proc.php';
-							form.target = "ifm_proc";
+							form.action = '${pageContext.request.contextPath}/prodQue';
 							form.method = 'post';
+							alert("문의 등록완료!");
 							form.submit();
-							return true;
+							
 						}
 						function goods_qna_reg() {
 							if ($("#qanda_form_div").css("display") == 'none') {
@@ -510,7 +489,7 @@
 					<div class="goods_image">
 						<input type="hidden" id="stat1" name="stat1" value="${stat1}">
 						<img
-							src="${pageContext.request.contextPath}/upload_products/${prodBean.RP_img1}"
+							src="${pageContext.request.contextPath}/resources/images/rentable.jpg"
 							id='goods_big_img'
 							style="width: 100%; max-width: 760px; vertical-align: middle"
 							onerror="this.style.display='none'">
@@ -518,23 +497,24 @@
 					<div class="goods_thumb_img">
 						<ul>
 							<li><a href=''
-								onmouseover="javascript:big_img_show('${pageContext.request.contextPath}/upload_products/${prodBean.RP_img1}');">
+								onmouseover="javascript:big_img_show('${pageContext.request.contextPath}/resources/images/rentable.jpg');">
 									<img
-									src='${pageContext.request.contextPath}/upload_products/${prodBean.RP_img1}'
+									src='${pageContext.request.contextPath}/resources/images/rentable.jpg'
 									style="width: 10%; max-width: 760px; vertical-align: middle"
 									onerror="this.style.display='none'">
 							</a></li>
 							<li><a href=''
-								onmouseover="javascript:big_img_show('${pageContext.request.contextPath}/upload_products/${prodBean.RP_img2}');"><img
-									src='${pageContext.request.contextPath}/upload_products/${prodBean.RP_img2}'
+								onmouseover="javascript:big_img_show('${pageContext.request.contextPath}/resources/images/rentable.jpg');">
+								<img
+									src='${pageContext.request.contextPath}/resources/images/rentable.jpg'
 									style="width: 10%; max-width: 760px; vertical-align: middle"
-									onerror="this.style.display='none'"></a></li>
+									></a></li>
 							<li><a href=''
-								onmouseover="javascript:big_img_show('${pageContext.request.contextPath}/upload_products/${prodBean.RP_img3}');"><img
-									src='${pageContext.request.contextPath}/upload_products/${prodBean.RP_img3}'
+								onmouseover="javascript:big_img_show('${pageContext.request.contextPath}/resources/images/rentable.jpg');"><img
+									src='${pageContext.request.contextPath}/resources/images/rentable.jpg' 
 									style="width: 10%; max-width: 760px; vertical-align: middle"
 									onerror="this.style.display='none'"></a></li>
-						</ul>
+						</ul> 
 					</div>
 				</div>
 				<div class="goods_info_top_right">
@@ -910,15 +890,15 @@
 					<td></td>
 					<td></td>
 					<td align="right"><input onclick="display1()" type="button"
-						style="border-radius: 5px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom;"
-						value="한줄평/댓글 등록"></td>
+						style="border-radius: 5px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; 
+						font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom;"value="한줄평/댓글 등록"></td>
 				</tr>
 			</table>
 
 			<form action="${pageContext.request.contextPath}/itemReview"
 				name="reviewform" method="post">
 
-				<table id="invisi" class="person-tb">
+				<table id="invisi">
 					<caption></caption>
 					<tbody>
 						<tr>
@@ -942,8 +922,7 @@
 							</span>
 							</td>
 							<th scope="row"><label for="content">내용</label></th>
-							<td><TEXTAREA name="RR_content" id="RR_content"
-									class="smarteditor2" style="width: 99%; height: 200px;"></TEXTAREA>
+							<td><TEXTAREA name="RR_content" id="RR_content"></TEXTAREA>
 							</td>
 							<td align="right"><a href="javascript:submitreview()"
 								class="button"
@@ -999,12 +978,17 @@
 					<caption>목록</caption>
 					<thead>
 						<tr>
-							<th scope="col">번호</th>
-							<th scope="col">카테고리</th>
-							<th scope="col">제목</th>
-							<th scope="col">등록자</th>
-							<th scope="col">등록일</th>
+					<th scope="col" width="5%">번호</th>
+					<th scope="col" width="80%" style="text-align: center;">내용</th>
+					<th scope="col" width="15%">등록자</th>
 						</tr>
+					<c:forEach var="prodQue" items="${prodQue}" varStatus="status">
+					<tr>
+						<th scope="col">${status.count}</th>
+						<th scope="col" style="text-align: center;">${prodQue.RC_CONTENT}</th>
+						<th scope="col">${prodQue.RC_SENDER}</th>
+					</tr>
+				</c:forEach>
 					</thead>
 					<tbody>
 						<!-- 리스트 루프 시작 -->
@@ -1022,17 +1006,9 @@
 				</div>
 			</div>
 			<div class="form_div" id="qanda_form_div" style="display: none;">
-				<form id="fregisterform2" name="fregisterform2" action=""
-					onsubmit="return fregisterform_submit2(this);" method="post"
-					enctype="multipart/form-data" target="ifm_proc">
-					<input type="hidden" name="state" value="qanda"> <input
-						type="hidden" name="goods_no" value="37"> <input
-						type="hidden" name="goods_code" value="S302499922410"> <input
-						type="hidden" name="goods_name"
-						value="[POLHAM]남녀공용 웨이브블럭긴팔티셔츠(PU5H931)"> <input
-						type="hidden" name="qna_type" value="goods">
+				<form id="fregisterform2" name="fregisterform2" 
+					onsubmit="fregisterform_submit2(this);" method="post">
 					<div class="location_title">상품문의</div>
-
 					<table class="person-tb">
 						<caption></caption>
 						<tbody>
@@ -1086,10 +1062,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<div id="back-top" style="display: block;">
-			<a href="#TOP"><img
-				src='${pageContext.request.contextPath}/resources/images/top_btn.png'></a>
 		</div>
 	</div>
 </body>
