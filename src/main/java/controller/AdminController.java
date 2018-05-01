@@ -53,7 +53,7 @@ public class AdminController {
 		model.addAttribute("category", getMainCategory());
 		return "main";
 	}
-	
+
 	@RequestMapping("/sale_manage")
 	public String saleManage(Model model, HttpServletRequest request) {
 		List<bean_rent_users> userlist = adminService.getUserList();
@@ -66,7 +66,8 @@ public class AdminController {
 
 	@ResponseBody
 	@RequestMapping("/invalid_user")
-	public String inavalid_user(HttpSession session, @RequestParam int invalid_price, @RequestParam int item_num, Model model) {
+	public String inavalid_user(HttpSession session, @RequestParam int invalid_price, @RequestParam int item_num,
+			Model model) {
 		DelayCommand delay = new DelayCommand();
 		bean_rent_users usersInfo = (bean_rent_users) session.getAttribute("userInfo");
 		int user_num = usersInfo.getR_idnum();
@@ -77,13 +78,19 @@ public class AdminController {
 		usersInfo.setR_stat("normal");
 		return "success";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/userProd")
-	public String userProd(HttpSession session, @RequestParam String R_id, @RequestParam String R_stat, Model model) {
+	public String userProd(HttpSession session, @RequestParam(defaultValue = "") String R_id,
+			@RequestParam(defaultValue = "") String R_stat, Model model) {
+		System.out.println(R_stat);
 		bean_rent_users stat = new bean_rent_users();
 		stat.setR_id(R_id);
-		stat.setR_stat(R_stat);
+		if (R_stat.equals("block")) {
+			stat.setR_stat("normal");
+		} else if (R_stat.equals("normal")) {
+			stat.setR_stat("block");
+		}
 		adminService.update_userstat1(stat);
 		return "success";
 	}

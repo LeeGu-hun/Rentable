@@ -44,11 +44,7 @@ public class AdminService {
 	}
 
 	public void update_userstat1(bean_rent_users users) {
-		int update1 = sqlSession.update("adminSQL.updateUser_stat", users);
-		if (update1 == 1) {
-			System.out.println("상태변경");
-		} else {
-			System.out.println("실패");
-		}
+		sqlSession.update("adminSQL.updateUser_stat", users);
+
 	}
 }

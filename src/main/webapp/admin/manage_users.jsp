@@ -16,38 +16,38 @@
 }
 </style>
 <script>
-	function myFunction(data, stat) {
+	function myFunction(userid, stat) {
 		$('#myModal').modal();
 		$(".modal-body").empty();
 		if (stat == 'normal') {
 			$(".modal-body").append(
-					"<span>" + data + " 님을 정지 하시겠습니까?" + "</span>");
+					"<span>" + userid + " 님을 정지 하시겠습니까?" + "</span>");
 			$('#userStat').on('click', function() {
 				$.ajax({
 					type : 'POST',
 					url : '${pageContext.request.contextPath}/userProd',
 					data : {
-						"R_id" : data,
-						"R_name" : stat,
+						"R_id" : userid,
+						"R_stat" : stat,
 					},
-					success : function(data1) {
-
+					success : function() {
+						window.location.reload();
 					}
 				});
 			});
 		} else {
 			$(".modal-body").append(
-					"<span>" + data + " 님을 정지 해제 하시겠습니까?" + "</span>");
+					"<span>" + userid + " 님을 정지 해제 하시겠습니까?" + "</span>");
 			$('#userStat').on('click', function() {
 				$.ajax({
 					type : 'POST',
 					url : '${pageContext.request.contextPath}/userProd',
 					data : {
-						"R_id" : data,
-						"R_name" : stat,
+						"R_id" : userid,
+						"R_stat" : stat,
 					},
-					success : function(data1) {
-
+					success : function() {
+						window.location.reload();
 					}
 				});
 			});
