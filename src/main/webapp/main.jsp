@@ -30,7 +30,7 @@
 <style>
 @media screen and ( max-width : 1200px ) {
 	#rent_body_contents {
-		width: 98%;
+		width: 99%;
 	}
 }
 </style>
