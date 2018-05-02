@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import bean.DelayCommand;
 import bean.bean_rent_users;
@@ -33,21 +34,21 @@ public class loginController {
 	}
 
 	@RequestMapping("/loginAction")
-	public String loginAction(Model model, HttpServletRequest request, HttpSession session) {
-		String r_id = request.getParameter("R_id");
-		String r_password = request.getParameter("R_password");
-		usersInfo = memberService.loginMember(r_id);
+	public String loginAction(Model model, HttpServletRequest request, HttpSession session, @RequestParam String R_id,
+			@RequestParam String R_password) {
+		usersInfo = memberService.loginMember(R_id);
+		if (usersInfo == null) {
+			return "redirect:/loginForm";
+		}
 		session.setAttribute("userInfo", usersInfo);
-		String main = "";
-		if (r_password.equals(usersInfo.getR_password())) {
+		if (R_password.equals(usersInfo.getR_password())) {
 			int R_idnum = usersInfo.getR_idnum();
 			List<DelayCommand> delayInfo = memberService.checkBlockUser(R_idnum);
 			session.setAttribute("delayInfo", delayInfo);
-			main = "redirect:/";
+			return "redirect:/";
 		} else {
-			main = "login/loginForm";
+			return "redirect:/loginForm";
 		}
-		return main;
 	}
 
 	@RequestMapping("/logout")

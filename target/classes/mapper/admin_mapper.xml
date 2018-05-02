@@ -31,6 +31,23 @@
 		roi.ROI_ENDDATE
 	</select>
 
+	<select id="countProducts" resultType="bean.AdminCommand">
+		<![CDATA[
+		select * from (select
+		count(*) count_products from rent_products) cp,
+		(select count(*) count_borrow from rent_orders_items where sysdate -
+		roi_enddate < 0) cb,
+		(select count(*) count_success from rent_orders_items where roi_stat = '거래
+		완료') cs,
+		(select count(*) count_delay from rent_orders_items where sysdate -
+		roi_enddate > 0 and roi_stat = '대여중') cd
+		]]>
+	</select>
+
+	<select id="guaranteelist" resultType="bean.bean_rent_products">
+		select rp_itemname, rp_regdate, rp_guarantee from rent_products where RP_GUARANTEE != 'on' and RP_GUARANTEE != '0'
+	</select>
+
 	<update id="updateR_stat">
 		update rent_users set r_stat = 'block' where r_idnum
 		= #{R_idnum}
@@ -38,7 +55,8 @@
 
 	<update id="updateUser_stat">
 		update rent_users set r_stat = #{R_stat} where r_id
-		= #{R_id}
+		=
+		#{R_id}
 	</update>
 
 	<update id="invalid_price1">

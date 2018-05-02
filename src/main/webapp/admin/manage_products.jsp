@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,7 +73,7 @@
 								<span><i class="fa fa-archive f-s-40 color-primary"></i></span>
 							</div>
 							<div class="media-body media-text-right">
-								<h2>568120</h2>
+								<h2>${counts.count_products}</h2>
 								<p class="m-b-0">물품등록</p>
 							</div>
 						</div>
@@ -84,7 +86,7 @@
 								<span><i class="fa fa-shopping-cart f-s-40 color-success"></i></span>
 							</div>
 							<div class="media-body media-text-right">
-								<h2>1178</h2>
+								<h2>${counts.count_borrow}</h2>
 								<p class="m-b-0">대여중</p>
 							</div>
 						</div>
@@ -97,7 +99,7 @@
 								<span><i class="fa fa-handshake-o f-s-40 color-warning"></i></span>
 							</div>
 							<div class="media-body media-text-right">
-								<h2>25</h2>
+								<h2>${counts.count_success}</h2>
 								<p class="m-b-0">거래완료</p>
 							</div>
 						</div>
@@ -107,10 +109,11 @@
 					<div class="card p-30">
 						<div class="media">
 							<div class="media-left meida media-middle">
-								<span><i class="fa fa-calendar-plus-o f-s-40 color-danger"></i></span>
+								<span><i
+									class="fa fa-calendar-plus-o f-s-40 color-danger"></i></span>
 							</div>
 							<div class="media-body media-text-right">
-								<h2>847</h2>
+								<h2>${counts.count_delay}</h2>
 								<p class="m-b-0">연체중</p>
 							</div>
 						</div>
@@ -129,66 +132,29 @@
 				<div class="col-lg-8">
 					<div class="card">
 						<div class="card-title">
-							<h4>Recent Orders</h4>
+							<h4>안심보장서비스</h4>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table">
 									<thead>
 										<tr>
-											<th>#</th>
-											<th>Name</th>
-											<th>Product</th>
-											<th>quantity</th>
-											<th>Status</th>
+											<th>상품명</th>
+											<th>등록날짜</th>
+											<th>안심서비스</th>
+											<th>보상</th>
 										</tr>
 									</thead>
 									<tbody>
-
-										<tr>
-											<td>
-												<div class="round-img">
-													<a href=""><img src="images/avatar/4.jpg" alt=""></a>
-												</div>
-											</td>
-											<td>John Abraham</td>
-											<td><span>iBook</span></td>
-											<td><span>456 pcs</span></td>
-											<td><span class="badge badge-success">Done</span></td>
-										</tr>
-										<tr>
-											<td>
-												<div class="round-img">
-													<a href=""><img src="images/avatar/2.jpg" alt=""></a>
-												</div>
-											</td>
-											<td>John Abraham</td>
-											<td><span>iPhone</span></td>
-											<td><span>456 pcs</span></td>
-											<td><span class="badge badge-success">Done</span></td>
-										</tr>
-										<tr>
-											<td>
-												<div class="round-img">
-													<a href=""><img src="images/avatar/3.jpg" alt=""></a>
-												</div>
-											</td>
-											<td>John Abraham</td>
-											<td><span>iMac</span></td>
-											<td><span>456 pcs</span></td>
-											<td><span class="badge badge-warning">Pending</span></td>
-										</tr>
-										<tr>
-											<td>
-												<div class="round-img">
-													<a href=""><img src="images/avatar/4.jpg" alt=""></a>
-												</div>
-											</td>
-											<td>John Abraham</td>
-											<td><span>iBook</span></td>
-											<td><span>456 pcs</span></td>
-											<td><span class="badge badge-success">Done</span></td>
-										</tr>
+										<c:forEach items="${guaranteelists}" var="lists">
+											<tr>
+												<td>${lists.RP_itemname}</td>
+												<td><span><fmt:formatDate
+														value="${lists.RP_regdate}" pattern="yyyy.MM.dd" /></span></td>
+												<td><span>${lists.RP_guarantee}%</span></td>
+												<td><span class="badge badge-success">보상</span></td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -199,78 +165,7 @@
 
 
 
-			<div class="row bg-white m-l-0 m-r-0 box-shadow ">
-				<!-- column -->
-				<div class="col-lg-8">
-					<div class="card">
-						<div class="card-body">
-							<h4 class="card-title">Extra Area Chart</h4>
-							<div id="extra-area-chart"></div>
-						</div>
-					</div>
-				</div>
-				<!-- column -->
 
-				<!-- column -->
-				<div class="col-lg-4">
-					<div class="card">
-						<div class="card-body browser">
-							<p class="f-w-600">
-								iMacs <span class="pull-right">85%</span>
-							</p>
-							<div class="progress ">
-								<div role="progressbar" style="width: 85%; height: 8px;"
-									class="progress-bar bg-danger wow animated progress-animated">
-									<span class="sr-only">60% Complete</span>
-								</div>
-							</div>
-
-							<p class="m-t-30 f-w-600">
-								iBooks<span class="pull-right">90%</span>
-							</p>
-							<div class="progress">
-								<div role="progressbar" style="width: 90%; height: 8px;"
-									class="progress-bar bg-info wow animated progress-animated">
-									<span class="sr-only">60% Complete</span>
-								</div>
-							</div>
-
-							<p class="m-t-30 f-w-600">
-								iPhone<span class="pull-right">65%</span>
-							</p>
-							<div class="progress">
-								<div role="progressbar" style="width: 65%; height: 8px;"
-									class="progress-bar bg-success wow animated progress-animated">
-									<span class="sr-only">60% Complete</span>
-								</div>
-							</div>
-
-							<p class="m-t-30 f-w-600">
-								Samsung<span class="pull-right">65%</span>
-							</p>
-							<div class="progress">
-								<div role="progressbar" style="width: 65%; height: 8px;"
-									class="progress-bar bg-warning wow animated progress-animated">
-									<span class="sr-only">60% Complete</span>
-								</div>
-							</div>
-
-							<p class="m-t-30 f-w-600">
-								android<span class="pull-right">65%</span>
-							</p>
-							<div class="progress m-b-30">
-								<div role="progressbar" style="width: 65%; height: 8px;"
-									class="progress-bar bg-success wow animated progress-animated">
-									<span class="sr-only">60% Complete</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- column -->
-			</div>
-
-			<!-- End PAge Content -->
 		</div>
 		<!-- End Container fluid  -->
 	</div>

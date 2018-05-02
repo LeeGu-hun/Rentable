@@ -34,8 +34,15 @@
 	}
 }
 </style>
+<script>
+	function win_close() {
+		var iX = window.document.body.offsetWidth - window.event.clientX;
+		var iY = window.event.clientY;
 
-<body>
+	}
+</script>
+
+<body onbeforeunload="win_close();">
 	<div id="wrap">
 		<!-- header -->
 		<div id="rent_head">

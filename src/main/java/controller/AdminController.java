@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import bean.AdminCommand;
 import bean.Bean_Category;
 import bean.DelayCommand;
+import bean.bean_rent_products;
 import bean.bean_rent_users;
 import service.AdminService;
 import service.MainService;
@@ -56,9 +58,10 @@ public class AdminController {
 
 	@RequestMapping("/sale_manage")
 	public String saleManage(Model model, HttpServletRequest request) {
-		List<bean_rent_users> userlist = adminService.getUserList();
-		adminService.getInvaildList();
-		model.addAttribute("userlist", userlist);
+		AdminCommand counts = adminService.getCount();
+		List<bean_rent_products> guaranteelists = adminService.guaranteeLists();
+		model.addAttribute("guaranteelists",guaranteelists);
+		model.addAttribute("counts", counts);
 		model.addAttribute("path", getPath(request));
 		model.addAttribute("category", getMainCategory());
 		return "main";

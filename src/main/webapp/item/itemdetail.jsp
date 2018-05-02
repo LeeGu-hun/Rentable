@@ -182,7 +182,6 @@
 }
 
 .goods_info_top_right {
-
 	padding: 50px;
 	overflow: hidden;
 	text-align: left;
@@ -266,7 +265,7 @@
 		white-space: pre-wrap;
 	}
 	.goods_info_top_left {
-	width: 100%;
+		width: 100%;
 		float: none;
 	}
 	.goods_info_top_right {
@@ -489,32 +488,31 @@
 					<div class="goods_image">
 						<input type="hidden" id="stat1" name="stat1" value="${stat1}">
 						<img
-							src="${pageContext.request.contextPath}/resources/images/rentable.jpg"
+							src="${pageContext.request.contextPath}/upload_products/${prodBean.RP_img1}"
 							id='goods_big_img'
-							style="width: 100%; max-width: 760px; vertical-align: middle"
+							style="width: 100%; height:100%; max-width: 760px; vertical-align: middle"
 							onerror="this.style.display='none'">
 					</div>
 					<div class="goods_thumb_img">
 						<ul>
 							<li><a href=''
-								onmouseover="javascript:big_img_show('${pageContext.request.contextPath}/resources/images/rentable.jpg');">
+								onmouseover="javascript:big_img_show('${pageContext.request.contextPath}/upload_products/${prodBean.RP_img1}');">
 									<img
-									src='${pageContext.request.contextPath}/resources/images/rentable.jpg'
+									src='${pageContext.request.contextPath}/upload_products/${prodBean.RP_img1}'
 									style="width: 10%; max-width: 760px; vertical-align: middle"
 									onerror="this.style.display='none'">
 							</a></li>
 							<li><a href=''
-								onmouseover="javascript:big_img_show('${pageContext.request.contextPath}/resources/images/rentable.jpg');">
-								<img
-									src='${pageContext.request.contextPath}/resources/images/rentable.jpg'
-									style="width: 10%; max-width: 760px; vertical-align: middle"
-									></a></li>
-							<li><a href=''
-								onmouseover="javascript:big_img_show('${pageContext.request.contextPath}/resources/images/rentable.jpg');"><img
-									src='${pageContext.request.contextPath}/resources/images/rentable.jpg' 
+								onmouseover="javascript:big_img_show('${pageContext.request.contextPath}/upload_products/${prodBean.RP_img2}');"><img
+									src='${pageContext.request.contextPath}/upload_products/${prodBean.RP_img2}'
 									style="width: 10%; max-width: 760px; vertical-align: middle"
 									onerror="this.style.display='none'"></a></li>
-						</ul> 
+							<li><a href=''
+								onmouseover="javascript:big_img_show('${pageContext.request.contextPath}/upload_products/${prodBean.RP_img3}');"><img
+									src='${pageContext.request.contextPath}/upload_products/${prodBean.RP_img3}'
+									style="width: 10%; max-width: 760px; vertical-align: middle"
+									onerror="this.style.display='none'"></a></li>
+						</ul>
 					</div>
 				</div>
 				<div class="goods_info_top_right">
@@ -579,10 +577,12 @@
 				<div class=''>
 					<p>&nbsp;</p>
 					<p>&nbsp;</p>
-					<p>
+					<p style="text-align: center;">
 						<span class="text_bold"> <img
 							src="${pageContext.request.contextPath}/upload_products/${prodBean.RP_img1}"
-							onerror="this.style.display='none'"> ${prodBean.RP_detail}
+							onerror="this.style.display='none'" style="width: 80%"> <br>
+						<br>
+						<br> ${prodBean.RP_detail}
 						</span>
 					</p>
 					<p>&nbsp;</p>
@@ -890,8 +890,8 @@
 					<td></td>
 					<td></td>
 					<td align="right"><input onclick="display1()" type="button"
-						style="border-radius: 5px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; 
-						font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom;"value="한줄평/댓글 등록"></td>
+						style="border-radius: 5px; margin: 1px; border: 1px solid #999; background: url() repeat-x 0px 0px; font-size: 12px; font-weight: bold; color: #000; vertical-align: bottom;"
+						value="한줄평/댓글 등록"></td>
 				</tr>
 			</table>
 
@@ -978,17 +978,17 @@
 					<caption>목록</caption>
 					<thead>
 						<tr>
-					<th scope="col" width="5%">번호</th>
-					<th scope="col" width="80%" style="text-align: center;">내용</th>
-					<th scope="col" width="15%">등록자</th>
+							<th scope="col" width="5%">번호</th>
+							<th scope="col" width="80%" style="text-align: center;">내용</th>
+							<th scope="col" width="15%">등록자</th>
 						</tr>
-					<c:forEach var="prodQue" items="${prodQue}" varStatus="status">
-					<tr>
-						<th scope="col">${status.count}</th>
-						<th scope="col" style="text-align: center;">${prodQue.RC_CONTENT}</th>
-						<th scope="col">${prodQue.RC_SENDER}</th>
-					</tr>
-				</c:forEach>
+						<c:forEach var="prodQue" items="${prodQue}" varStatus="status">
+							<tr>
+								<th scope="col">${status.count}</th>
+								<th scope="col" style="text-align: center;">${prodQue.RC_CONTENT}</th>
+								<th scope="col">${prodQue.RC_SENDER}</th>
+							</tr>
+						</c:forEach>
 					</thead>
 					<tbody>
 						<!-- 리스트 루프 시작 -->
@@ -1006,7 +1006,7 @@
 				</div>
 			</div>
 			<div class="form_div" id="qanda_form_div" style="display: none;">
-				<form id="fregisterform2" name="fregisterform2" 
+				<form id="fregisterform2" name="fregisterform2"
 					onsubmit="fregisterform_submit2(this);" method="post">
 					<div class="location_title">상품문의</div>
 					<table class="person-tb">

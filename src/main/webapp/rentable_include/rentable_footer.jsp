@@ -14,7 +14,7 @@
 		sock.onclose = onClose;
 
 		function onClose(evt) {
-			$("#data").append("연결 끊김");
+			$("#cm-msg-text").append("연결 끊김");
 		}
 
 		var INDEX = 0;

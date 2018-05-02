@@ -9,8 +9,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import bean.AdminCommand;
 import bean.Bean_Category;
 import bean.DelayCommand;
+import bean.bean_rent_products;
 import bean.bean_rent_users;
 
 @Service
@@ -47,4 +49,17 @@ public class AdminService {
 		sqlSession.update("adminSQL.updateUser_stat", users);
 
 	}
+
+	public AdminCommand getCount() {
+		AdminCommand result = null;
+		result = sqlSession.selectOne("adminSQL.countProducts");
+		return result;
+	}
+
+	public List<bean_rent_products> guaranteeLists() {
+		List<bean_rent_products> results = null;
+		results = sqlSession.selectList("adminSQL.guaranteelist");
+		return results;
+	}
+
 }
