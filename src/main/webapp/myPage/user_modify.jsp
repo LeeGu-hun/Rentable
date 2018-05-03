@@ -126,7 +126,7 @@
 	href="http://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css"
 	rel="stylesheet">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/user_modify.css?version=1.2" />
+	href="${pageContext.request.contextPath}/resources/css/user_modify.css?version=1.4" />
 </head>
 <style>
 </style>
@@ -177,7 +177,7 @@
 
 				<tr align="center" valign="middle">
 					<td colspan="5"><font size=2>
-					<a href="javascript:Check()" class="button" > 정보수정</a>&nbsp;&nbsp;
+					<a href="javascript:Check()" class="button" >수정</a>&nbsp;&nbsp;
 					</font></td><br><br><br><br><br>
 				</tr>
 			</table>

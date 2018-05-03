@@ -147,10 +147,10 @@ input[type=radio]:checked+label:after {
 }
 
 a.button {
-	font-size: 14px;
+	font-size: 13px;
 	font-weight: 100;
 	color: white;
-	padding: 6px 25px 0px 20px;
+	padding: 6px 5px 0px 15px;
 	margin: 10px 8px 20px 0px;
 	display: inline-block;
 	float: right;

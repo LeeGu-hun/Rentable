@@ -42,7 +42,7 @@
 		</div>
 
 
-		<nav id="menu" class="menu" >
+		<nav id="menu" class="menu">
 
 			<ul class="dropdown">
 
@@ -111,7 +111,8 @@
 								<li><a
 									href="${pageContext.request.contextPath}/user_manage">회원관리</a></li>
 
-								<li><a href="${pageContext.request.contextPath}/sale_manage">물품관리</a></li>
+								<li><a
+									href="${pageContext.request.contextPath}/sale_manage">물품관리</a></li>
 
 							</ul></li>
 						<li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
@@ -121,7 +122,8 @@
 
 						<li><a href="${pageContext.request.contextPath}/loginForm"
 							title="Link">로그인</a></li>
-
+						<li><a href="${pageContext.request.contextPath}/joinForm"
+							title="Link">회원가입</a></li>
 					</c:otherwise>
 
 				</c:choose>
